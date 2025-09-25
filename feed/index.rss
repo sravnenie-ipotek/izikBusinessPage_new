@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Normand</title>
+	<atom:link href="https://www.normandpllc.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.normandpllc.com</link>
+	<description>We Are Results</description>
+	<lastBuildDate>Mon, 12 May 2025 22:35:50 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.8.1</generator>
+
+<image>
+	<url>https://www.normandpllc.com/wp-content/uploads/2021/02/cropped-Normand_Favicon-32x32.png</url>
+	<title>Normand</title>
+	<link>https://www.normandpllc.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>John Richard Collection Data Breach</title>
+		<link>https://www.normandpllc.com/john-richard-collection-data-breach/</link>
+					<comments>https://www.normandpllc.com/john-richard-collection-data-breach/#respond</comments>
+		
+		<dc:creator><![CDATA[Edmund Normand]]></dc:creator>
+		<pubDate>Mon, 14 Oct 2024 16:42:10 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://www.normandpllc.com/?p=954</guid>
+
+					<description><![CDATA[If you were affected by the John Richard Collection Data Breach, you may be eligible for financial compensation. Normand PLLC specializes in data breach class action lawsuits and can help you protect your rights. Learn how to claim your compensation today.]]></description>
+										<content:encoded><![CDATA[
+<h2 class="wp-block-heading has-larger-font-size">Were You Affected by the John Richard Collection Data Breach? Here’s How Normand PLLC Can Help</h2>
+
+
+
+<p class="has-regular-font-size">In early 2024, The John Richard Collection experienced a significant <a href="https://ago.vermont.gov/sites/ago/files/documents/2024-09-11%20The%20John%20Richard%20Collection%20Data%20Breach%20Notice%20to%20Consumers.pdf" target="_blank" rel="noopener">data breach</a>, potentially exposing sensitive personal information. If you received <a href="https://www.johnrichard.com/notice-of-data-event/" target="_blank" rel="noopener">notice of this breach</a>, you may be entitled to compensation for the mishandling of your data.</p>
+
+
+
+<p class="has-regular-font-size">At <a href="https://www.normandpllc.com/" data-type="page" data-id="7">Normand PLLC</a>, we specialize in <a href="https://www.normandpllc.com/class-action/privacy/" data-type="page" data-id="13">data breach class action</a> lawsuits and have a proven track record in securing multi-million dollar settlements for victims. You deserve to know your rights and have experienced legal advocates on your side.</p>
+
+
+
+<h3 class="wp-block-heading has-large-font-size"><strong>What Should You Do Next?</strong></h3>
+
+
+
+<ol class="wp-block-list">
+<li class="has-regular-font-size">Stay vigilant and monitor your credit.</li>
+
+
+
+<li class="has-regular-font-size">Contact Normand PLLC to understand your legal rights.</li>
+
+
+
+<li class="has-regular-font-size">Submit your information below to explore your eligibility for compensation.</li>
+</ol>
+
+
+
+<h4 class="wp-block-heading">Find Out How to Claim Compensation</h4>
+
+
+
+<p class="has-regular-font-size">Our team of privacy experts is ready to help you. Fill out the form below for a free consultation and take the first step toward protecting your privacy.</p>
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function(){gform.scriptsLoaded=!0}),document.addEventListener("gform/theme/scripts_loaded",function(){gform.themeScriptsLoaded=!0}),window.addEventListener("DOMContentLoaded",function(){gform.domLoaded=!0}),gform={domLoaded:!1,scriptsLoaded:!1,themeScriptsLoaded:!1,isFormEditor:()=>"function"==typeof InitializeEditor,callIfLoaded:function(o){return!(!gform.domLoaded||!gform.scriptsLoaded||!gform.themeScriptsLoaded&&!gform.isFormEditor()||(gform.isFormEditor()&&console.warn("The use of gform.initializeOnLoaded() is deprecated in the form editor context and will be removed in Gravity Forms 3.1."),o(),0))},initializeOnLoaded:function(o){gform.callIfLoaded(o)||(document.addEventListener("gform_main_scripts_loaded",()=>{gform.scriptsLoaded=!0,gform.callIfLoaded(o)}),document.addEventListener("gform/theme/scripts_loaded",()=>{gform.themeScriptsLoaded=!0,gform.callIfLoaded(o)}),window.addEventListener("DOMContentLoaded",()=>{gform.domLoaded=!0,gform.callIfLoaded(o)}))},hooks:{action:{},filter:{}},addAction:function(o,r,e,t){gform.addHook("action",o,r,e,t)},addFilter:function(o,r,e,t){gform.addHook("filter",o,r,e,t)},doAction:function(o){gform.doHook("action",o,arguments)},applyFilters:function(o){return gform.doHook("filter",o,arguments)},removeAction:function(o,r){gform.removeHook("action",o,r)},removeFilter:function(o,r,e){gform.removeHook("filter",o,r,e)},addHook:function(o,r,e,t,n){null==gform.hooks[o][r]&&(gform.hooks[o][r]=[]);var d=gform.hooks[o][r];null==n&&(n=r+"_"+d.length),gform.hooks[o][r].push({tag:n,callable:e,priority:t=null==t?10:t})},doHook:function(r,o,e){var t;if(e=Array.prototype.slice.call(e,1),null!=gform.hooks[r][o]&&((o=gform.hooks[r][o]).sort(function(o,r){return o.priority-r.priority}),o.forEach(function(o){"function"!=typeof(t=o.callable)&&(t=window[t]),"action"==r?t.apply(null,e):e[0]=t.apply(null,e)})),"filter"==r)return e[0]},removeHook:function(o,r,t,n){var e;null!=gform.hooks[o][r]&&(e=(e=gform.hooks[o][r]).filter(function(o,r,e){return!!(null!=n&&n!=o.tag||null!=t&&t!=o.priority)}),gform.hooks[o][r]=e)}});
+/* ]]&gt; */
+</script>
+
+                <div class='gf_browser_unknown gform_wrapper gform_legacy_markup_wrapper gform-theme--no-framework' data-form-theme='legacy' data-form-index='0' id='gform_wrapper_15' ><form method='post' enctype='multipart/form-data'  id='gform_15'  action='/feed/' data-formid='15' novalidate><div class='gf_invisible ginput_recaptchav3' data-sitekey='6LctezwqAAAAADmTyNO19XuWwlvX02ZmNpiKhJQF' data-tabindex='0'><input id="input_26f52fa64c5bc34f8427aabda2a2eeac" class="gfield_recaptcha_response" type="hidden" name="input_26f52fa64c5bc34f8427aabda2a2eeac" value=""/></div>
+                        <div class='gform-body gform_body'><ul id='gform_fields_15' class='gform_fields top_label form_sublabel_below description_below validation_below'><li id="field_15_1" class="gfield gfield--type-text gfield--input-type-text gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_15_1'>Name<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_text'><input name='input_1' id='input_15_1' type='text' value='' class='large'     aria-required="true" aria-invalid="false"   /></div></li><li id="field_15_3" class="gfield gfield--type-email gfield--input-type-email gfield--width-full gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_15_3'>Email<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_email'>
+                            <input name='input_3' id='input_15_3' type='email' value='' class='large'    aria-required="true" aria-invalid="false"  />
+                        </div></li><li id="field_15_4" class="gfield gfield--type-phone gfield--input-type-phone gfield--width-full field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_15_4'>Phone</label><div class='ginput_container ginput_container_phone'><input name='input_4' id='input_15_4' type='tel' value='' class='large'    aria-invalid="false"   /></div></li><li id="field_15_5" class="gfield gfield--type-select gfield--input-type-select gfield--width-full field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_15_5'>State of Residence</label><div class='ginput_container ginput_container_select'><select name='input_5' id='input_15_5' class='large gfield_select'     aria-invalid="false" ><option value='Alabama' >Alabama</option><option value='Alaska' >Alaska</option><option value='American Samoa' >American Samoa</option><option value='Arizona' >Arizona</option><option value='Arkansas' >Arkansas</option><option value='California' >California</option><option value='Colorado' >Colorado</option><option value='Connecticut' >Connecticut</option><option value='Delaware' >Delaware</option><option value='District of Columbia' >District of Columbia</option><option value='Florida' >Florida</option><option value='Georgia' >Georgia</option><option value='Guam' >Guam</option><option value='Hawaii' >Hawaii</option><option value='Idaho' >Idaho</option><option value='Illinois' >Illinois</option><option value='Indiana' >Indiana</option><option value='Iowa' >Iowa</option><option value='Kansas' >Kansas</option><option value='Kentucky' >Kentucky</option><option value='Louisiana' >Louisiana</option><option value='Maine' >Maine</option><option value='Maryland' >Maryland</option><option value='Massachusetts' >Massachusetts</option><option value='Michigan' >Michigan</option><option value='Minnesota' >Minnesota</option><option value='Mississippi' >Mississippi</option><option value='Missouri' >Missouri</option><option value='Montana' >Montana</option><option value='Nebraska' >Nebraska</option><option value='Nevada' >Nevada</option><option value='New Hampshire' >New Hampshire</option><option value='New Jersey' >New Jersey</option><option value='New Mexico' >New Mexico</option><option value='New York' >New York</option><option value='North Carolina' >North Carolina</option><option value='North Dakota' >North Dakota</option><option value='Northern Mariana Islands' >Northern Mariana Islands</option><option value='Ohio' >Ohio</option><option value='Oklahoma' >Oklahoma</option><option value='Oregon' >Oregon</option><option value='Pennsylvania' >Pennsylvania</option><option value='Puerto Rico' >Puerto Rico</option><option value='Rhode Island' >Rhode Island</option><option value='South Carolina' >South Carolina</option><option value='South Dakota' >South Dakota</option><option value='Tennessee' >Tennessee</option><option value='Texas' >Texas</option><option value='Utah' >Utah</option><option value='U.S. Virgin Islands' >U.S. Virgin Islands</option><option value='Vermont' >Vermont</option><option value='Virginia' >Virginia</option><option value='Washington' >Washington</option><option value='West Virginia' >West Virginia</option><option value='Wisconsin' >Wisconsin</option><option value='Wyoming' >Wyoming</option><option value='Armed Forces Americas' >Armed Forces Americas</option><option value='Armed Forces Europe' >Armed Forces Europe</option><option value='Armed Forces Pacific' >Armed Forces Pacific</option></select></div></li><li id="field_15_9" class="gfield gfield--type-radio gfield--type-choice gfield--input-type-radio gfield--width-full gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' >Did you receive a notice of data breach from John-Richard?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_radio'><ul class='gfield_radio' id='input_15_9'>
+			<li class='gchoice gchoice_15_9_0'>
+				<input name='input_9' type='radio' value='Yes'  id='choice_15_9_0'    />
+				<label for='choice_15_9_0' id='label_15_9_0' class='gform-field-label gform-field-label--type-inline'>Yes</label>
+			</li>
+			<li class='gchoice gchoice_15_9_1'>
+				<input name='input_9' type='radio' value='No'  id='choice_15_9_1'    />
+				<label for='choice_15_9_1' id='label_15_9_1' class='gform-field-label gform-field-label--type-inline'>No</label>
+			</li></ul></div></li></ul></div>
+        <div class='gform-footer gform_footer top_label'> <input type='submit' id='gform_submit_button_15' class='gform_button button' onclick='gform.submission.handleButtonClick(this);' data-submission-type='submit' value='Submit'  /> 
+            <input type='hidden' class='gform_hidden' name='gform_submission_method' data-js='gform_submission_method_15' value='postback' />
+            <input type='hidden' class='gform_hidden' name='gform_theme' data-js='gform_theme_15' id='gform_theme_15' value='legacy' />
+            <input type='hidden' class='gform_hidden' name='gform_style_settings' data-js='gform_style_settings_15' id='gform_style_settings_15' value='{&quot;inputPrimaryColor&quot;:&quot;#204ce5&quot;}' />
+            <input type='hidden' class='gform_hidden' name='is_submit_15' value='1' />
+            <input type='hidden' class='gform_hidden' name='gform_submit' value='15' />
+            
+            <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
+            <input type='hidden' class='gform_hidden' name='state_15' value='WyJ7XCI5XCI6W1wiYzA4ZjE4MWYxOTllYmZiZjBlMDk4MWY3ZDE4MDc2NmVcIixcIjg3NDVjYzY3MjIxMTdhZDIxZDBlNDBhMzU2ODRjNDFlXCJdfSIsIjIzNWUzMTYxYzRiODc4MmRhZDQwOWNiMTE3MWNjNDViIl0=' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_15' id='gform_target_page_number_15' value='0' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_source_page_number_15' id='gform_source_page_number_15' value='1' />
+            <input type='hidden' name='gform_field_values' value='' />
+            
+        </div>
+                        </form>
+                        </div><script type="text/javascript">
+/* <![CDATA[ */
+ gform.initializeOnLoaded( function() {gformInitSpinner( 15, 'https://www.normandpllc.com/wp-content/plugins/gravityforms/images/spinner.svg', true );jQuery('#gform_ajax_frame_15').on('load',function(){var contents = jQuery(this).contents().find('*').html();var is_postback = contents.indexOf('GF_AJAX_POSTBACK') >= 0;if(!is_postback){return;}var form_content = jQuery(this).contents().find('#gform_wrapper_15');var is_confirmation = jQuery(this).contents().find('#gform_confirmation_wrapper_15').length > 0;var is_redirect = contents.indexOf('gformRedirect(){') >= 0;var is_form = form_content.length > 0 && ! is_redirect && ! is_confirmation;var mt = parseInt(jQuery('html').css('margin-top'), 10) + parseInt(jQuery('body').css('margin-top'), 10) + 100;if(is_form){jQuery('#gform_wrapper_15').html(form_content.html());if(form_content.hasClass('gform_validation_error')){jQuery('#gform_wrapper_15').addClass('gform_validation_error');} else {jQuery('#gform_wrapper_15').removeClass('gform_validation_error');}setTimeout( function() { /* delay the scroll by 50 milliseconds to fix a bug in chrome */  }, 50 );if(window['gformInitDatepicker']) {gformInitDatepicker();}if(window['gformInitPriceFields']) {gformInitPriceFields();}var current_page = jQuery('#gform_source_page_number_15').val();gformInitSpinner( 15, 'https://www.normandpllc.com/wp-content/plugins/gravityforms/images/spinner.svg', true );jQuery(document).trigger('gform_page_loaded', [15, current_page]);window['gf_submitting_15'] = false;}else if(!is_redirect){var confirmation_content = jQuery(this).contents().find('.GF_AJAX_POSTBACK').html();if(!confirmation_content){confirmation_content = contents;}jQuery('#gform_wrapper_15').replaceWith(confirmation_content);jQuery(document).trigger('gform_confirmation_loaded', [15]);window['gf_submitting_15'] = false;wp.a11y.speak(jQuery('#gform_confirmation_message_15').text());}else{jQuery('#gform_15').append(contents);if(window['gformRedirect']) {gformRedirect();}}jQuery(document).trigger("gform_pre_post_render", [{ formId: "15", currentPage: "current_page", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_15" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_15";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_15" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 15, current_page );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } );} ); 
+/* ]]&gt; */
+</script>
+
+
+
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.normandpllc.com/john-richard-collection-data-breach/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Fidelity National Information Services 2023 Data Breach Impacts Consumers</title>
+		<link>https://www.normandpllc.com/fidelity-national-information-services-data-breach-are-you-at-risk/</link>
+		
+		<dc:creator><![CDATA[Edmund Normand]]></dc:creator>
+		<pubDate>Fri, 24 May 2024 16:03:54 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[2023 data breach]]></category>
+		<category><![CDATA[data breach]]></category>
+		<category><![CDATA[data breach lawsuit]]></category>
+		<category><![CDATA[fidelity national information services]]></category>
+		<category><![CDATA[FIS]]></category>
+		<guid isPermaLink="false">https://www.normandpllc.com/?p=864</guid>
+
+					<description><![CDATA[On August 11, 2023, Fidelity National Information Services, Inc. (“FIS Global”) filed a notice of data breach]]></description>
+										<content:encoded><![CDATA[<div class="wp-block-image">
+<figure class="aligncenter size-large"><img fetchpriority="high" decoding="async" width="1024" height="683" src="https://www.normandpllc.com/wp-content/uploads/2023/04/iStock-1186418507-1024x683.jpg" alt="" class="wp-image-728" srcset="https://www.normandpllc.com/wp-content/uploads/2023/04/iStock-1186418507-1024x683.jpg 1024w, https://www.normandpllc.com/wp-content/uploads/2023/04/iStock-1186418507-300x200.jpg 300w, https://www.normandpllc.com/wp-content/uploads/2023/04/iStock-1186418507-768x512.jpg 768w, https://www.normandpllc.com/wp-content/uploads/2023/04/iStock-1186418507-720x480.jpg 720w, https://www.normandpllc.com/wp-content/uploads/2023/04/iStock-1186418507.jpg 1254w" sizes="100vw" /></figure></div>
+
+
+<p class="has-regular-font-size"><a href="https://www.jdsupra.com/legalnews/data-breach-at-fidelity-national-2260724/#:~:text=On%20August%2011%2C%202023%2C%20Fidelity%20National%20Information%20Services%2C,program%20used%20by%20FIS%20Global%20compromised%20consumer%20information." target="_blank" rel="noopener">The Fidelity National Information Services Data Breach </a>compromised a variety of consumer information, including personally identifiable information (PII), financial data, and potentially other sensitive details. </p>
+
+
+
+<p class="has-regular-font-size">This incident underscored the critical importance of regular security assessments and the timely application of patches to software vulnerabilities to protect sensitive consumer data from cyber threats. The breach also highlighted the ongoing challenges organizations face in safeguarding their digital assets against increasingly sophisticated cyberattacks. </p>
+
+
+
+<p class="has-regular-font-size">MOVEit/Fidelity National Information Services, inc. data breach <a href="https://www.normandpllc.com/class-action/privacy/">data breach</a>, participating in a class action lawsuit is a viable option—a collective legal action taken by a group of individuals who have suffered similar harm due to the actions of the defendant.</p>
+
+
+
+<p class="has-regular-font-size">If your personal data was compromised in the MOVEit/Fidelity National Information Services, inc. data breach data breach, you may have the right to join a <a href="https://www.normandpllc.com/class-action/">class action lawsuit</a> seeking damages for the harm suffered. This can encompass financial losses and emotional distress incurred as a result of the breach.</p>
+
+
+
+<p class="has-regular-font-size">Navigating the complexities of a class action lawsuit requires expertise, and that&#8217;s where Normand PLLC comes into play. Our law firm specializes in handling data breach class action cases, ensuring that your rights are protected throughout the legal proceedings. We understand the intricacies of these cases and can assist you in filing a claim effectively.</p>
+
+
+
+<p class="has-regular-font-size">When considering legal action, it&#8217;s essential to choose a law firm with experience in data breach cases. Normand PLLC boasts a proven track record in delivering results for such cases. Trust your case to a law firm with expertise rather than opting for a generic billboard law firm.</p>
+
+
+
+<p class="has-regular-font-size">Don&#8217;t let the MOVEit/Fidelity National Information Services, inc. data breach data go unaddressed—take control of your rights and join the fight for justice. Normand PLLC is here to guide you through the process and ensure that your voice is heard in the pursuit of fair compensation. Explore the intricacies of the Fidelity National Information Services, inc. data breach and the ongoing investigation into MOVEit with our dedicated legal team.</p>
+
+
+
+<p class="has-regular-font-size">If you received a data breach notification from Fidelity National Information Services, Inc.<strong> </strong>CONTACT OUR FIRM FOR COMPENSATION FOR THIS DATA BREACH.</p>
+
+
+
+<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<div class="wp-block-columns are-vertically-aligned-center is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow">
+<p class="has-text-align-center" style="font-size:18px">Give us a call for a free consultation.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-vertical is-layout-flex wp-block-buttons-is-layout-flex">
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-theme-white-color has-theme-black-background-color has-text-color has-background no-border-radius" href="tel:4076036031">Orlando Phone: 407-603-6031</a></div>
+</div>
+</div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Edmund Normand Joins 2024 Super Lawyers</title>
+		<link>https://www.normandpllc.com/edmund-normand-joins-2024-super-lawyers/</link>
+					<comments>https://www.normandpllc.com/edmund-normand-joins-2024-super-lawyers/#respond</comments>
+		
+		<dc:creator><![CDATA[Edmund Normand]]></dc:creator>
+		<pubDate>Tue, 16 Jan 2024 19:26:20 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://www.normandpllc.com/?p=810</guid>
+
+					<description><![CDATA[We are proud to announce that Edmund Normand, the founder of Normand PLLC, has once again been selected for the Super Lawyers list for 2024, continuing his legacy of legal excellence.]]></description>
+										<content:encoded><![CDATA[
+<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="wp-block-heading has-large-font-size" style="text-transform:uppercase">Edmund Normand Joins 2024 Super Lawyers, Once Again Joining the Top 5% of Lawyers</h2>
+
+
+
+<div class="wp-block-cover" style="min-height:754px;aspect-ratio:unset;"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-60 has-background-dim"></span><img decoding="async" width="1024" height="1024" class="wp-block-cover__image-background wp-image-811" alt="Edmund Normand Joins 2024 Super Lawyers" src="https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu.png" data-object-fit="cover" srcset="https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu.png 1024w, https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu-300x300.png 300w, https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu-150x150.png 150w, https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu-768x768.png 768w, https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu-660x660.png 660w, https://www.normandpllc.com/wp-content/uploads/2024/01/DALL·E-2023-12-28-11.55.39-Create-an-image-of-a-Super-Hero-Lawyer-in-a-stylized-less-life-like-form-holding-a-briefcase-surrounded-by-a-group-of-other-super-lawyers-not-regu-730x730.png 730w" sizes="100vw" /><div class="wp-block-cover__inner-container is-layout-flow wp-block-cover-is-layout-flow">
+<p class="has-text-align-center has-large-font-size">Edmund Normand Joins 2024 Super Lawyers, reserved for only the top 5% of attorneys.</p>
+</div></div>
+
+
+
+<p class="has-regular-font-size"><br>We are proud to announce that Edmund Normand, the founder of Normand PLLC, has once again been selected for the Super Lawyers list for 2024, continuing his legacy of legal excellence. This accolade, reserved for only the top 5% of attorneys, underscores Normand&#8217;s consistent dedication and exceptional skill in the legal field.</p>
+
+
+
+<p class="has-regular-font-size">Edmund Normand&#8217;s journey in law is characterized by a relentless pursuit of justice and steadfast advocacy for those he represents. His firm, located in the heart of Orlando, is renowned for handling challenging and complex class action lawsuits, particularly in areas like consumer fraud, privacy, and insurance disputes. Normand&#8217;s expertise in navigating these intricate legal waters has not only brought significant victories for his clients but has also set a high bar in the legal community for integrity and results-driven practice.</p>
+
+
+
+<p class="has-regular-font-size">This ongoing recognition by the Super Lawyers list reaffirms Edmund Normand&#8217;s unshakeable commitment to legal excellence and his significant impact on consumer class action litigation. It celebrates his ability to merge profound legal knowledge with a compassionate understanding of his clients&#8217; needs, ensuring their voices are heard and justice is achieved. This continued inclusion in the 2024 Florida Super Lawyers list is not just an accolade but a reiteration of a journey marked by relentless dedication and legal prowess. His career path, from initial guidance under legal pioneers to founding Normand PLLC in Orlando, reflects a sustained commitment to legal excellence and advocacy for justice.</p>
+
+
+
+<p class="has-regular-font-size">At Normand PLLC, we view this continued recognition not merely as a personal achievement but as an ongoing endorsement of the firm&#8217;s core mission: to deliver unparalleled legal representation in the specialized arena of consumer class action litigation, while maintaining the highest standards of professionalism and ethical conduct.</p>
+
+
+
+<p class="has-regular-font-size">Normand&#8217;s story is one of consistently rising to the top through integrity, skill, and a deep understanding of the law &#8211; principles that have not only guided his career but have also been recognized repeatedly through such prestigious honors. From once kindling fires in a small house with a wood-fire stove to now igniting legal victories, Edmund Normand&#8217;s journey shows that a little spark can lead to a spectacular flame.</p>
+
+
+
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.normandpllc.com/edmund-normand-joins-2024-super-lawyers/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Car Insurance Total Loss Claims</title>
+		<link>https://www.normandpllc.com/car-insurance-total-loss-claims/</link>
+					<comments>https://www.normandpllc.com/car-insurance-total-loss-claims/#respond</comments>
+		
+		<dc:creator><![CDATA[Edmund Normand]]></dc:creator>
+		<pubDate>Thu, 27 May 2021 02:20:23 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://live-normand.pantheonsite.io/?p=438</guid>
+
+					<description><![CDATA[Did you wreck your car and did your insurance company pay you for the total loss? We believe that consumers have been cheated out of thousands of dollars by car insurance companies. ]]></description>
+										<content:encoded><![CDATA[
+<h2 class="wp-block-heading"><strong>Did you experinece a total loss? You may have been underpaid.  </strong></h2>
+
+
+
+<p class="has-regular-font-size">We believe that consumers have been cheated out of thousands of dollars by car insurance companies.&nbsp; Consumers have reported to Normand PLLC that after a total loss car wreck and submission of a claim for the full value of their vehicle, insurance companies underpaid the claims.&nbsp; To make matters worse, Normand PLLC has learned that some auto insurance companies breach the terms of their policies and violate various state laws by failing to include sales tax, tag or plate fees, and title fees as part of actual cash value paid to settle total loss claims.</p>
+
+
+
+<p class="has-regular-font-size">Normand PLLC has filed class action lawsuits alleging that insurance companies deliberately breach the terms of their policies and violate various state laws by devaluing the condition of vehicles and failing to include sales tax, license plate fees, and title fees as part of actual cash value paid to settle total loss claims.&nbsp; These practices reduce the claim payments to consumers by hundreds or thousands of dollars.</p>
+
+
+
+<p class="has-regular-font-size">Specifically, the lawsuits accuse auto insurance companies of underpaying consumers by failing to pay sales tax, title fees, license fees, and manipulating the data used to value the cars. Many auto insurance companies violated state laws regulating the handling of these claims and making it even tougher for insureds whose cars were destroyed. Among other things, the lawsuits allege the insurance companies employ what they call “condition adjustments” to reduce the value of comparable vehicles without itemizing or explaining the basis for the adjustment as required by state law, resulting in an average underpayment of $821 to $1,274. </p>
+
+
+
+<p class="has-regular-font-size">Normand PLLC believes consumers deserve repayment.&nbsp; Insurance companies took advantage of customers by knowingly paying less than fair value for totaled vehicles. We will fight to reclaim consumer losses against insurance companies for the full accurate value of totaled vehicles. Normand PLLC’s legal team is interested in hearing about your total loss car insurance complaints.</p>
+
+
+
+<h4 class="wp-block-heading"><strong>WHICH INSURANCE COMPANIES?</strong></h4>
+
+
+
+<p class="has-regular-font-size"><a href="https://www.normandpllc.com/contact-us/" data-type="page" data-id="23">Normand PLLC</a> is investigating claims against all auto insurance providers including:</p>
+
+
+
+<ol class="wp-block-list">
+<li>Geico (Berkshire Hathaway)</li>
+
+
+
+<li>USAA</li>
+
+
+
+<li>Liberty Mutual</li>
+
+
+
+<li>Farmers Insurance</li>
+
+
+
+<li>Travelers</li>
+
+
+
+<li>American Family Insurance</li>
+
+
+
+<li>Nationwide</li>
+
+
+
+<li>Erie Insurance</li>
+
+
+
+<li>Auto Club Exchange</li>
+
+
+
+<li>Chubb</li>
+
+
+
+<li>CSAA Insurance Exchange</li>
+
+
+
+<li>Kemper</li>
+
+
+
+<li>MetLife</li>
+
+
+
+<li>Mercury Insurance</li>
+
+
+
+<li>The Hartford</li>
+
+
+
+<li>Auto Club Insurance Association</li>
+
+
+
+<li>Amica</li>
+</ol>
+
+
+
+<h4 class="wp-block-heading"><strong>NO COST TO YOU</strong></h4>
+
+
+
+<p class="has-regular-font-size">There is no cost or fee at all if you want to join this action. In the event Normand PLLC or any other firm obtains a settlement that provides benefits to class members, the court will decide a reasonable fee to be awarded to the legal team for the class.</p>
+
+
+
+<h4 class="wp-block-heading"><strong>CLASS ACTION TOTAL LOSS CASES NORMAND PLLC WON AS LEAD COUNSEL</strong></h4>
+
+
+
+<ol class="wp-block-list">
+<li><em>Roth v. Geico, et al.</em>, Case No.16-62942-civ-Dimitrouleas, Southern District of Florida: (consolidated with <em>Joffe, et al. v. Geico, et al.,)</em> &#8211; <strong>Settlement recovering over $79 million in benefits to the class</strong>.</li>
+
+
+
+<li><em><u>Jones v. GEICO, et al.</u>,</em> CASE NO.: 6:17-cv-891-ORL- 40KRS, Middle District of Florida (consolidated with&nbsp;<em>Lorenti, Barrett v. Geico Indemnity Company)</em>&nbsp;&#8211; <strong>Class settlement of approximately $61.9 million.</strong></li>
+
+
+
+<li><em>Avila-Preciado v. Horace Mann Property &amp; Casualty Insurance Co., </em>Case No. 19-CA-004683, Circuit Court, Twentieth Judicial Circuit, Lee County, Florida &#8211; <strong>Settlement for 100% of class damages claimed.</strong></li>
+
+
+
+<li><em>Bracero v. Mendota Insurance Company, </em>Case No. 2019-015886-CA-01, Circuit Court, Eleventh Judicial Circuit, Miami-Dade County, Florida &#8211; <strong>Class settlement exceeding $790,000.</strong></li>
+
+
+
+<li><em>Giordani et al. </em>v. <em>Ascendant Commercial Insurance, Inc., </em>Case No. 2018-CA-001024-O, Circuit Court, Ninth Judicial Circuit, Orange County, Florida &#8211; <strong>Settlement for 100% of class damages claimed.</strong></li>
+
+
+
+<li><em>Junior et al. </em>v. <em>Infinity Auto Insurance Company, </em>Case No. 6:18-cv-01598-WWB-EJK, United States District Court, Middle District of Florida, Orlando Division &#8211; <strong>Class settlement approximately $22.79 Million</strong>.</li>
+
+
+
+<li><em>Silva v. James River Insurance Company, </em>Case No. 50-2019-CA-016151-XXXX-MB, Fifteenth Judicial Circuit, Palm Beach County, Florida &#8211; <strong>Settlement for 100% of class damages claimed.</strong></li>
+
+
+
+<li><em>Smart et al. v.&nbsp; Auto Club Insurance Co et al.,</em> Case No.<em> </em>19-CA-005580, Circuit Court, Thirteenth Judicial Circuit, Hillsborough County, Florida &#8211; <strong>Settlement for 100% of class damages totaling over $633,000.</strong></li>
+
+
+
+<li><em>Sos </em>v. <em>State Farm Automobile Insurance Company, </em>Case No.<em> </em>6:17-cv-00890-PGB-LRH, United States District Court, Middle District of Florida, Orlando Division &#8211; <strong>Total recovery over $8,500,000.</strong></li>
+
+
+
+<li><em>Suarez v. MAPFRE Insurance Co. of Florida, </em>Case No.<em> </em>2019-020729-CA-01, Circuit Court, Eleventh Judicial Circuit, Miami-Dade County, Florida &#8211; <strong>Settlement exceeding $600,000</strong>.</li>
+</ol>
+
+
+
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+<div class="wp-block-group"> </div>
+
+
+
+<div class="wp-block-columns are-vertically-aligned-center is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"></div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"></div>
+</div>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.normandpllc.com/car-insurance-total-loss-claims/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Illegal Automated Robocalls and Robotexts</title>
+		<link>https://www.normandpllc.com/illegal-automated-robocalls-and-robotexts/</link>
+					<comments>https://www.normandpllc.com/illegal-automated-robocalls-and-robotexts/#respond</comments>
+		
+		<dc:creator><![CDATA[Edmund Normand]]></dc:creator>
+		<pubDate>Thu, 27 May 2021 01:52:03 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://live-normand.pantheonsite.io/?p=434</guid>
+
+					<description><![CDATA[Have you received those annoying automated calls or texts? Or even a phone call from a number that’s EXACTLY like yours or very similar? Robocalls are a common nuisance that many Americans face nearly every day.]]></description>
+										<content:encoded><![CDATA[
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p class="has-regular-font-size">Looking for help with illegal automated robocalls or robotexts? <strong><a href="https://www.normandpllc.com/contact-us/" data-type="page" data-id="23">Normand PLLC</a></strong> has experienced attorneys ready to assist you.</p>
+
+
+
+<h2 class="has-text-align-left wp-block-heading">Are automated Robocalls Legal?</h2>
+
+
+
+<p class="has-regular-font-size">Have you received those annoying automated calls or texts? Or even a phone call from a number that’s EXACTLY like yours or very similar? Robocalls are a common nuisance that many Americans face nearly every day.&nbsp;These are often phishing attempts to steal your personal information, make you believe you owe money, or are part of a marketing campaign. If you did not consent to being robocalled most are ILLEGAL.</p>
+
+
+
+<p class="has-regular-font-size"><a href="http://www.washingtonpost.com/technology/2019/06/17/robocalls-are-overwhelming-hospitals-patients-threatening-new-kind-health-crisis/?noredirect=on&amp;utm_term=.5eb4a8220c8e" target="_blank" rel="noopener">The Washington Post is reporting,&nbsp;</a>however, that now hospitals and medical centers are being targeted by thousands of robocalls that flood the phone lines and disrupt daily operations.&nbsp;For example, one medical center in Boston reportedly registered more than 4,500 calls between a two-hour period, crippling communications.&nbsp;</p>
+
+
+
+<p class="has-regular-font-size">It doesn’t end there, these callers may even “spoof” their number to look like the hospital’s number to deceive you and tell people they owe money. A medical facility based in Tampa has reportedly received over 300 calls that appeared to be coming from numbers that are affiliated with the U.S. Department of Justice! </p>
+
+
+
+<p class="has-regular-font-size">Even with top telecom providers and the Federal Communications Commission increasing their efforts to stop spam callers, robocalls have clearly been on the rise. Does this mean that you’re at the mercy of these robocalls? Absolutely not. Here are some guidelines to help you deal with these robocalls.</p>
+
+
+
+<h3 class="wp-block-heading">You Have RIGHTS!</h3>
+
+
+
+<p class="has-regular-font-size">Consumers have options to fight back including the remedies found in the TCPA. TCPA is short for the Telephone Consumer Protection Act. The TCPA restricts telemarketing certain phone calls, text messages, and facsimiles.</p>
+
+
+
+<p class="has-regular-font-size">It also places restrictions on the use of automatic dialing systems and artificial or prerecorded voice messages. Collections’ actions by phone are also regulated under the act. Consumers may file complaints with Federal Communications Commission (FCC) when TCPA is violated. Since TCPA law governs consumer rights, lawsuits may also be filed by consumers who suffer violations.</p>
+
+
+
+<h4 class="wp-block-heading">How Does the TCPA Work?</h4>
+
+
+
+<p class="has-regular-font-size">The TCPA is a strict liability statute. If you are getting these robocalls and robotexts from companies who you have not consented to have calling you, then you are entitled to statutory damages for each call. The minimum fine for each call is $500 and the maximum is $1,500. </p>
+
+
+
+<p class="has-regular-font-size">When multiple calls have been made you receive the statutory damages for each call. Have you ever received calls or texts to your cell phone where they asked for someone other than you? These “wrong number” calls are a real nuisance and we want to help stop them. </p>
+
+
+
+<p class="has-regular-font-size">They have to pay you for every wrong number call. We bring lawsuits for these wrong number robocalls to get you money awards. We have experience bringing both individual and class action claims under the TCPA. <a href="https://www.normandpllc.com/contact-us/" data-type="page" data-id="23">Contact us</a> today if you think you might need us to be your TCPA lawyer. We Have Experience To Help You Turn Calls Into Remedies For You. </p>
+
+
+
+<h3 class="wp-block-heading">Steps You Can Take</h3>
+
+
+
+<p class="has-regular-font-size"><strong>Federal Communications Commission (</strong><a href="https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts" target="_blank" rel="noopener"><strong>FCC</strong></a><strong>) and Federal Trade Commission (</strong><a href="https://www.consumer.ftc.gov/articles/0259-robocalls#scam" target="_blank" rel="noopener"><strong>FTC</strong></a><strong>) Guidelines for Robocalls</strong></p>
+
+
+
+<p class="has-regular-font-size">A robocall <strong>trying to sell you something is illegal</strong> unless a company has your <strong>written </strong>permission (paper or electronic) to call you that way.&nbsp;</p>
+
+
+
+<p class="has-regular-font-size">However, not every robocall needs your permission. Here are some robocalls that don’t require your permission:</p>
+
+
+
+<ul class="has-regular-font-size wp-block-list"><li><strong>Messages that are purely informational</strong> – Robocalls about a flight cancellation, appointment reminder, delayed school opening, etc.</li><li><strong>Debt collection calls </strong>– A business using robocalls to collect a debt is allowed, but robocalls trying to sell you services to reduce your debt are not.</li><li><strong>Political calls </strong>– Only permissible when made to landline telephones.&nbsp;</li><li><strong>Calls from some health care providers </strong>– For example, a pharmacy can contact you to remind you to refill your prescription.</li><li><strong>Messages from charities </strong>– Charities hiring a 3<sup>rd</sup> party to use robocalls can only contact members of the charity or previous donors.&nbsp;&nbsp;</li><li><strong>Market research or polling calls to home wireline numbers</strong> – Rules require caller to identify themselves at the beginning and include a contact number.</li></ul>
+
+
+
+<h4 class="wp-block-heading">Register for the National Do Not Call List</h4>
+
+
+
+<p>The National Do Not Call list requires telemarketers to remove your number from their call list and must stop calling you within 31 days from when you register. Visit <a href="http://www.donotcall.gov/" target="_blank" rel="noopener">donotcall.gov</a>&nbsp;to register your number.</p>
+
+
+
+<p><strong>Do Not Call </strong>rules only apply to telemarketing calls.</p>
+
+
+
+<p>Tax-exempt, non-profit organizations, political organizations, pollsters and survey takers, and religious organizations do not have to comply with do-not-call requests.<strong><br></strong></p>
+
+
+
+<p><a href="http://www.washingtonpost.com/technology/2019/06/17/robocalls-are-overwhelming-hospitals-patients-threatening-new-kind-health-crisis/?noredirect=on&amp;utm_term=.5eb4a8220c8e." target="_blank" rel="noopener">Read the original article by Tony Romm&nbsp;&#8211;&nbsp;“Robocalls Are Overwhelming Hospitals and Patients, Threatening a New Kind of Health Crisis.”&nbsp;The Washington Post, June, 17 2019.</a></p>
+
+
+
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p class="has-regular-font-size">If you are the victim of illegal robotexts or robocalls and texts, then <a href="https://www.normandpllc.com/contact-us/" data-type="page" data-id="23">contact our office</a> for a free consultation. Fight for your rights and receive fair compensation! You can call or email us today for a free evaluation of your case. We take TCPA cases on contingency: <strong>there are no fees unless you win</strong>. </p>
+
+
+
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<div class="wp-block-columns are-vertically-aligned-center is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow">
+<p class="has-text-align-center" style="font-size:18px">Give us a call for a free consultation.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-vertical is-layout-flex wp-block-buttons-is-layout-flex">
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-theme-white-color has-theme-black-background-color has-text-color has-background no-border-radius" href="tel:4076036031">Orlando Phone: 407-603-6031</a></div>
+</div>
+</div>
+</div>
+</div></div>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.normandpllc.com/illegal-automated-robocalls-and-robotexts/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

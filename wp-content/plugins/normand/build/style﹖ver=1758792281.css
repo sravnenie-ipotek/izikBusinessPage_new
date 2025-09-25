@@ -1,0 +1,9 @@
+body .gfield.gfield--type-honeypot {
+	visibility: hidden;
+	opacity: 0;
+	display: none;
+}
+
+body h2.gform_submission_error.hide_summary {
+	font-size: 36px;
+}
