@@ -87,6 +87,9 @@ const server = http.createServer(async (req, res) => {
     pathname = '/index.html';
   }
 
+  // Decode URL for proper file path handling (fixes WordPress export encoding)
+  pathname = decodeURIComponent(pathname);
+
   const filePath = path.join(__dirname, pathname);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = mimeTypes[ext] || 'application/octet-stream';
