@@ -1,0 +1,16 @@
+{
+  "name": "normandpllc-site",
+  "version": "1.0.0",
+  "description": "Normand PLLC Law Firm Website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@vercel/node": "^3.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}
