@@ -35,10 +35,46 @@ The codebase consists of:
 - Locomotive Scroll for smooth scrolling
 - Gravity Forms for contact functionality
 
+## Development Commands
+
+### Local Development Server (Port 7000)
+```bash
+# Start development server with API functions
+npm run dev
+# or
+node server.js
+
+# Access site at: http://localhost:7001
+```
+
+### Vercel Development (Port 7002)
+```bash
+# Start with Vercel CLI (requires login)
+npm run dev:vercel
+# or
+vercel dev --listen 7002
+
+# Access site at: http://localhost:7002
+```
+
+### Deployment
+```bash
+# Deploy to Vercel production
+npm run deploy
+# or
+vercel --prod
+```
+
 ## Development Notes
 
-- This is a static site export, not a live WordPress installation
-- All PHP functionality has been converted to static HTML
-- JavaScript files are minified with version parameters
-- No build process or package manager configuration present
-- Site uses WordPress's standard directory structure for assets
+- **Port Requirements**: Always use ports 7000+ for local development
+- **Forms**: Serverless functions handle form submissions (`/api/contact`)
+- **Static Export**: Converted from WordPress, all PHP → static HTML
+- **Assets**: Minified CSS/JS with version parameters for cache busting
+- **API Functions**: Located in `/api/` directory for Vercel deployment
+
+## Form Testing
+
+- Forms work locally via `/api/contact` endpoint
+- Submissions logged to console during development
+- Add email provider (Resend/SendGrid) via Vercel environment variables

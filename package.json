@@ -4,7 +4,9 @@
   "description": "Normand PLLC Law Firm Website",
   "main": "index.js",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "node server.js",
+    "dev:vercel": "vercel dev --listen 7002",
+    "start": "node server.js",
     "deploy": "vercel --prod"
   },
   "dependencies": {

@@ -6,5 +6,10 @@
   },
   "env": {
     "RESEND_API_KEY": "@resend-api-key"
-  }
+  },
+  "devCommand": "npm run dev",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "framework": null
 }
