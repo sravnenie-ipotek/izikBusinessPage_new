@@ -1,116 +1,68 @@
-// Simple Node.js server to test the site locally with API functions
-const http = require('http');
-const fs = require('fs');
+// Enhanced server with Express and admin panel support
+const express = require('express');
 const path = require('path');
-const url = require('url');
+const fs = require('fs');
+const { setupAdminRoutes } = require('./admin-api');
 
 const PORT = 7001;
+const app = express();
 
-// Import our API function
-let contactHandler;
-try {
-  contactHandler = require('./api/contact.js').default;
-} catch (e) {
-  console.log('Loading contact handler...');
-}
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// MIME types
-const mimeTypes = {
-  '.html': 'text/html',
-  '.js': 'text/javascript',
-  '.css': 'text/css',
-  '.json': 'application/json',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.gif': 'image/gif',
-  '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon',
-  '.woff': 'font/woff',
-  '.woff2': 'font/woff2',
-  '.otf': 'font/otf'
-};
+// Setup admin routes
+setupAdminRoutes(app);
 
-const server = http.createServer(async (req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  let pathname = parsedUrl.pathname;
-
-  // Handle API routes
-  if (pathname === '/api/contact' && req.method === 'POST') {
-    let body = '';
-    req.on('data', chunk => body += chunk.toString());
-    req.on('end', async () => {
-      try {
-        const mockRequest = {
-          method: 'POST',
-          body: JSON.parse(body),
-          headers: req.headers
-        };
-
-        const mockResponse = {
-          statusCode: 200,
-          headers: {},
-          setHeader: (key, value) => mockResponse.headers[key] = value,
-          status: (code) => {
-            mockResponse.statusCode = code;
-            return mockResponse;
-          },
-          json: (data) => {
-            res.writeHead(mockResponse.statusCode, {
-              'Content-Type': 'application/json',
-              ...mockResponse.headers
-            });
-            res.end(JSON.stringify(data));
-          }
-        };
-
-        // Simple mock contact handler since we can't easily import ES6 modules
-        console.log('📧 Form submission received:', JSON.parse(body));
-
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({
-          success: true,
-          message: 'Form submitted successfully! (Local development mode - no email sent)'
-        }));
-
-      } catch (error) {
-        console.error('API Error:', error);
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Internal server error' }));
-      }
-    });
-    return;
-  }
-
-  // Serve static files
-  if (pathname === '/') {
-    pathname = '/index.html';
-  }
-
-  // Decode URL for proper file path handling (fixes WordPress export encoding)
-  pathname = decodeURIComponent(pathname);
-
-  const filePath = path.join(__dirname, pathname);
-  const ext = path.extname(filePath).toLowerCase();
-  const contentType = mimeTypes[ext] || 'application/octet-stream';
-
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('<h1>404 - File Not Found</h1>');
-      } else {
-        res.writeHead(500);
-        res.end(`Server Error: ${err.code}`);
-      }
-    } else {
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content);
-    }
-  });
+// Serve admin panel
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-server.listen(PORT, () => {
+// Language routing for Hebrew
+app.get('/he', (req, res) => {
+  const filePath = path.join(__dirname, 'index.he.html');
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('<h1>Hebrew version not found</h1><p>This page hasn\'t been translated yet.</p>');
+  }
+});
+
+app.get('/he/:page', (req, res) => {
+  const page = req.params.page;
+  const hebrewFile = `${page}.he.html`;
+  const filePath = path.join(__dirname, hebrewFile);
+
+  // Check if Hebrew version exists
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('<h1>Hebrew version not found</h1><p>This page hasn\'t been translated yet.</p>');
+  }
+});
+
+// Handle API routes (existing contact form)
+app.post('/api/contact', async (req, res) => {
+  try {
+    console.log('📧 Form submission received:', req.body);
+    res.json({
+      success: true,
+      message: 'Form submitted successfully! (Local development mode - no email sent)'
+    });
+  } catch (error) {
+    console.error('API Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Serve static files (including admin.html as admin)
+app.use(express.static(__dirname, {
+  extensions: ['html'],
+  index: 'index.html'
+}));
+
+const server = app.listen(PORT, () => {
   console.log(`🚀 Local server running at http://localhost:${PORT}`);
   console.log('📧 Contact forms will work and log submissions to console');
   console.log('✨ This simulates your Vercel deployment locally');

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normand PLLC - Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .login-form, .admin-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .admin-panel {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #007cba;
+            box-shadow: 0 0 0 2px rgba(0,124,186,0.1);
+        }
+
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        button {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #005a87;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #666;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #555;
+        }
+
+        .language-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .language-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .language-tab.active {
+            color: #007cba;
+            border-bottom-color: #007cba;
+            font-weight: 500;
+        }
+
+        .page-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .editor-toolbar {
+            margin-bottom: 10px;
+        }
+
+        .editor-toolbar button {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            margin-right: 5px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .editor-toolbar button:hover {
+            background: #e0e0e0;
+        }
+
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .logout:hover {
+            background: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .page-selector {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .language-tabs {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Normand PLLC Admin Panel</h1>
+            <button class="logout hidden" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm" class="login-form">
+            <h2>Admin Login</h2>
+            <div class="status" id="loginStatus"></div>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel hidden">
+            <div class="status" id="adminStatus"></div>
+
+            <!-- Page Selector -->
+            <div class="page-selector">
+                <label for="pageSelect">Select Page:</label>
+                <select id="pageSelect" onchange="loadPage()">
+                    <option value="">Select a page...</option>
+                </select>
+                <span id="currentFile"></span>
+            </div>
+
+            <!-- Language Tabs -->
+            <div class="language-tabs" id="languageTabs"></div>
+
+            <!-- Content Editor -->
+            <div id="contentEditor" class="hidden">
+                <form onsubmit="savePage(event)">
+                    <div class="form-group">
+                        <label for="pageTitle">Page Title:</label>
+                        <input type="text" id="pageTitle" placeholder="Enter page title...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pageH1">Main Heading (H1):</label>
+                        <input type="text" id="pageH1" placeholder="Enter main heading...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="metaDescription">Meta Description:</label>
+                        <textarea id="metaDescription" rows="2" placeholder="Enter meta description for SEO..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mainContent">Main Content:</label>
+                        <div class="editor-toolbar">
+                            <button type="button" onclick="insertHTML('<p>', '</p>')">Paragraph</button>
+                            <button type="button" onclick="insertHTML('<h2>', '</h2>')">H2</button>
+                            <button type="button" onclick="insertHTML('<h3>', '</h3>')">H3</button>
+                            <button type="button" onclick="insertHTML('<strong>', '</strong>')">Bold</button>
+                            <button type="button" onclick="insertHTML('<em>', '</em>')">Italic</button>
+                            <button type="button" onclick="insertHTML('<a href=&quot;&quot;>', '</a>')">Link</button>
+                        </div>
+                        <textarea id="mainContent" placeholder="Enter main content (HTML allowed)..."></textarea>
+                    </div>
+
+                    <button type="submit">Save Changes</button>
+                    <button type="button" class="btn-secondary" onclick="loadPage()">Reset</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            Loading...
+        </div>
+    </div>
+
+    <script>
+        let currentToken = localStorage.getItem('admin_token');
+        let currentLang = 'en';
+        let currentPage = '';
+        let languages = {};
+        let pages = {};
+
+        // Initialize
+        if (currentToken) {
+            showAdminPanel();
+        } else {
+            showLoginForm();
+        }
+
+        function showStatus(elementId, message, type = 'success') {
+            const status = document.getElementById(elementId);
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+
+        function showLoading(show = true) {
+            document.getElementById('loading').classList.toggle('hidden', !show);
+        }
+
+        async function login(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+
+            try {
+                showLoading(true);
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+
+                const data = await response.json();
+                showLoading(false);
+
+                if (data.success) {
+                    currentToken = data.token;
+                    localStorage.setItem('admin_token', currentToken);
+                    showAdminPanel();
+                } else {
+                    showStatus('loginStatus', data.error || 'Login failed', 'error');
+                }
+            } catch (error) {
+                showLoading(false);
+                showStatus('loginStatus', 'Network error occurred', 'error');
+            }
+        }
+
+        function logout() {
+            currentToken = null;
+            localStorage.removeItem('admin_token');
+            showLoginForm();
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.querySelector('.logout').classList.add('hidden');
+        }
+
+        async function showAdminPanel() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+            document.querySelector('.logout').classList.remove('hidden');
+
+            await loadLanguages();
+            await loadPages();
+        }
+
+        async function loadLanguages() {
+            try {
+                const response = await fetch('/api/admin/languages', {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+
+                if (response.ok) {
+                    languages = await response.json();
+                    renderLanguageTabs();
+                } else {
+                    throw new Error('Failed to load languages');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Failed to load languages', 'error');
+            }
+        }
+
+        async function loadPages() {
+            try {
+                showLoading(true);
+                const response = await fetch('/api/admin/pages', {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    pages = data.pages;
+                    languages = data.languages;
+                    renderPageSelector();
+                    renderLanguageTabs();
+                } else {
+                    throw new Error('Failed to load pages');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Failed to load pages', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function renderPageSelector() {
+            const select = document.getElementById('pageSelect');
+            select.innerHTML = '<option value="">Select a page...</option>';
+
+            Object.keys(pages).forEach(pageName => {
+                const option = document.createElement('option');
+                option.value = pageName;
+                option.textContent = pageName === 'index' ? 'Homepage' : pageName;
+                select.appendChild(option);
+            });
+        }
+
+        function renderLanguageTabs() {
+            const tabs = document.getElementById('languageTabs');
+            tabs.innerHTML = '';
+
+            Object.keys(languages).forEach(lang => {
+                const button = document.createElement('button');
+                button.className = `language-tab ${lang === currentLang ? 'active' : ''}`;
+                button.textContent = languages[lang].name;
+                button.onclick = () => switchLanguage(lang);
+                tabs.appendChild(button);
+            });
+        }
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            renderLanguageTabs();
+            if (currentPage) {
+                loadPageContent();
+            }
+        }
+
+        async function loadPage() {
+            const pageName = document.getElementById('pageSelect').value;
+            if (!pageName) {
+                document.getElementById('contentEditor').classList.add('hidden');
+                document.getElementById('currentFile').textContent = '';
+                return;
+            }
+
+            currentPage = pageName;
+            await loadPageContent();
+        }
+
+        async function loadPageContent() {
+            if (!currentPage || !currentLang) return;
+
+            try {
+                showLoading(true);
+                const response = await fetch(`/api/admin/page/${currentLang}/${currentPage}`, {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+
+                if (response.ok) {
+                    const content = await response.json();
+
+                    document.getElementById('pageTitle').value = content.title || '';
+                    document.getElementById('pageH1').value = content.h1 || '';
+                    document.getElementById('metaDescription').value = content.metaDescription || '';
+                    document.getElementById('mainContent').value = content.mainContent || '';
+
+                    document.getElementById('currentFile').textContent = `Editing: ${content.filename}`;
+                    document.getElementById('contentEditor').classList.remove('hidden');
+                } else if (response.status === 404) {
+                    showStatus('adminStatus', `${languages[currentLang].name} version not found for this page`, 'error');
+                    document.getElementById('contentEditor').classList.add('hidden');
+                } else {
+                    throw new Error('Failed to load page content');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Failed to load page content', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function savePage(event) {
+            event.preventDefault();
+            if (!currentPage || !currentLang) return;
+
+            const data = {
+                title: document.getElementById('pageTitle').value,
+                h1: document.getElementById('pageH1').value,
+                metaDescription: document.getElementById('metaDescription').value,
+                mainContent: document.getElementById('mainContent').value
+            };
+
+            try {
+                showLoading(true);
+                const response = await fetch(`/api/admin/page/${currentLang}/${currentPage}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showStatus('adminStatus', result.message || 'Page updated successfully!');
+                } else {
+                    showStatus('adminStatus', result.error || 'Failed to update page', 'error');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Network error occurred', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function insertHTML(startTag, endTag) {
+            const textarea = document.getElementById('mainContent');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+
+            const replacement = startTag + selectedText + endTag;
+            textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+
+            textarea.focus();
+            textarea.setSelectionRange(start + startTag.length, start + startTag.length + selectedText.length);
+        }
+    </script>
+</body>
+</html>

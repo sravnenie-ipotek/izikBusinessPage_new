@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-09-25T20:29:46.007Z",
+  "tests": [
+    {
+      "name": "English Homepage",
+      "url": "http://localhost:7001/",
+      "status": 200,
+      "expected": 200,
+      "success": true,
+      "title": "Experts in Class Action - Normand - We Are Results",
+      "h1": "Normand",
+      "screenshot": "english-homepage.png",
+      "error": null
+    },
+    {
+      "name": "Admin Panel",
+      "url": "http://localhost:7001/admin.html",
+      "status": 200,
+      "expected": 200,
+      "success": true,
+      "title": "Normand PLLC - Admin Panel",
+      "h1": "Normand PLLC Admin Panel",
+      "screenshot": "admin-panel.png",
+      "error": null
+    },
+    {
+      "name": "Hebrew Homepage",
+      "url": "http://localhost:7001/he/",
+      "status": 200,
+      "expected": 200,
+      "success": true,
+      "title": "Experts in Class Action - Normand - We Are Results",
+      "h1": "Normand",
+      "screenshot": "hebrew-homepage.png",
+      "error": null
+    },
+    {
+      "name": "Admin Panel (Clean URL)",
+      "url": "http://localhost:7001/admin",
+      "status": 200,
+      "expected": 200,
+      "success": true,
+      "title": "Normand PLLC - Admin Panel",
+      "h1": "Normand PLLC Admin Panel",
+      "screenshot": "admin-panel-(clean-url).png",
+      "error": null
+    },
+    {
+      "name": "Admin Login API",
+      "url": "http://localhost:7001/api/admin/login",
+      "status": 200,
+      "expected": 200,
+      "success": true,
+      "response": "{\"success\":true,\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNzU4ODMyMTkwLCJleHAiOjE3NTg5MTg1OTB9.QWci1Ik7OdsODN0GSocXBmi74eUVOare04Sgc1plogU\"}",
+      "error": null
+    },
+    {
+      "name": "Contact API",
+      "url": "http://localhost:7001/api/contact",
+      "status": 200,
+      "expected": 200,
+      "success": true,
+      "response": "{\"success\":true,\"message\":\"Form submitted successfully! (Local development mode - no email sent)\"}",
+      "error": null
+    },
+    {
+      "name": "Static File: global.css",
+      "url": "http://localhost:7001/wp-content/themes/normand/assets/css/global.css",
+      "status": 404,
+      "expected": 200,
+      "success": false,
+      "error": null
+    },
+    {
+      "name": "Static File: scripts.js",
+      "url": "http://localhost:7001/wp-content/themes/normand/assets/js/scripts.js",
+      "status": 404,
+      "expected": 200,
+      "success": false,
+      "error": null
+    }
+  ]
+}
