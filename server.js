@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 // Setup admin routes
 setupAdminRoutes(app);
 
+// Serve uploaded images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Serve admin panel
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));

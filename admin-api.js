@@ -3,6 +3,8 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cheerio = require('cheerio');
+const multer = require('multer');
+const sharp = require('sharp');
 
 // Configuration
 const JWT_SECRET = process.env.JWT_SECRET || 'normand-admin-secret-2024';
@@ -13,6 +15,42 @@ const LANGUAGES = {
   'en': { name: 'English', default: true },
   'he': { name: 'עברית', rtl: true }
 };
+
+// Image upload configuration
+const storage = multer.diskStorage({
+  destination: async (req, file, cb) => {
+    const uploadDir = path.join(__dirname, 'uploads', 'temp');
+    try {
+      await fs.mkdir(uploadDir, { recursive: true });
+      cb(null, uploadDir);
+    } catch (error) {
+      cb(error, null);
+    }
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, `image-${uniqueSuffix}${ext}`);
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB max file size
+  },
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|gif|webp/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+
+    if (extname && mimetype) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed (jpeg, jpg, png, gif, webp)'));
+    }
+  }
+});
 
 // Admin authentication middleware
 function authenticate(req, res, next) {
@@ -454,7 +492,170 @@ function setupAdminRoutes(app) {
     res.json(LANGUAGES);
   });
 
-  console.log('✅ Admin API routes configured');
+  // Upload image endpoint
+  app.post('/api/admin/upload', authenticate, upload.single('image'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+
+      const { targetElement, page, lang } = req.body;
+      const tempPath = req.file.path;
+      const fileName = `${Date.now()}-${req.file.originalname.replace(/\s+/g, '-')}`;
+      const finalPath = path.join(__dirname, 'uploads', 'images', fileName);
+
+      // Get image dimensions
+      const metadata = await sharp(tempPath).metadata();
+
+      // Optimize and save image
+      await sharp(tempPath)
+        .resize(metadata.width, metadata.height, {
+          fit: 'inside',
+          withoutEnlargement: true
+        })
+        .jpeg({ quality: 85, progressive: true })
+        .toFile(finalPath);
+
+      // Delete temp file
+      await fs.unlink(tempPath);
+
+      // Return the new image URL
+      const imageUrl = `/uploads/images/${fileName}`;
+
+      res.json({
+        success: true,
+        imageUrl,
+        dimensions: {
+          width: metadata.width,
+          height: metadata.height
+        }
+      });
+    } catch (error) {
+      console.error('Upload error:', error);
+      res.status(500).json({ error: 'Failed to upload image' });
+    }
+  });
+
+  // Update image in HTML (SAFE - only changes src attribute)
+  app.post('/api/admin/update-image', authenticate, async (req, res) => {
+    try {
+      const { page, lang, selector, newImageUrl, oldImageUrl } = req.body;
+
+      // Determine filename
+      const filename = lang === 'en'
+        ? `${page || 'index'}.html`
+        : `${page || 'index'}.${lang}.html`;
+
+      const filePath = path.join(__dirname, filename);
+
+      // Check if file exists
+      try {
+        await fs.access(filePath);
+      } catch {
+        return res.status(404).json({ error: 'Page not found' });
+      }
+
+      // Create backup
+      const backupPath = path.join(__dirname, 'uploads', 'backups', `${filename}.${Date.now()}.backup`);
+      await fs.mkdir(path.dirname(backupPath), { recursive: true });
+      const originalContent = await fs.readFile(filePath, 'utf-8');
+      await fs.writeFile(backupPath, originalContent);
+
+      // Load HTML with cheerio
+      const $ = cheerio.load(originalContent, { decodeEntities: false });
+
+      // CRITICAL: Only update the src attribute, nothing else
+      // This preserves all animations and structure
+      let updated = false;
+
+      if (selector) {
+        // Update specific element by selector
+        const element = $(selector);
+        if (element.length > 0 && element.is('img')) {
+          element.attr('src', newImageUrl);
+          updated = true;
+        }
+      } else if (oldImageUrl) {
+        // Find and replace by old URL
+        $('img').each((i, elem) => {
+          const $img = $(elem);
+          if ($img.attr('src') === oldImageUrl) {
+            $img.attr('src', newImageUrl);
+            updated = true;
+          }
+        });
+      }
+
+      if (!updated) {
+        return res.status(404).json({ error: 'Image not found in HTML' });
+      }
+
+      // Save updated HTML
+      await fs.writeFile(filePath, $.html());
+
+      res.json({
+        success: true,
+        message: 'Image updated successfully',
+        backup: backupPath
+      });
+    } catch (error) {
+      console.error('Update image error:', error);
+      res.status(500).json({ error: 'Failed to update image' });
+    }
+  });
+
+  // Get images for a specific page
+  app.get('/api/admin/images/:lang/:name', authenticate, async (req, res) => {
+    try {
+      const { lang, name } = req.params;
+
+      // Determine filename
+      const filename = lang === 'en'
+        ? `${name || 'index'}.html`
+        : `${name || 'index'}.${lang}.html`;
+
+      const filePath = path.join(__dirname, filename);
+
+      // Check if file exists
+      try {
+        await fs.access(filePath);
+      } catch {
+        return res.status(404).json({ error: 'Page not found' });
+      }
+
+      const html = await fs.readFile(filePath, 'utf-8');
+      const $ = cheerio.load(html);
+
+      // Extract all images with their context
+      const images = [];
+      $('img').each((i, elem) => {
+        const $img = $(elem);
+        const $parent = $img.parent();
+
+        images.push({
+          src: $img.attr('src'),
+          alt: $img.attr('alt') || '',
+          class: $img.attr('class') || '',
+          id: $img.attr('id') || '',
+          parentClass: $parent.attr('class') || '',
+          parentTag: $parent.prop('tagName'),
+          selector: $img.attr('id') ? `#${$img.attr('id')}` : null,
+          index: i
+        });
+      });
+
+      res.json({
+        images,
+        count: images.length,
+        filename
+      });
+    } catch (error) {
+      console.error('Get images error:', error);
+      res.status(500).json({ error: 'Failed to get images' });
+    }
+  });
+
+  console.log('✅ Admin API routes configured with image upload support');
 }
 
 module.exports = { setupAdminRoutes, authenticate };
