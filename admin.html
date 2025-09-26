@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normand PLLC - Admin Panel</title>
+    <title>Normand PLLC - Section Manager</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -77,7 +77,7 @@
         }
 
         textarea {
-            min-height: 200px;
+            min-height: 120px;
             resize: vertical;
             font-family: inherit;
         }
@@ -109,6 +109,22 @@
 
         .btn-secondary:hover {
             background: #555;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
         }
 
         .language-tabs {
@@ -143,6 +159,126 @@
             border-radius: 4px;
         }
 
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #007cba;
+        }
+
+        .section-card.section-disabled {
+            border-left-color: #dc3545;
+            opacity: 0.7;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            flex-grow: 1;
+        }
+
+        .toggle-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 15px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #007cba;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .section-content {
+            display: grid;
+            gap: 15px;
+        }
+
+        .content-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .content-field label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+        }
+
+        .content-field input,
+        .content-field textarea {
+            font-size: 13px;
+            padding: 8px 12px;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
         .status {
             padding: 10px;
             border-radius: 4px;
@@ -172,24 +308,6 @@
             display: none;
         }
 
-        .editor-toolbar {
-            margin-bottom: 10px;
-        }
-
-        .editor-toolbar button {
-            background: #f0f0f0;
-            color: #333;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            margin-right: 5px;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-
-        .editor-toolbar button:hover {
-            background: #e0e0e0;
-        }
-
         .logout {
             position: absolute;
             top: 20px;
@@ -203,9 +321,79 @@
             background: #c82333;
         }
 
+        .section-preview {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007cba;
+            box-shadow: 0 0 0 2px rgba(0,124,186,0.1);
+        }
+
+        .search-results {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .section-card.search-hidden {
+            display: none;
+        }
+
+        .html-preview {
+            margin-top: 8px;
+            padding: 12px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .html-preview span {
+            color: #007cba;
+            font-weight: 600;
+        }
+
+        .preview-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
+            }
+
+            .sections-grid {
+                grid-template-columns: 1fr;
             }
 
             .page-selector {
@@ -222,7 +410,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Normand PLLC Admin Panel</h1>
+            <h1>Normand PLLC Section Manager</h1>
             <button class="logout hidden" onclick="logout()">Logout</button>
         </div>
     </header>
@@ -248,7 +436,7 @@
             <!-- Page Selector -->
             <div class="page-selector">
                 <label for="pageSelect">Select Page:</label>
-                <select id="pageSelect" onchange="loadPage()">
+                <select id="pageSelect" onchange="loadPageSections()">
                     <option value="">Select a page...</option>
                 </select>
                 <span id="currentFile"></span>
@@ -257,45 +445,19 @@
             <!-- Language Tabs -->
             <div class="language-tabs" id="languageTabs"></div>
 
-            <!-- Content Editor -->
-            <div id="contentEditor" class="hidden">
-                <form onsubmit="savePage(event)">
-                    <div class="form-group">
-                        <label for="pageTitle">Page Title:</label>
-                        <input type="text" id="pageTitle" placeholder="Enter page title...">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="pageH1">Main Heading (H1):</label>
-                        <input type="text" id="pageH1" placeholder="Enter main heading...">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="metaDescription">Meta Description:</label>
-                        <textarea id="metaDescription" rows="2" placeholder="Enter meta description for SEO..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mainContent">Main Content:</label>
-                        <div class="editor-toolbar">
-                            <button type="button" onclick="insertHTML('<p>', '</p>')">Paragraph</button>
-                            <button type="button" onclick="insertHTML('<h2>', '</h2>')">H2</button>
-                            <button type="button" onclick="insertHTML('<h3>', '</h3>')">H3</button>
-                            <button type="button" onclick="insertHTML('<strong>', '</strong>')">Bold</button>
-                            <button type="button" onclick="insertHTML('<em>', '</em>')">Italic</button>
-                            <button type="button" onclick="insertHTML('<a href=&quot;&quot;>', '</a>')">Link</button>
-                        </div>
-                        <textarea id="mainContent" placeholder="Enter main content (HTML allowed)..."></textarea>
-                    </div>
-
-                    <button type="submit">Save Changes</button>
-                    <button type="button" class="btn-secondary" onclick="loadPage()">Reset</button>
-                </form>
+            <!-- Search Container -->
+            <div id="searchContainer" class="search-container hidden">
+                <label for="searchInput">Search sections by content:</label>
+                <input type="text" id="searchInput" class="search-input" placeholder="Type to search sections..." oninput="searchSections()">
+                <div id="searchResults" class="search-results"></div>
             </div>
+
+            <!-- Sections Grid -->
+            <div id="sectionsContainer" class="sections-grid hidden"></div>
         </div>
 
         <div id="loading" class="loading hidden">
-            Loading...
+            Loading sections...
         </div>
     </div>
 
@@ -305,6 +467,7 @@
         let currentPage = '';
         let languages = {};
         let pages = {};
+        let sections = [];
 
         // Initialize
         if (currentToken) {
@@ -445,101 +608,330 @@
             currentLang = lang;
             renderLanguageTabs();
             if (currentPage) {
-                loadPageContent();
+                loadPageSections();
             }
         }
 
-        async function loadPage() {
+        async function loadPageSections() {
             const pageName = document.getElementById('pageSelect').value;
             if (!pageName) {
-                document.getElementById('contentEditor').classList.add('hidden');
+                document.getElementById('sectionsContainer').classList.add('hidden');
+                document.getElementById('searchContainer').classList.add('hidden');
                 document.getElementById('currentFile').textContent = '';
                 return;
             }
 
             currentPage = pageName;
-            await loadPageContent();
+            await loadSections();
         }
 
-        async function loadPageContent() {
+        async function loadSections() {
             if (!currentPage || !currentLang) return;
 
             try {
                 showLoading(true);
-                const response = await fetch(`/api/admin/page/${currentLang}/${currentPage}`, {
+                const response = await fetch(`/api/admin/sections/${currentLang}/${currentPage}`, {
                     headers: { 'Authorization': `Bearer ${currentToken}` }
                 });
 
                 if (response.ok) {
-                    const content = await response.json();
+                    const data = await response.json();
+                    sections = data.sections;
 
-                    document.getElementById('pageTitle').value = content.title || '';
-                    document.getElementById('pageH1').value = content.h1 || '';
-                    document.getElementById('metaDescription').value = content.metaDescription || '';
-                    document.getElementById('mainContent').value = content.mainContent || '';
+                    document.getElementById('currentFile').textContent = `Editing: ${data.filename}`;
+                    renderSections();
+                    document.getElementById('sectionsContainer').classList.remove('hidden');
+                    document.getElementById('searchContainer').classList.remove('hidden');
 
-                    document.getElementById('currentFile').textContent = `Editing: ${content.filename}`;
-                    document.getElementById('contentEditor').classList.remove('hidden');
+                    // Clear search input when loading new sections
+                    document.getElementById('searchInput').value = '';
+                    updateSearchResults(sections.length, sections.length);
                 } else if (response.status === 404) {
                     showStatus('adminStatus', `${languages[currentLang].name} version not found for this page`, 'error');
-                    document.getElementById('contentEditor').classList.add('hidden');
+                    document.getElementById('sectionsContainer').classList.add('hidden');
+                    document.getElementById('searchContainer').classList.add('hidden');
                 } else {
-                    throw new Error('Failed to load page content');
+                    throw new Error('Failed to load sections');
                 }
             } catch (error) {
-                showStatus('adminStatus', 'Failed to load page content', 'error');
+                showStatus('adminStatus', 'Failed to load sections', 'error');
             } finally {
                 showLoading(false);
             }
         }
 
-        async function savePage(event) {
-            event.preventDefault();
-            if (!currentPage || !currentLang) return;
+        function renderSections() {
+            const container = document.getElementById('sectionsContainer');
+            container.innerHTML = '';
 
-            const data = {
-                title: document.getElementById('pageTitle').value,
-                h1: document.getElementById('pageH1').value,
-                metaDescription: document.getElementById('metaDescription').value,
-                mainContent: document.getElementById('mainContent').value
-            };
+            sections.forEach(section => {
+                const sectionCard = createSectionCard(section);
+                container.appendChild(sectionCard);
+            });
+        }
 
+        function createSectionCard(section) {
+            const card = document.createElement('div');
+            card.className = `section-card ${section.visible ? '' : 'section-disabled'}`;
+            card.id = `section-${section.id}`;
+
+            const header = document.createElement('div');
+            header.className = 'section-header';
+
+            const title = document.createElement('h3');
+            title.className = 'section-title';
+            title.textContent = section.name;
+
+            const toggleDiv = document.createElement('div');
+            toggleDiv.className = 'toggle-section';
+
+            const toggleLabel = document.createElement('label');
+            toggleLabel.className = 'toggle-switch';
+
+            const toggleInput = document.createElement('input');
+            toggleInput.type = 'checkbox';
+            toggleInput.checked = section.visible;
+            toggleInput.onchange = () => toggleSection(section.id, toggleInput.checked);
+
+            const slider = document.createElement('span');
+            slider.className = 'slider';
+
+            toggleLabel.appendChild(toggleInput);
+            toggleLabel.appendChild(slider);
+
+            const toggleText = document.createElement('span');
+            toggleText.textContent = section.visible ? 'Visible' : 'Hidden';
+            toggleText.id = `toggle-text-${section.id}`;
+
+            toggleDiv.appendChild(toggleLabel);
+            toggleDiv.appendChild(toggleText);
+
+            header.appendChild(title);
+            header.appendChild(toggleDiv);
+
+            const content = document.createElement('div');
+            content.className = 'section-content';
+
+            // Create form fields for editable content
+            Object.keys(section.content).forEach(key => {
+                const field = document.createElement('div');
+                field.className = 'content-field';
+
+                const label = document.createElement('label');
+                label.textContent = key.replace(/([A-Z])/g, ' $1').trim();
+
+                const value = section.content[key] || '';
+                const isLongText = value.length > 100;
+                const hasHTML = /<[^>]+>/.test(value);
+
+                const input = document.createElement(isLongText ? 'textarea' : 'input');
+                input.type = isLongText ? undefined : 'text';
+                input.value = value;
+                input.id = `${section.id}-${key}`;
+
+                field.appendChild(label);
+                field.appendChild(input);
+
+                // Add HTML preview if content contains HTML
+                if (hasHTML) {
+                    const previewLabel = document.createElement('div');
+                    previewLabel.className = 'preview-label';
+                    previewLabel.textContent = 'Preview:';
+
+                    const preview = document.createElement('div');
+                    preview.className = 'html-preview';
+                    preview.id = `${section.id}-${key}-preview`;
+                    preview.innerHTML = value;
+
+                    field.appendChild(previewLabel);
+                    field.appendChild(preview);
+
+                    // Update preview on input change
+                    input.addEventListener('input', (e) => {
+                        preview.innerHTML = e.target.value;
+                    });
+                }
+
+                content.appendChild(field);
+            });
+
+            const actions = document.createElement('div');
+            actions.className = 'section-actions';
+
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Save Section';
+            saveBtn.onclick = () => saveSection(section.id);
+
+            const resetBtn = document.createElement('button');
+            resetBtn.className = 'btn-secondary';
+            resetBtn.textContent = 'Reset';
+            resetBtn.onclick = () => loadSections();
+
+            actions.appendChild(saveBtn);
+            actions.appendChild(resetBtn);
+
+            card.appendChild(header);
+            card.appendChild(content);
+            card.appendChild(actions);
+
+            return card;
+        }
+
+        async function toggleSection(sectionId, visible) {
             try {
-                showLoading(true);
-                const response = await fetch(`/api/admin/page/${currentLang}/${currentPage}`, {
+                const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${sectionId}`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${currentToken}`,
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify({ visible })
                 });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    showStatus('adminStatus', result.message || 'Page updated successfully!');
+                    showStatus('adminStatus', `Section ${visible ? 'shown' : 'hidden'} successfully!`);
+
+                    // Update UI
+                    const card = document.getElementById(`section-${sectionId}`);
+                    const toggleText = document.getElementById(`toggle-text-${sectionId}`);
+
+                    if (visible) {
+                        card.classList.remove('section-disabled');
+                        toggleText.textContent = 'Visible';
+                    } else {
+                        card.classList.add('section-disabled');
+                        toggleText.textContent = 'Hidden';
+                    }
+
+                    // Update the section in our local data
+                    const sectionIndex = sections.findIndex(s => s.id === sectionId);
+                    if (sectionIndex !== -1) {
+                        sections[sectionIndex].visible = visible;
+                    }
                 } else {
-                    showStatus('adminStatus', result.error || 'Failed to update page', 'error');
+                    showStatus('adminStatus', result.error || 'Failed to toggle section', 'error');
+                    // Revert checkbox state
+                    const checkbox = document.querySelector(`#section-${sectionId} input[type="checkbox"]`);
+                    checkbox.checked = !visible;
                 }
             } catch (error) {
                 showStatus('adminStatus', 'Network error occurred', 'error');
-            } finally {
-                showLoading(false);
+                // Revert checkbox state
+                const checkbox = document.querySelector(`#section-${sectionId} input[type="checkbox"]`);
+                checkbox.checked = !visible;
             }
         }
 
-        function insertHTML(startTag, endTag) {
-            const textarea = document.getElementById('mainContent');
-            const start = textarea.selectionStart;
-            const end = textarea.selectionEnd;
-            const selectedText = textarea.value.substring(start, end);
+        async function saveSection(sectionId) {
+            try {
+                const content = {};
+                const section = sections.find(s => s.id === sectionId);
 
-            const replacement = startTag + selectedText + endTag;
-            textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+                if (!section) {
+                    showStatus('adminStatus', 'Section not found', 'error');
+                    return;
+                }
 
-            textarea.focus();
-            textarea.setSelectionRange(start + startTag.length, start + startTag.length + selectedText.length);
+                // Collect content from form fields
+                Object.keys(section.content).forEach(key => {
+                    const input = document.getElementById(`${sectionId}-${key}`);
+                    if (input) {
+                        content[key] = input.value;
+                    }
+                });
+
+                const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${sectionId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showStatus('adminStatus', result.message || 'Section updated successfully!');
+                    // Update local sections data
+                    const sectionIndex = sections.findIndex(s => s.id === sectionId);
+                    if (sectionIndex !== -1) {
+                        sections[sectionIndex].content = { ...sections[sectionIndex].content, ...content };
+                    }
+                } else {
+                    showStatus('adminStatus', result.error || 'Failed to update section', 'error');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Network error occurred', 'error');
+            }
+        }
+
+        function searchSections() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const sectionCards = document.querySelectorAll('.section-card');
+            let visibleCount = 0;
+            let hiddenMatchCount = 0;
+
+            sectionCards.forEach(card => {
+                const sectionId = card.id.replace('section-', '');
+                const section = sections.find(s => s.id === sectionId);
+
+                if (!section) return;
+
+                let isMatch = false;
+
+                if (searchTerm === '') {
+                    isMatch = true;
+                } else {
+                    // Search in section name
+                    if (section.name.toLowerCase().includes(searchTerm)) {
+                        isMatch = true;
+                    }
+
+                    // Search in section content
+                    if (!isMatch) {
+                        Object.values(section.content).forEach(value => {
+                            if (value && value.toString().toLowerCase().includes(searchTerm)) {
+                                isMatch = true;
+                            }
+                        });
+                    }
+                }
+
+                if (isMatch) {
+                    card.classList.remove('search-hidden');
+                    visibleCount++;
+
+                    // Count hidden sections that match search
+                    if (!section.visible) {
+                        hiddenMatchCount++;
+                    }
+                } else {
+                    card.classList.add('search-hidden');
+                }
+            });
+
+            updateSearchResults(visibleCount, sections.length, hiddenMatchCount);
+        }
+
+        function updateSearchResults(visible, total, hiddenCount = 0) {
+            const resultsDiv = document.getElementById('searchResults');
+            if (visible === total) {
+                const hiddenSections = sections.filter(s => !s.visible).length;
+                if (hiddenSections > 0) {
+                    resultsDiv.textContent = `Showing all ${total} sections (${hiddenSections} hidden)`;
+                } else {
+                    resultsDiv.textContent = `Showing all ${total} sections`;
+                }
+            } else {
+                if (hiddenCount > 0) {
+                    resultsDiv.textContent = `Showing ${visible} of ${total} sections (${hiddenCount} hidden in results)`;
+                } else {
+                    resultsDiv.textContent = `Showing ${visible} of ${total} sections`;
+                }
+            }
         }
     </script>
 </body>
