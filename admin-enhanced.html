@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normand PLLC - Content Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #007cba;
+            --primary-dark: #005a87;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --dark-color: #1a1a1a;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-muted: #6c757d;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Enhanced Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        header h1 {
+            text-align: center;
+            font-weight: 300;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        header h1 i {
+            font-size: 24px;
+        }
+
+        .header-subtitle {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Login Form - Enhanced */
+        .login-form {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 450px;
+            margin: 80px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .login-form h2 {
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Admin Panel Layout */
+        .admin-panel {
+            background: transparent;
+            padding: 0;
+        }
+
+        /* Top Controls Bar */
+        .controls-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .page-selector {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .page-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .page-info i {
+            color: var(--primary-color);
+        }
+
+        /* Visual Page Map */
+        .page-map {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-map-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .map-sections {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 5px 0;
+        }
+
+        .map-section {
+            padding: 8px 12px;
+            background: var(--light-bg);
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .map-section.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .map-section.hidden {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        /* Language Tabs - Enhanced */
+        .language-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .language-tab {
+            flex: 1;
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .language-tab:hover {
+            background: var(--light-bg);
+        }
+
+        .language-tab.active {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Search Container - Enhanced */
+        .search-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 45px 14px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,124,186,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-results {
+            margin-top: 12px;
+            padding: 10px;
+            background: var(--light-bg);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Enhanced Section Cards */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .section-card.section-disabled::before {
+            background: var(--danger-color);
+        }
+
+        .section-card.section-disabled {
+            opacity: 0.85;
+        }
+
+        /* Section Header with Context */
+        .section-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .section-title-group {
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .section-location {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .visibility-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .visibility-badge.visible {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .visibility-badge.hidden {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Toggle Switch - Enhanced */
+        .toggle-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 28px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Content Fields - Enhanced */
+        .section-content {
+            padding: 20px;
+        }
+
+        .content-field {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .field-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .field-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .field-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .field-description {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .char-counter {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .char-counter.warning {
+            color: var(--warning-color);
+        }
+
+        .char-counter.error {
+            color: var(--danger-color);
+        }
+
+        .tooltip-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            cursor: help;
+            position: relative;
+        }
+
+        .tooltip-icon:hover .tooltip-content {
+            display: block;
+        }
+
+        .tooltip-content {
+            display: none;
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            max-width: 250px;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .tooltip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--dark-color);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,124,186,0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* HTML Preview - Enhanced */
+        .html-preview {
+            margin-top: 12px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .html-preview::before {
+            content: 'PREVIEW';
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 4px;
+        }
+
+        .html-preview span {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Rich Text Editor Buttons */
+        .editor-toolbar {
+            display: flex;
+            gap: 5px;
+            padding: 8px;
+            background: var(--light-bg);
+            border: 2px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .editor-btn {
+            padding: 6px 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--dark-color);
+            transition: all 0.2s;
+        }
+
+        .editor-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .editor-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Action Buttons - Enhanced */
+        .section-actions {
+            padding: 20px;
+            background: var(--light-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 12px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-bg);
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        /* Status Messages - Enhanced */
+        .status {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s;
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .status::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+        }
+
+        .status.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .status.success::before {
+            content: '\f00c';
+            background: var(--success-color);
+        }
+
+        .status.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .status.error::before {
+            content: '\f00d';
+            background: var(--danger-color);
+        }
+
+        /* Loading State - Enhanced */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logout Button - Enhanced */
+        .logout {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .logout:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Section Templates */
+        .template-selector {
+            margin-bottom: 15px;
+        }
+
+        .template-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .template-chip {
+            padding: 6px 12px;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .template-chip:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .page-selector {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .map-sections {
+                flex-wrap: wrap;
+            }
+
+            .language-tabs {
+                flex-direction: column;
+            }
+
+            .sections-grid {
+                gap: 15px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .section-card.search-hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-edit"></i> Normand PLLC Content Management System</h1>
+            <div class="header-subtitle">Professional Content Editor for Law Firm Website</div>
+            <button class="logout hidden" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm" class="login-form">
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <div class="status" id="loginStatus"></div>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required placeholder="Enter admin password">
+                </div>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel hidden">
+            <div class="status" id="adminStatus"></div>
+
+            <!-- Controls Bar -->
+            <div class="controls-bar">
+                <div class="page-selector">
+                    <div>
+                        <label for="pageSelect">Select Page:</label>
+                        <select id="pageSelect" onchange="loadPageSections()">
+                            <option value="">Choose a page to edit...</option>
+                        </select>
+                    </div>
+                    <div class="page-info" id="currentFile"></div>
+                    <div id="saveAllBtn" class="hidden">
+                        <button class="btn-primary" onclick="saveAllSections()">
+                            <i class="fas fa-save"></i> Save All Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Page Map -->
+            <div id="pageMap" class="page-map hidden">
+                <div class="page-map-title">Page Structure Overview</div>
+                <div class="map-sections" id="mapSections"></div>
+            </div>
+
+            <!-- Language Tabs -->
+            <div class="language-tabs" id="languageTabs"></div>
+
+            <!-- Search Container -->
+            <div id="searchContainer" class="search-container hidden">
+                <label for="searchInput">Search & Filter Content:</label>
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" class="search-input"
+                           placeholder="Type to search sections, titles, or content..."
+                           oninput="searchSections()">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div id="searchResults" class="search-results">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Ready to search</span>
+                </div>
+            </div>
+
+            <!-- Sections Grid -->
+            <div id="sectionsContainer" class="sections-grid hidden"></div>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="loading-spinner"></div>
+            Loading content...
+        </div>
+    </div>
+
+    <script>
+        let currentToken = localStorage.getItem('admin_token');
+        let currentLang = 'en';
+        let currentPage = '';
+        let languages = {};
+        let pages = {};
+        let sections = [];
+        let unsavedChanges = false;
+
+        // Section metadata for better UX
+        const SECTION_META = {
+            'hero': {
+                icon: 'fa-flag',
+                location: 'Homepage top banner - First thing visitors see',
+                description: 'Main headline and call-to-action'
+            },
+            'services': {
+                icon: 'fa-briefcase',
+                location: 'Service offerings section',
+                description: 'List of legal services provided'
+            },
+            'about': {
+                icon: 'fa-users',
+                location: 'About us section',
+                description: 'Firm introduction and credentials'
+            },
+            'contact': {
+                icon: 'fa-envelope',
+                location: 'Contact information section',
+                description: 'How clients can reach you'
+            },
+            'testimonials': {
+                icon: 'fa-quote-left',
+                location: 'Client testimonials section',
+                description: 'Client reviews and success stories'
+            },
+            'cta': {
+                icon: 'fa-bullhorn',
+                location: 'Call-to-action sections',
+                description: 'Buttons and links to drive conversions'
+            }
+        };
+
+        // Field metadata for context
+        const FIELD_META = {
+            'title': {
+                label: 'Main Headline',
+                description: 'Primary text that grabs attention',
+                placeholder: 'e.g., Leading Class Action Law Firm',
+                maxLength: 60,
+                tooltip: 'Keep under 60 characters for optimal display'
+            },
+            'subtitle': {
+                label: 'Supporting Text',
+                description: 'Secondary message below the headline',
+                placeholder: 'e.g., Fighting for your rights since 1985',
+                maxLength: 120,
+                tooltip: 'Provides context to the main headline'
+            },
+            'content': {
+                label: 'Body Content',
+                description: 'Main text content',
+                placeholder: 'Detailed description...',
+                maxLength: 500,
+                tooltip: 'Main content area - be clear and concise'
+            },
+            'buttonText': {
+                label: 'Button Label',
+                description: 'Call-to-action button text',
+                placeholder: 'e.g., Get Free Consultation',
+                maxLength: 30,
+                tooltip: 'Action-oriented text for buttons'
+            },
+            'buttonUrl': {
+                label: 'Button Link',
+                description: 'Where the button leads to',
+                placeholder: 'e.g., /contact or #contact-form',
+                tooltip: 'Use relative URLs for internal pages'
+            }
+        };
+
+        // Initialize
+        if (currentToken) {
+            showAdminPanel();
+        } else {
+            showLoginForm();
+        }
+
+        function showStatus(elementId, message, type = 'success') {
+            const status = document.getElementById(elementId);
+            status.innerHTML = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+
+        function showLoading(show = true) {
+            document.getElementById('loading').classList.toggle('hidden', !show);
+        }
+
+        async function login(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+
+            try {
+                showLoading(true);
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+
+                const data = await response.json();
+                showLoading(false);
+
+                if (data.success) {
+                    currentToken = data.token;
+                    localStorage.setItem('admin_token', currentToken);
+                    showAdminPanel();
+                } else {
+                    showStatus('loginStatus', data.error || 'Login failed', 'error');
+                }
+            } catch (error) {
+                showLoading(false);
+                showStatus('loginStatus', 'Network error occurred', 'error');
+            }
+        }
+
+        function logout() {
+            if (unsavedChanges) {
+                if (!confirm('You have unsaved changes. Are you sure you want to logout?')) {
+                    return;
+                }
+            }
+            currentToken = null;
+            localStorage.removeItem('admin_token');
+            showLoginForm();
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.querySelector('.logout').classList.add('hidden');
+        }
+
+        async function showAdminPanel() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+            document.querySelector('.logout').classList.remove('hidden');
+
+            await loadLanguages();
+            await loadPages();
+        }
+
+        async function loadLanguages() {
+            try {
+                const response = await fetch('/api/admin/languages', {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+
+                if (response.ok) {
+                    languages = await response.json();
+                    renderLanguageTabs();
+                } else {
+                    throw new Error('Failed to load languages');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Failed to load languages', 'error');
+            }
+        }
+
+        async function loadPages() {
+            try {
+                showLoading(true);
+                const response = await fetch('/api/admin/pages', {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    pages = data.pages;
+                    languages = data.languages;
+                    renderPageSelector();
+                    renderLanguageTabs();
+                } else {
+                    throw new Error('Failed to load pages');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Failed to load pages', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function renderPageSelector() {
+            const select = document.getElementById('pageSelect');
+            select.innerHTML = '<option value="">Choose a page to edit...</option>';
+
+            Object.keys(pages).forEach(pageName => {
+                const option = document.createElement('option');
+                option.value = pageName;
+                option.textContent = pageName === 'index' ? '🏠 Homepage' : `📄 ${pageName}`;
+                select.appendChild(option);
+            });
+        }
+
+        function renderLanguageTabs() {
+            const tabs = document.getElementById('languageTabs');
+            tabs.innerHTML = '';
+
+            Object.keys(languages).forEach(lang => {
+                const button = document.createElement('button');
+                button.className = `language-tab ${lang === currentLang ? 'active' : ''}`;
+                button.innerHTML = `<i class="fas fa-globe"></i> ${languages[lang].name}`;
+                button.onclick = () => switchLanguage(lang);
+                tabs.appendChild(button);
+            });
+        }
+
+        function renderPageMap() {
+            const mapContainer = document.getElementById('mapSections');
+            mapContainer.innerHTML = '';
+
+            sections.forEach((section, index) => {
+                const mapItem = document.createElement('div');
+                mapItem.className = `map-section ${section.visible ? '' : 'hidden'}`;
+                mapItem.textContent = section.name;
+                mapItem.onclick = () => scrollToSection(section.id);
+
+                mapContainer.appendChild(mapItem);
+            });
+
+            document.getElementById('pageMap').classList.remove('hidden');
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(`section-${sectionId}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.style.animation = 'pulse 1s';
+                setTimeout(() => {
+                    element.style.animation = '';
+                }, 1000);
+            }
+        }
+
+        function switchLanguage(lang) {
+            if (unsavedChanges) {
+                if (!confirm('You have unsaved changes. Switch language anyway?')) {
+                    return;
+                }
+            }
+            currentLang = lang;
+            unsavedChanges = false;
+            renderLanguageTabs();
+            if (currentPage) {
+                loadPageSections();
+            }
+        }
+
+        async function loadPageSections() {
+            const pageName = document.getElementById('pageSelect').value;
+            if (!pageName) {
+                document.getElementById('sectionsContainer').classList.add('hidden');
+                document.getElementById('searchContainer').classList.add('hidden');
+                document.getElementById('pageMap').classList.add('hidden');
+                document.getElementById('currentFile').innerHTML = '';
+                return;
+            }
+
+            currentPage = pageName;
+            await loadSections();
+        }
+
+        async function loadSections() {
+            if (!currentPage || !currentLang) return;
+
+            try {
+                showLoading(true);
+                const response = await fetch(`/api/admin/sections/${currentLang}/${currentPage}`, {
+                    headers: { 'Authorization': `Bearer ${currentToken}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    sections = data.sections;
+                    unsavedChanges = false;
+
+                    document.getElementById('currentFile').innerHTML = `
+                        <i class="fas fa-file-alt"></i>
+                        Editing: <strong>${data.filename}</strong>
+                    `;
+
+                    renderSections();
+                    renderPageMap();
+                    document.getElementById('sectionsContainer').classList.remove('hidden');
+                    document.getElementById('searchContainer').classList.remove('hidden');
+                    document.getElementById('saveAllBtn').classList.remove('hidden');
+
+                    // Clear search
+                    document.getElementById('searchInput').value = '';
+                    updateSearchResults(sections.length, sections.length);
+                } else if (response.status === 404) {
+                    showStatus('adminStatus',
+                        `<i class="fas fa-exclamation-triangle"></i> ${languages[currentLang].name} version not found for this page`,
+                        'error');
+                    document.getElementById('sectionsContainer').classList.add('hidden');
+                    document.getElementById('searchContainer').classList.add('hidden');
+                    document.getElementById('pageMap').classList.add('hidden');
+                } else {
+                    throw new Error('Failed to load sections');
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Failed to load sections', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function renderSections() {
+            const container = document.getElementById('sectionsContainer');
+            container.innerHTML = '';
+
+            sections.forEach(section => {
+                const sectionCard = createSectionCard(section);
+                container.appendChild(sectionCard);
+            });
+        }
+
+        function createSectionCard(section) {
+            const card = document.createElement('div');
+            card.className = `section-card ${section.visible ? '' : 'section-disabled'}`;
+            card.id = `section-${section.id}`;
+
+            // Get section metadata
+            const meta = SECTION_META[section.id] || {
+                icon: 'fa-file',
+                location: 'Content section',
+                description: 'Website content'
+            };
+
+            // Section Header
+            const header = document.createElement('div');
+            header.className = 'section-header';
+            header.innerHTML = `
+                <div class="section-meta">
+                    <div class="section-title-group">
+                        <div class="section-title">
+                            <div class="section-icon">
+                                <i class="fas ${meta.icon}"></i>
+                            </div>
+                            <span>${section.name}</span>
+                        </div>
+                        <div class="section-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${meta.location}
+                        </div>
+                    </div>
+                    <div class="toggle-section">
+                        <span class="visibility-badge ${section.visible ? 'visible' : 'hidden'}">
+                            ${section.visible ? 'LIVE' : 'HIDDEN'}
+                        </span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" ${section.visible ? 'checked' : ''}
+                                   onchange="toggleSection('${section.id}', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            `;
+
+            // Content Fields
+            const content = document.createElement('div');
+            content.className = 'section-content';
+
+            // Template selector (if applicable)
+            if (section.id === 'hero' || section.id === 'cta') {
+                const templateDiv = document.createElement('div');
+                templateDiv.className = 'template-selector';
+                templateDiv.innerHTML = `
+                    <label>Quick Templates:</label>
+                    <div class="template-chips">
+                        <div class="template-chip" onclick="applyTemplate('${section.id}', 'professional')">
+                            Professional
+                        </div>
+                        <div class="template-chip" onclick="applyTemplate('${section.id}', 'aggressive')">
+                            Aggressive
+                        </div>
+                        <div class="template-chip" onclick="applyTemplate('${section.id}', 'friendly')">
+                            Client-Friendly
+                        </div>
+                    </div>
+                `;
+                content.appendChild(templateDiv);
+            }
+
+            // Create form fields
+            Object.keys(section.content).forEach(key => {
+                const field = createEnhancedField(section, key);
+                content.appendChild(field);
+            });
+
+            // Actions
+            const actions = document.createElement('div');
+            actions.className = 'section-actions';
+            actions.innerHTML = `
+                <button class="btn-primary" onclick="saveSection('${section.id}')">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <button class="btn-secondary" onclick="resetSection('${section.id}')">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+                <button class="btn-secondary" onclick="previewSection('${section.id}')">
+                    <i class="fas fa-eye"></i> Preview
+                </button>
+            `;
+
+            card.appendChild(header);
+            card.appendChild(content);
+            card.appendChild(actions);
+
+            return card;
+        }
+
+        function createEnhancedField(section, key) {
+            const field = document.createElement('div');
+            field.className = 'content-field';
+
+            const value = section.content[key] || '';
+            const meta = FIELD_META[key] || {
+                label: key.replace(/([A-Z])/g, ' $1').trim(),
+                description: '',
+                placeholder: '',
+                maxLength: 500
+            };
+
+            const hasHTML = /<[^>]+>/.test(value);
+            const isLongText = value.length > 100 || key.includes('content') || key.includes('description');
+
+            // Field header with label and info
+            const fieldHeader = document.createElement('div');
+            fieldHeader.className = 'field-header';
+            fieldHeader.innerHTML = `
+                <div class="field-label">
+                    ${meta.label}
+                    ${meta.tooltip ? `
+                        <div class="tooltip-icon">
+                            <i class="fas fa-info"></i>
+                            <div class="tooltip-content">${meta.tooltip}</div>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="field-info">
+                    <span class="char-counter" id="counter-${section.id}-${key}">
+                        0 / ${meta.maxLength}
+                    </span>
+                </div>
+            `;
+
+            // Field description
+            if (meta.description) {
+                const desc = document.createElement('div');
+                desc.className = 'field-description';
+                desc.textContent = meta.description;
+                field.appendChild(desc);
+            }
+
+            field.appendChild(fieldHeader);
+
+            // Rich text editor for HTML content
+            if (hasHTML) {
+                const toolbar = document.createElement('div');
+                toolbar.className = 'editor-toolbar';
+                toolbar.innerHTML = `
+                    <button type="button" class="editor-btn" onclick="formatText('${section.id}-${key}', 'bold')">
+                        <i class="fas fa-bold"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="formatText('${section.id}-${key}', 'italic')">
+                        <i class="fas fa-italic"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="formatText('${section.id}-${key}', 'underline')">
+                        <i class="fas fa-underline"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="addLink('${section.id}-${key}')">
+                        <i class="fas fa-link"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="clearFormat('${section.id}-${key}')">
+                        <i class="fas fa-remove-format"></i>
+                    </button>
+                `;
+                field.appendChild(toolbar);
+            }
+
+            // Input field
+            const input = document.createElement(isLongText ? 'textarea' : 'input');
+            input.type = isLongText ? undefined : 'text';
+            input.value = value;
+            input.id = `${section.id}-${key}`;
+            input.placeholder = meta.placeholder;
+            input.maxLength = meta.maxLength;
+
+            // Add input listeners
+            input.addEventListener('input', (e) => {
+                updateCharCounter(section.id, key, e.target.value.length, meta.maxLength);
+                markAsUnsaved();
+
+                // Update preview if exists
+                const preview = document.getElementById(`${section.id}-${key}-preview`);
+                if (preview) {
+                    preview.innerHTML = e.target.value;
+                }
+            });
+
+            // Add styles for HTML input
+            if (hasHTML && !isLongText) {
+                input.style.borderRadius = '0 0 8px 8px';
+            }
+
+            field.appendChild(input);
+
+            // HTML preview
+            if (hasHTML) {
+                const preview = document.createElement('div');
+                preview.className = 'html-preview';
+                preview.id = `${section.id}-${key}-preview`;
+                preview.innerHTML = value;
+                field.appendChild(preview);
+            }
+
+            // Update initial counter
+            setTimeout(() => {
+                updateCharCounter(section.id, key, value.length, meta.maxLength);
+            }, 0);
+
+            return field;
+        }
+
+        function updateCharCounter(sectionId, key, length, maxLength) {
+            const counter = document.getElementById(`counter-${sectionId}-${key}`);
+            if (counter) {
+                counter.textContent = `${length} / ${maxLength}`;
+                counter.className = 'char-counter';
+
+                if (length > maxLength) {
+                    counter.classList.add('error');
+                } else if (length > maxLength * 0.9) {
+                    counter.classList.add('warning');
+                }
+            }
+        }
+
+        function markAsUnsaved() {
+            unsavedChanges = true;
+            const saveBtn = document.querySelector('#saveAllBtn button');
+            if (saveBtn) {
+                saveBtn.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        function formatText(fieldId, command) {
+            const field = document.getElementById(fieldId);
+            const start = field.selectionStart;
+            const end = field.selectionEnd;
+            const text = field.value;
+            const selectedText = text.substring(start, end);
+
+            let newText = '';
+            switch(command) {
+                case 'bold':
+                    newText = `<strong>${selectedText}</strong>`;
+                    break;
+                case 'italic':
+                    newText = `<em>${selectedText}</em>`;
+                    break;
+                case 'underline':
+                    newText = `<span style="text-decoration: underline">${selectedText}</span>`;
+                    break;
+            }
+
+            field.value = text.substring(0, start) + newText + text.substring(end);
+            field.dispatchEvent(new Event('input'));
+        }
+
+        function addLink(fieldId) {
+            const url = prompt('Enter URL:');
+            if (url) {
+                formatText(fieldId, 'link', url);
+            }
+        }
+
+        function clearFormat(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.value = field.value.replace(/<[^>]*>/g, '');
+            field.dispatchEvent(new Event('input'));
+        }
+
+        function applyTemplate(sectionId, template) {
+            const templates = {
+                'professional': {
+                    'title': 'Expert Legal Representation',
+                    'subtitle': 'Trusted by thousands of clients nationwide',
+                    'buttonText': 'Schedule Consultation'
+                },
+                'aggressive': {
+                    'title': 'We Fight to Win',
+                    'subtitle': 'Maximum compensation for your case',
+                    'buttonText': 'Start Your Case Now'
+                },
+                'friendly': {
+                    'title': 'Your Legal Partners',
+                    'subtitle': 'Compassionate support through every step',
+                    'buttonText': 'Let\'s Talk'
+                }
+            };
+
+            const section = sections.find(s => s.id === sectionId);
+            if (section && templates[template]) {
+                Object.keys(templates[template]).forEach(key => {
+                    const field = document.getElementById(`${sectionId}-${key}`);
+                    if (field) {
+                        field.value = templates[template][key];
+                        field.dispatchEvent(new Event('input'));
+                    }
+                });
+                showStatus('adminStatus', `Template "${template}" applied successfully`);
+            }
+        }
+
+        async function toggleSection(sectionId, visible) {
+            try {
+                const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${sectionId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ visible })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showStatus('adminStatus',
+                        `<i class="fas fa-check-circle"></i> Section ${visible ? 'published' : 'hidden'} successfully!`);
+
+                    // Update UI
+                    const card = document.getElementById(`section-${sectionId}`);
+                    const badge = card.querySelector('.visibility-badge');
+
+                    if (visible) {
+                        card.classList.remove('section-disabled');
+                        badge.textContent = 'LIVE';
+                        badge.className = 'visibility-badge visible';
+                    } else {
+                        card.classList.add('section-disabled');
+                        badge.textContent = 'HIDDEN';
+                        badge.className = 'visibility-badge hidden';
+                    }
+
+                    // Update local data
+                    const sectionIndex = sections.findIndex(s => s.id === sectionId);
+                    if (sectionIndex !== -1) {
+                        sections[sectionIndex].visible = visible;
+                    }
+
+                    // Update page map
+                    renderPageMap();
+                } else {
+                    showStatus('adminStatus', result.error || 'Failed to toggle section', 'error');
+                    // Revert checkbox
+                    const checkbox = document.querySelector(`#section-${sectionId} input[type="checkbox"]`);
+                    checkbox.checked = !visible;
+                }
+            } catch (error) {
+                showStatus('adminStatus', 'Network error occurred', 'error');
+                // Revert checkbox
+                const checkbox = document.querySelector(`#section-${sectionId} input[type="checkbox"]`);
+                checkbox.checked = !visible;
+            }
+        }
+
+        async function saveSection(sectionId) {
+            try {
+                const content = {};
+                const section = sections.find(s => s.id === sectionId);
+
+                if (!section) {
+                    showStatus('adminStatus', 'Section not found', 'error');
+                    return;
+                }
+
+                // Collect content
+                Object.keys(section.content).forEach(key => {
+                    const input = document.getElementById(`${sectionId}-${key}`);
+                    if (input) {
+                        content[key] = input.value;
+                    }
+                });
+
+                showLoading(true);
+                const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${sectionId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content })
+                });
+
+                const result = await response.json();
+                showLoading(false);
+
+                if (response.ok) {
+                    showStatus('adminStatus',
+                        `<i class="fas fa-check-circle"></i> ${result.message || 'Section saved successfully!'}`);
+
+                    // Update local data
+                    const sectionIndex = sections.findIndex(s => s.id === sectionId);
+                    if (sectionIndex !== -1) {
+                        sections[sectionIndex].content = { ...sections[sectionIndex].content, ...content };
+                    }
+
+                    // Reset unsaved state for this section
+                    const saveBtn = document.querySelector('#saveAllBtn button');
+                    if (saveBtn) {
+                        saveBtn.style.animation = '';
+                    }
+                } else {
+                    showStatus('adminStatus', result.error || 'Failed to save section', 'error');
+                }
+            } catch (error) {
+                showLoading(false);
+                showStatus('adminStatus', 'Network error occurred', 'error');
+            }
+        }
+
+        async function saveAllSections() {
+            if (!confirm('Save all changes to this page?')) {
+                return;
+            }
+
+            let savedCount = 0;
+            let failedCount = 0;
+
+            for (const section of sections) {
+                try {
+                    const content = {};
+                    Object.keys(section.content).forEach(key => {
+                        const input = document.getElementById(`${section.id}-${key}`);
+                        if (input) {
+                            content[key] = input.value;
+                        }
+                    });
+
+                    const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${section.id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${currentToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ content })
+                    });
+
+                    if (response.ok) {
+                        savedCount++;
+                    } else {
+                        failedCount++;
+                    }
+                } catch (error) {
+                    failedCount++;
+                }
+            }
+
+            if (failedCount === 0) {
+                showStatus('adminStatus',
+                    `<i class="fas fa-check-circle"></i> All ${savedCount} sections saved successfully!`);
+                unsavedChanges = false;
+            } else {
+                showStatus('adminStatus',
+                    `Saved ${savedCount} sections, ${failedCount} failed`, 'error');
+            }
+        }
+
+        function resetSection(sectionId) {
+            if (confirm('Reset all changes in this section?')) {
+                loadSections();
+            }
+        }
+
+        function previewSection(sectionId) {
+            const section = sections.find(s => s.id === sectionId);
+            if (section) {
+                // Open preview in new window
+                const previewWindow = window.open('', '_blank', 'width=1200,height=800');
+                previewWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Preview: ${section.name}</title>
+                            <style>
+                                body { font-family: Arial, sans-serif; padding: 20px; }
+                                .preview-container { max-width: 800px; margin: 0 auto; }
+                                h1 { color: #333; }
+                                .content { background: #f8f9fa; padding: 20px; border-radius: 8px; }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="preview-container">
+                                <h1>Preview: ${section.name}</h1>
+                                <div class="content">
+                                    ${Object.keys(section.content).map(key => {
+                                        const value = document.getElementById(`${sectionId}-${key}`)?.value || section.content[key];
+                                        return `<div><strong>${key}:</strong> ${value}</div>`;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </body>
+                    </html>
+                `);
+            }
+        }
+
+        function searchSections() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const sectionCards = document.querySelectorAll('.section-card');
+            let visibleCount = 0;
+            let hiddenMatchCount = 0;
+
+            sectionCards.forEach(card => {
+                const sectionId = card.id.replace('section-', '');
+                const section = sections.find(s => s.id === sectionId);
+
+                if (!section) return;
+
+                let isMatch = false;
+
+                if (searchTerm === '') {
+                    isMatch = true;
+                } else {
+                    // Search in section name
+                    if (section.name.toLowerCase().includes(searchTerm)) {
+                        isMatch = true;
+                    }
+
+                    // Search in content
+                    if (!isMatch) {
+                        Object.values(section.content).forEach(value => {
+                            if (value && value.toString().toLowerCase().includes(searchTerm)) {
+                                isMatch = true;
+                            }
+                        });
+                    }
+                }
+
+                if (isMatch) {
+                    card.classList.remove('search-hidden');
+                    visibleCount++;
+
+                    if (!section.visible) {
+                        hiddenMatchCount++;
+                    }
+                } else {
+                    card.classList.add('search-hidden');
+                }
+            });
+
+            updateSearchResults(visibleCount, sections.length, hiddenMatchCount);
+        }
+
+        function updateSearchResults(visible, total, hiddenCount = 0) {
+            const resultsDiv = document.getElementById('searchResults');
+            let icon = 'fa-info-circle';
+            let message = '';
+
+            if (visible === total) {
+                const hiddenSections = sections.filter(s => !s.visible).length;
+                icon = 'fa-check-circle';
+                if (hiddenSections > 0) {
+                    message = `Showing all ${total} sections (${hiddenSections} are hidden from website)`;
+                } else {
+                    message = `Showing all ${total} sections`;
+                }
+            } else if (visible === 0) {
+                icon = 'fa-exclamation-circle';
+                message = `No sections match your search`;
+            } else {
+                icon = 'fa-search';
+                if (hiddenCount > 0) {
+                    message = `Found ${visible} of ${total} sections (${hiddenCount} are hidden from website)`;
+                } else {
+                    message = `Found ${visible} of ${total} sections`;
+                }
+            }
+
+            resultsDiv.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            `;
+        }
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 's') {
+                    e.preventDefault();
+                    if (unsavedChanges) {
+                        saveAllSections();
+                    }
+                } else if (e.key === 'f') {
+                    e.preventDefault();
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput && !searchInput.classList.contains('hidden')) {
+                        searchInput.focus();
+                    }
+                }
+            }
+        });
+
+        // Warn before leaving with unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            if (unsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

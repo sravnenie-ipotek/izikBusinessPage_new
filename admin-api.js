@@ -87,6 +87,268 @@ function setupAdminRoutes(app) {
     }
   });
 
+  // Get page sections
+  app.get('/api/admin/sections/:lang/:name', authenticate, async (req, res) => {
+    try {
+      const { lang, name } = req.params;
+
+      // Determine filename
+      const filename = lang === 'en'
+        ? `${name || 'index'}.html`
+        : `${name || 'index'}.${lang}.html`;
+
+      const filePath = path.join(__dirname, filename);
+
+      // Check if file exists
+      try {
+        await fs.access(filePath);
+      } catch {
+        return res.status(404).json({ error: 'Page not found' });
+      }
+
+      const html = await fs.readFile(filePath, 'utf-8');
+      const $ = cheerio.load(html);
+
+      // Define sections with their selectors and names
+      const sectionDefinitions = [
+        {
+          id: 'banner',
+          name: 'Hero Banner',
+          selector: '.wp-block-normand-banner',
+          type: 'banner',
+          editable: {
+            subtitle: '.banner-subtitle',
+            title: '.banner-title .rotation-text-1',
+            scrollText: '.scroll-indicator span'
+          }
+        },
+        {
+          id: 'services',
+          name: 'Services Section',
+          selector: '.wp-block-normand-services',
+          type: 'services',
+          editable: {
+            subtitle: '.normand-services--subtitle',
+            title: '.normand-services--title',
+            content: '.normand-services--content',
+            privacyTitle: '.service-top--title',
+            privacyContent: '.service-top--content',
+            consumerTitle: '.service-middle--title',
+            consumerContent: '.service-middle--content',
+            insuranceTitle: '.service-bottom--title',
+            insuranceContent: '.service-bottom--content'
+          }
+        },
+        {
+          id: 'casestudies',
+          name: 'Case Studies Section',
+          selector: '.wp-block-normand-heading',
+          type: 'heading',
+          editable: {
+            subtitle: '.normand-heading--subtitle',
+            title: '.normand-heading--title'
+          }
+        },
+        {
+          id: 'testimonials',
+          name: 'Testimonials Section',
+          selector: '.wp-block-normand-testimonials',
+          type: 'testimonials',
+          editable: {
+            subtitle: '.normand-testimonials--subtitle',
+            title: '.normand-testimonials--title',
+            content: '.normand-testimonials--content'
+          }
+        },
+        {
+          id: 'team',
+          name: 'Team Section',
+          selector: '.wp-block-normand-team',
+          type: 'team',
+          editable: {
+            subtitle: '.normand-team--subtitle',
+            title: '.normand-team--title',
+            founderRole: '.first-team-role',
+            founderName: '.first-team-name',
+            founderBio: '.first-team-body'
+          }
+        },
+        {
+          id: 'contact',
+          name: 'Contact Section',
+          selector: '.wp-block-normand-contact',
+          type: 'contact',
+          editable: {
+            subtitle: '.normand-contact--subtitle',
+            title: '.normand-contact--title',
+            formNote: '.normand-contact--form-note'
+          }
+        }
+      ];
+
+      const sections = [];
+
+      sectionDefinitions.forEach(def => {
+        const element = $(def.selector);
+        if (element.length > 0) {
+          const section = {
+            id: def.id,
+            name: def.name,
+            type: def.type,
+            visible: !element.hasClass('admin-hidden'),
+            content: {}
+          };
+
+          // Extract editable content
+          Object.keys(def.editable).forEach(key => {
+            const contentElement = element.find(def.editable[key]);
+            if (contentElement.length > 0) {
+              section.content[key] = contentElement.html() || contentElement.text();
+            }
+          });
+
+          sections.push(section);
+        }
+      });
+
+      res.json({
+        sections,
+        language: lang,
+        filename
+      });
+    } catch (error) {
+      console.error('Get sections error:', error);
+      res.status(500).json({ error: 'Failed to load sections' });
+    }
+  });
+
+  // Update specific section
+  app.post('/api/admin/section/:lang/:name/:sectionId', authenticate, async (req, res) => {
+    try {
+      const { lang, name, sectionId } = req.params;
+      const { content, visible } = req.body;
+
+      // Determine filename
+      const filename = lang === 'en'
+        ? `${name || 'index'}.html`
+        : `${name || 'index'}.${lang}.html`;
+
+      const filePath = path.join(__dirname, filename);
+
+      // Load existing file
+      const html = await fs.readFile(filePath, 'utf-8');
+      const $ = cheerio.load(html, { decodeEntities: false });
+
+      // Section definitions (same as above)
+      const sectionDefinitions = {
+        banner: {
+          selector: '.wp-block-normand-banner',
+          editable: {
+            subtitle: '.banner-subtitle',
+            title: '.banner-title .rotation-text-1',
+            scrollText: '.scroll-indicator span'
+          }
+        },
+        services: {
+          selector: '.wp-block-normand-services',
+          editable: {
+            subtitle: '.normand-services--subtitle',
+            title: '.normand-services--title',
+            content: '.normand-services--content',
+            privacyTitle: '.service-top--title',
+            privacyContent: '.service-top--content',
+            consumerTitle: '.service-middle--title',
+            consumerContent: '.service-middle--content',
+            insuranceTitle: '.service-bottom--title',
+            insuranceContent: '.service-bottom--content'
+          }
+        },
+        casestudies: {
+          selector: '.wp-block-normand-heading',
+          editable: {
+            subtitle: '.normand-heading--subtitle',
+            title: '.normand-heading--title'
+          }
+        },
+        testimonials: {
+          selector: '.wp-block-normand-testimonials',
+          editable: {
+            subtitle: '.normand-testimonials--subtitle',
+            title: '.normand-testimonials--title',
+            content: '.normand-testimonials--content'
+          }
+        },
+        team: {
+          selector: '.wp-block-normand-team',
+          editable: {
+            subtitle: '.normand-team--subtitle',
+            title: '.normand-team--title',
+            founderRole: '.first-team-role',
+            founderName: '.first-team-name',
+            founderBio: '.first-team-body'
+          }
+        },
+        contact: {
+          selector: '.wp-block-normand-contact',
+          editable: {
+            subtitle: '.normand-contact--subtitle',
+            title: '.normand-contact--title',
+            formNote: '.normand-contact--form-note'
+          }
+        }
+      };
+
+      const sectionDef = sectionDefinitions[sectionId];
+      if (!sectionDef) {
+        return res.status(404).json({ error: 'Section not found' });
+      }
+
+      const element = $(sectionDef.selector);
+      if (element.length === 0) {
+        return res.status(404).json({ error: 'Section element not found' });
+      }
+
+      // Update content
+      if (content) {
+        Object.keys(content).forEach(key => {
+          if (sectionDef.editable[key]) {
+            const contentElement = element.find(sectionDef.editable[key]);
+            if (contentElement.length > 0) {
+              if (contentElement.is('input, textarea')) {
+                contentElement.val(content[key]);
+              } else {
+                contentElement.html(content[key]);
+              }
+            }
+          }
+        });
+      }
+
+      // Update visibility
+      if (typeof visible !== 'undefined') {
+        if (visible) {
+          element.removeClass('admin-hidden');
+          element.css('display', '');
+        } else {
+          element.addClass('admin-hidden');
+          element.css('display', 'none');
+        }
+      }
+
+      // Save updated file
+      await fs.writeFile(filePath, $.html());
+
+      res.json({
+        success: true,
+        message: `Section "${sectionId}" updated successfully`,
+        filename
+      });
+    } catch (error) {
+      console.error('Update section error:', error);
+      res.status(500).json({ error: 'Failed to update section' });
+    }
+  });
+
   // Update page content
   app.post('/api/admin/page/:lang/:name', authenticate, async (req, res) => {
     try {

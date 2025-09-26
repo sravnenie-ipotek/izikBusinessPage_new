@@ -1,0 +1,28 @@
+/* Fix for .normand-case-studies blinking on scroll */
+.normand-case-studies {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: auto;
+}
+
+.normand-case-studies-grid {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* Prevent flickering during GSAP animations */
+.normand-case-studies.normand-st-reveal,
+.normand-case-studies-grid.normand-st-reveal {
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+/* Ensure smooth rendering */
+.normand-case-studies * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

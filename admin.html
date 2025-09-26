@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normand PLLC - Section Manager</title>
+    <title>Normand PLLC - Content Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,202 +12,376 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #007cba;
+            --primary-dark: #005a87;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --dark-color: #1a1a1a;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-muted: #6c757d;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             color: #333;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
         }
 
+        /* Enhanced Header */
         header {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
+            padding: 25px 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
         }
 
         header h1 {
             text-align: center;
             font-weight: 300;
-        }
-
-        .login-form, .admin-panel {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 50px auto;
-        }
-
-        .admin-panel {
-            max-width: 100%;
-            margin: 0;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #555;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #007cba;
-            box-shadow: 0 0 0 2px rgba(0,124,186,0.1);
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        button {
-            background: #007cba;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background: #005a87;
-        }
-
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            background: #666;
-            margin-left: 10px;
-        }
-
-        .btn-secondary:hover {
-            background: #555;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
-        }
-
-        .btn-success {
-            background: #28a745;
-        }
-
-        .btn-success:hover {
-            background: #218838;
-        }
-
-        .language-tabs {
+            font-size: 28px;
             display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        .language-tab {
-            padding: 10px 20px;
-            background: none;
-            border: none;
-            border-bottom: 2px solid transparent;
-            cursor: pointer;
+        header h1 i {
+            font-size: 24px;
+        }
+
+        .header-subtitle {
+            text-align: center;
             font-size: 14px;
-            color: #666;
+            opacity: 0.9;
+            margin-top: 5px;
         }
 
-        .language-tab.active {
-            color: #007cba;
-            border-bottom-color: #007cba;
-            font-weight: 500;
+        /* Login Form - Enhanced */
+        .login-form {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 450px;
+            margin: 80px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .login-form h2 {
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Admin Panel Layout */
+        .admin-panel {
+            background: transparent;
+            padding: 0;
+        }
+
+        /* Top Controls Bar */
+        .controls-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
         }
 
         .page-selector {
-            display: flex;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 4px;
+            gap: 20px;
         }
 
+        .page-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .page-info i {
+            color: var(--primary-color);
+        }
+
+        /* Visual Page Map */
+        .page-map {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-map-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .map-sections {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 5px 0;
+        }
+
+        .map-section {
+            padding: 8px 12px;
+            background: var(--light-bg);
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .map-section.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .map-section.hidden {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        /* Language Tabs - Enhanced */
+        .language-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .language-tab {
+            flex: 1;
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .language-tab:hover {
+            background: var(--light-bg);
+        }
+
+        .language-tab.active {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Search Container - Enhanced */
+        .search-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 45px 14px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,124,186,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-results {
+            margin-top: 12px;
+            padding: 10px;
+            background: var(--light-bg);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Enhanced Section Cards */
         .sections-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
         }
 
         .section-card {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-left: 4px solid #007cba;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .section-card.section-disabled::before {
+            background: var(--danger-color);
         }
 
         .section-card.section-disabled {
-            border-left-color: #dc3545;
-            opacity: 0.7;
+            opacity: 0.85;
         }
 
+        /* Section Header with Context */
         .section-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-meta {
             display: flex;
-            justify-content: between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .section-title-group {
+            flex-grow: 1;
         }
 
         .section-title {
             font-size: 18px;
             font-weight: 600;
-            color: #333;
-            flex-grow: 1;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .section-location {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .visibility-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .visibility-badge.visible {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .visibility-badge.hidden {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Toggle Switch - Enhanced */
         .toggle-section {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-left: 15px;
+            gap: 10px;
         }
 
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 24px;
+            width: 54px;
+            height: 28px;
         }
 
         .toggle-switch input {
@@ -224,167 +399,398 @@
             bottom: 0;
             background-color: #ccc;
             transition: .4s;
-            border-radius: 24px;
+            border-radius: 28px;
         }
 
         .slider:before {
             position: absolute;
             content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         input:checked + .slider {
-            background-color: #007cba;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         input:checked + .slider:before {
             transform: translateX(26px);
         }
 
+        /* Content Fields - Enhanced */
         .section-content {
-            display: grid;
-            gap: 15px;
+            padding: 20px;
         }
 
         .content-field {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .field-header {
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
 
-        .content-field label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #666;
-        }
-
-        .content-field input,
-        .content-field textarea {
+        .field-label {
             font-size: 13px;
-            padding: 8px 12px;
-        }
-
-        .section-actions {
+            font-weight: 600;
+            color: var(--dark-color);
             display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .field-info {
+            display: flex;
+            align-items: center;
             gap: 10px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
         }
 
-        .status {
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+        .field-description {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .char-counter {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .char-counter.warning {
+            color: var(--warning-color);
+        }
+
+        .char-counter.error {
+            color: var(--danger-color);
+        }
+
+        .tooltip-icon {
+            width: 16px;
+            height: 16px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--text-muted);
+            cursor: help;
+            position: relative;
+        }
+
+        .tooltip-icon:hover .tooltip-content {
+            display: block;
+        }
+
+        .tooltip-content {
             display: none;
-        }
-
-        .status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .logout {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #dc3545;
-            padding: 8px 16px;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
             font-size: 12px;
+            white-space: nowrap;
+            max-width: 250px;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
         }
 
-        .logout:hover {
-            background: #c82333;
+        .tooltip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--dark-color);
         }
 
-        .section-preview {
-            margin-top: 10px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #666;
-        }
-
-        .search-container {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 4px;
-        }
-
-        .search-input {
+        input, select, textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #007cba;
-            box-shadow: 0 0 0 2px rgba(0,124,186,0.1);
-        }
-
-        .search-results {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #666;
-        }
-
-        .section-card.search-hidden {
-            display: none;
-        }
-
-        .html-preview {
-            margin-top: 8px;
-            padding: 12px;
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             font-size: 14px;
-            line-height: 1.5;
-            color: #333;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0,124,186,0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* HTML Preview - Enhanced */
+        .html-preview {
+            margin-top: 12px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .html-preview::before {
+            content: 'PREVIEW';
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background: white;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 4px;
         }
 
         .html-preview span {
-            color: #007cba;
+            color: var(--primary-color);
             font-weight: 600;
+            text-decoration: underline;
         }
 
-        .preview-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #6c757d;
-            margin-bottom: 4px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        /* Rich Text Editor Buttons */
+        .editor-toolbar {
+            display: flex;
+            gap: 5px;
+            padding: 8px;
+            background: var(--light-bg);
+            border: 2px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .editor-btn {
+            padding: 6px 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--dark-color);
+            transition: all 0.2s;
+        }
+
+        .editor-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .editor-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Action Buttons - Enhanced */
+        .section-actions {
+            padding: 20px;
+            background: var(--light-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 12px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-bg);
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        /* Status Messages - Enhanced */
+        .status {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s;
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .status::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+        }
+
+        .status.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .status.success::before {
+            content: '\f00c';
+            background: var(--success-color);
+        }
+
+        .status.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .status.error::before {
+            content: '\f00d';
+            background: var(--danger-color);
+        }
+
+        /* Loading State - Enhanced */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logout Button - Enhanced */
+        .logout {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .logout:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Section Templates */
+        .template-selector {
+            margin-bottom: 15px;
+        }
+
+        .template-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .template-chip {
+            padding: 6px 12px;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .template-chip:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -392,40 +798,57 @@
                 padding: 10px;
             }
 
-            .sections-grid {
+            .page-selector {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
 
-            .page-selector {
-                flex-direction: column;
-                gap: 10px;
+            .map-sections {
+                flex-wrap: wrap;
             }
 
             .language-tabs {
-                justify-content: center;
+                flex-direction: column;
             }
+
+            .sections-grid {
+                gap: 15px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .section-card.search-hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Normand PLLC Section Manager</h1>
-            <button class="logout hidden" onclick="logout()">Logout</button>
+            <h1><i class="fas fa-edit"></i> Normand PLLC Content Management System</h1>
+            <div class="header-subtitle">Professional Content Editor for Law Firm Website</div>
+            <button class="logout hidden" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
         </div>
     </header>
 
     <div class="container">
         <!-- Login Form -->
         <div id="loginForm" class="login-form">
-            <h2>Admin Login</h2>
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
             <div class="status" id="loginStatus"></div>
             <form onsubmit="login(event)">
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" required>
+                    <input type="password" id="password" required placeholder="Enter admin password">
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
             </form>
         </div>
 
@@ -433,13 +856,28 @@
         <div id="adminPanel" class="admin-panel hidden">
             <div class="status" id="adminStatus"></div>
 
-            <!-- Page Selector -->
-            <div class="page-selector">
-                <label for="pageSelect">Select Page:</label>
-                <select id="pageSelect" onchange="loadPageSections()">
-                    <option value="">Select a page...</option>
-                </select>
-                <span id="currentFile"></span>
+            <!-- Controls Bar -->
+            <div class="controls-bar">
+                <div class="page-selector">
+                    <div>
+                        <label for="pageSelect">Select Page:</label>
+                        <select id="pageSelect" onchange="loadPageSections()">
+                            <option value="">Choose a page to edit...</option>
+                        </select>
+                    </div>
+                    <div class="page-info" id="currentFile"></div>
+                    <div id="saveAllBtn" class="hidden">
+                        <button class="btn-primary" onclick="saveAllSections()">
+                            <i class="fas fa-save"></i> Save All Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Page Map -->
+            <div id="pageMap" class="page-map hidden">
+                <div class="page-map-title">Page Structure Overview</div>
+                <div class="map-sections" id="mapSections"></div>
             </div>
 
             <!-- Language Tabs -->
@@ -447,9 +885,17 @@
 
             <!-- Search Container -->
             <div id="searchContainer" class="search-container hidden">
-                <label for="searchInput">Search sections by content:</label>
-                <input type="text" id="searchInput" class="search-input" placeholder="Type to search sections..." oninput="searchSections()">
-                <div id="searchResults" class="search-results"></div>
+                <label for="searchInput">Search & Filter Content:</label>
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" class="search-input"
+                           placeholder="Type to search sections, titles, or content..."
+                           oninput="searchSections()">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div id="searchResults" class="search-results">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Ready to search</span>
+                </div>
             </div>
 
             <!-- Sections Grid -->
@@ -457,7 +903,8 @@
         </div>
 
         <div id="loading" class="loading hidden">
-            Loading sections...
+            <div class="loading-spinner"></div>
+            Loading content...
         </div>
     </div>
 
@@ -468,6 +915,79 @@
         let languages = {};
         let pages = {};
         let sections = [];
+        let unsavedChanges = false;
+
+        // Section metadata for better UX
+        const SECTION_META = {
+            'hero': {
+                icon: 'fa-flag',
+                location: 'Homepage top banner - First thing visitors see',
+                description: 'Main headline and call-to-action'
+            },
+            'services': {
+                icon: 'fa-briefcase',
+                location: 'Service offerings section',
+                description: 'List of legal services provided'
+            },
+            'about': {
+                icon: 'fa-users',
+                location: 'About us section',
+                description: 'Firm introduction and credentials'
+            },
+            'contact': {
+                icon: 'fa-envelope',
+                location: 'Contact information section',
+                description: 'How clients can reach you'
+            },
+            'testimonials': {
+                icon: 'fa-quote-left',
+                location: 'Client testimonials section',
+                description: 'Client reviews and success stories'
+            },
+            'cta': {
+                icon: 'fa-bullhorn',
+                location: 'Call-to-action sections',
+                description: 'Buttons and links to drive conversions'
+            }
+        };
+
+        // Field metadata for context
+        const FIELD_META = {
+            'title': {
+                label: 'Main Headline',
+                description: 'Primary text that grabs attention',
+                placeholder: 'e.g., Leading Class Action Law Firm',
+                maxLength: 60,
+                tooltip: 'Keep under 60 characters for optimal display'
+            },
+            'subtitle': {
+                label: 'Supporting Text',
+                description: 'Secondary message below the headline',
+                placeholder: 'e.g., Fighting for your rights since 1985',
+                maxLength: 120,
+                tooltip: 'Provides context to the main headline'
+            },
+            'content': {
+                label: 'Body Content',
+                description: 'Main text content',
+                placeholder: 'Detailed description...',
+                maxLength: 500,
+                tooltip: 'Main content area - be clear and concise'
+            },
+            'buttonText': {
+                label: 'Button Label',
+                description: 'Call-to-action button text',
+                placeholder: 'e.g., Get Free Consultation',
+                maxLength: 30,
+                tooltip: 'Action-oriented text for buttons'
+            },
+            'buttonUrl': {
+                label: 'Button Link',
+                description: 'Where the button leads to',
+                placeholder: 'e.g., /contact or #contact-form',
+                tooltip: 'Use relative URLs for internal pages'
+            }
+        };
 
         // Initialize
         if (currentToken) {
@@ -478,7 +998,7 @@
 
         function showStatus(elementId, message, type = 'success') {
             const status = document.getElementById(elementId);
-            status.textContent = message;
+            status.innerHTML = message;
             status.className = `status ${type}`;
             status.style.display = 'block';
             setTimeout(() => {
@@ -519,6 +1039,11 @@
         }
 
         function logout() {
+            if (unsavedChanges) {
+                if (!confirm('You have unsaved changes. Are you sure you want to logout?')) {
+                    return;
+                }
+            }
             currentToken = null;
             localStorage.removeItem('admin_token');
             showLoginForm();
@@ -581,12 +1106,12 @@
 
         function renderPageSelector() {
             const select = document.getElementById('pageSelect');
-            select.innerHTML = '<option value="">Select a page...</option>';
+            select.innerHTML = '<option value="">Choose a page to edit...</option>';
 
             Object.keys(pages).forEach(pageName => {
                 const option = document.createElement('option');
                 option.value = pageName;
-                option.textContent = pageName === 'index' ? 'Homepage' : pageName;
+                option.textContent = pageName === 'index' ? '🏠 Homepage' : `📄 ${pageName}`;
                 select.appendChild(option);
             });
         }
@@ -598,14 +1123,47 @@
             Object.keys(languages).forEach(lang => {
                 const button = document.createElement('button');
                 button.className = `language-tab ${lang === currentLang ? 'active' : ''}`;
-                button.textContent = languages[lang].name;
+                button.innerHTML = `<i class="fas fa-globe"></i> ${languages[lang].name}`;
                 button.onclick = () => switchLanguage(lang);
                 tabs.appendChild(button);
             });
         }
 
+        function renderPageMap() {
+            const mapContainer = document.getElementById('mapSections');
+            mapContainer.innerHTML = '';
+
+            sections.forEach((section, index) => {
+                const mapItem = document.createElement('div');
+                mapItem.className = `map-section ${section.visible ? '' : 'hidden'}`;
+                mapItem.textContent = section.name;
+                mapItem.onclick = () => scrollToSection(section.id);
+
+                mapContainer.appendChild(mapItem);
+            });
+
+            document.getElementById('pageMap').classList.remove('hidden');
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(`section-${sectionId}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.style.animation = 'pulse 1s';
+                setTimeout(() => {
+                    element.style.animation = '';
+                }, 1000);
+            }
+        }
+
         function switchLanguage(lang) {
+            if (unsavedChanges) {
+                if (!confirm('You have unsaved changes. Switch language anyway?')) {
+                    return;
+                }
+            }
             currentLang = lang;
+            unsavedChanges = false;
             renderLanguageTabs();
             if (currentPage) {
                 loadPageSections();
@@ -617,7 +1175,8 @@
             if (!pageName) {
                 document.getElementById('sectionsContainer').classList.add('hidden');
                 document.getElementById('searchContainer').classList.add('hidden');
-                document.getElementById('currentFile').textContent = '';
+                document.getElementById('pageMap').classList.add('hidden');
+                document.getElementById('currentFile').innerHTML = '';
                 return;
             }
 
@@ -637,19 +1196,29 @@
                 if (response.ok) {
                     const data = await response.json();
                     sections = data.sections;
+                    unsavedChanges = false;
 
-                    document.getElementById('currentFile').textContent = `Editing: ${data.filename}`;
+                    document.getElementById('currentFile').innerHTML = `
+                        <i class="fas fa-file-alt"></i>
+                        Editing: <strong>${data.filename}</strong>
+                    `;
+
                     renderSections();
+                    renderPageMap();
                     document.getElementById('sectionsContainer').classList.remove('hidden');
                     document.getElementById('searchContainer').classList.remove('hidden');
+                    document.getElementById('saveAllBtn').classList.remove('hidden');
 
-                    // Clear search input when loading new sections
+                    // Clear search
                     document.getElementById('searchInput').value = '';
                     updateSearchResults(sections.length, sections.length);
                 } else if (response.status === 404) {
-                    showStatus('adminStatus', `${languages[currentLang].name} version not found for this page`, 'error');
+                    showStatus('adminStatus',
+                        `<i class="fas fa-exclamation-triangle"></i> ${languages[currentLang].name} version not found for this page`,
+                        'error');
                     document.getElementById('sectionsContainer').classList.add('hidden');
                     document.getElementById('searchContainer').classList.add('hidden');
+                    document.getElementById('pageMap').classList.add('hidden');
                 } else {
                     throw new Error('Failed to load sections');
                 }
@@ -675,106 +1244,298 @@
             card.className = `section-card ${section.visible ? '' : 'section-disabled'}`;
             card.id = `section-${section.id}`;
 
+            // Get section metadata
+            const meta = SECTION_META[section.id] || {
+                icon: 'fa-file',
+                location: 'Content section',
+                description: 'Website content'
+            };
+
+            // Section Header
             const header = document.createElement('div');
             header.className = 'section-header';
+            header.innerHTML = `
+                <div class="section-meta">
+                    <div class="section-title-group">
+                        <div class="section-title">
+                            <div class="section-icon">
+                                <i class="fas ${meta.icon}"></i>
+                            </div>
+                            <span>${section.name}</span>
+                        </div>
+                        <div class="section-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${meta.location}
+                        </div>
+                    </div>
+                    <div class="toggle-section">
+                        <span class="visibility-badge ${section.visible ? 'visible' : 'hidden'}">
+                            ${section.visible ? 'LIVE' : 'HIDDEN'}
+                        </span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" ${section.visible ? 'checked' : ''}
+                                   onchange="toggleSection('${section.id}', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            `;
 
-            const title = document.createElement('h3');
-            title.className = 'section-title';
-            title.textContent = section.name;
-
-            const toggleDiv = document.createElement('div');
-            toggleDiv.className = 'toggle-section';
-
-            const toggleLabel = document.createElement('label');
-            toggleLabel.className = 'toggle-switch';
-
-            const toggleInput = document.createElement('input');
-            toggleInput.type = 'checkbox';
-            toggleInput.checked = section.visible;
-            toggleInput.onchange = () => toggleSection(section.id, toggleInput.checked);
-
-            const slider = document.createElement('span');
-            slider.className = 'slider';
-
-            toggleLabel.appendChild(toggleInput);
-            toggleLabel.appendChild(slider);
-
-            const toggleText = document.createElement('span');
-            toggleText.textContent = section.visible ? 'Visible' : 'Hidden';
-            toggleText.id = `toggle-text-${section.id}`;
-
-            toggleDiv.appendChild(toggleLabel);
-            toggleDiv.appendChild(toggleText);
-
-            header.appendChild(title);
-            header.appendChild(toggleDiv);
-
+            // Content Fields
             const content = document.createElement('div');
             content.className = 'section-content';
 
-            // Create form fields for editable content
+            // Template selector (if applicable)
+            if (section.id === 'hero' || section.id === 'cta') {
+                const templateDiv = document.createElement('div');
+                templateDiv.className = 'template-selector';
+                templateDiv.innerHTML = `
+                    <label>Quick Templates:</label>
+                    <div class="template-chips">
+                        <div class="template-chip" onclick="applyTemplate('${section.id}', 'professional')">
+                            Professional
+                        </div>
+                        <div class="template-chip" onclick="applyTemplate('${section.id}', 'aggressive')">
+                            Aggressive
+                        </div>
+                        <div class="template-chip" onclick="applyTemplate('${section.id}', 'friendly')">
+                            Client-Friendly
+                        </div>
+                    </div>
+                `;
+                content.appendChild(templateDiv);
+            }
+
+            // Create form fields
             Object.keys(section.content).forEach(key => {
-                const field = document.createElement('div');
-                field.className = 'content-field';
-
-                const label = document.createElement('label');
-                label.textContent = key.replace(/([A-Z])/g, ' $1').trim();
-
-                const value = section.content[key] || '';
-                const isLongText = value.length > 100;
-                const hasHTML = /<[^>]+>/.test(value);
-
-                const input = document.createElement(isLongText ? 'textarea' : 'input');
-                input.type = isLongText ? undefined : 'text';
-                input.value = value;
-                input.id = `${section.id}-${key}`;
-
-                field.appendChild(label);
-                field.appendChild(input);
-
-                // Add HTML preview if content contains HTML
-                if (hasHTML) {
-                    const previewLabel = document.createElement('div');
-                    previewLabel.className = 'preview-label';
-                    previewLabel.textContent = 'Preview:';
-
-                    const preview = document.createElement('div');
-                    preview.className = 'html-preview';
-                    preview.id = `${section.id}-${key}-preview`;
-                    preview.innerHTML = value;
-
-                    field.appendChild(previewLabel);
-                    field.appendChild(preview);
-
-                    // Update preview on input change
-                    input.addEventListener('input', (e) => {
-                        preview.innerHTML = e.target.value;
-                    });
-                }
-
+                const field = createEnhancedField(section, key);
                 content.appendChild(field);
             });
 
+            // Actions
             const actions = document.createElement('div');
             actions.className = 'section-actions';
-
-            const saveBtn = document.createElement('button');
-            saveBtn.textContent = 'Save Section';
-            saveBtn.onclick = () => saveSection(section.id);
-
-            const resetBtn = document.createElement('button');
-            resetBtn.className = 'btn-secondary';
-            resetBtn.textContent = 'Reset';
-            resetBtn.onclick = () => loadSections();
-
-            actions.appendChild(saveBtn);
-            actions.appendChild(resetBtn);
+            actions.innerHTML = `
+                <button class="btn-primary" onclick="saveSection('${section.id}')">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <button class="btn-secondary" onclick="resetSection('${section.id}')">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+                <button class="btn-secondary" onclick="previewSection('${section.id}')">
+                    <i class="fas fa-eye"></i> Preview
+                </button>
+            `;
 
             card.appendChild(header);
             card.appendChild(content);
             card.appendChild(actions);
 
             return card;
+        }
+
+        function createEnhancedField(section, key) {
+            const field = document.createElement('div');
+            field.className = 'content-field';
+
+            const value = section.content[key] || '';
+            const meta = FIELD_META[key] || {
+                label: key.replace(/([A-Z])/g, ' $1').trim(),
+                description: '',
+                placeholder: '',
+                maxLength: 500
+            };
+
+            const hasHTML = /<[^>]+>/.test(value);
+            const isLongText = value.length > 100 || key.includes('content') || key.includes('description');
+
+            // Field header with label and info
+            const fieldHeader = document.createElement('div');
+            fieldHeader.className = 'field-header';
+            fieldHeader.innerHTML = `
+                <div class="field-label">
+                    ${meta.label}
+                    ${meta.tooltip ? `
+                        <div class="tooltip-icon">
+                            <i class="fas fa-info"></i>
+                            <div class="tooltip-content">${meta.tooltip}</div>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="field-info">
+                    <span class="char-counter" id="counter-${section.id}-${key}">
+                        0 / ${meta.maxLength}
+                    </span>
+                </div>
+            `;
+
+            // Field description
+            if (meta.description) {
+                const desc = document.createElement('div');
+                desc.className = 'field-description';
+                desc.textContent = meta.description;
+                field.appendChild(desc);
+            }
+
+            field.appendChild(fieldHeader);
+
+            // Rich text editor for HTML content
+            if (hasHTML) {
+                const toolbar = document.createElement('div');
+                toolbar.className = 'editor-toolbar';
+                toolbar.innerHTML = `
+                    <button type="button" class="editor-btn" onclick="formatText('${section.id}-${key}', 'bold')">
+                        <i class="fas fa-bold"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="formatText('${section.id}-${key}', 'italic')">
+                        <i class="fas fa-italic"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="formatText('${section.id}-${key}', 'underline')">
+                        <i class="fas fa-underline"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="addLink('${section.id}-${key}')">
+                        <i class="fas fa-link"></i>
+                    </button>
+                    <button type="button" class="editor-btn" onclick="clearFormat('${section.id}-${key}')">
+                        <i class="fas fa-remove-format"></i>
+                    </button>
+                `;
+                field.appendChild(toolbar);
+            }
+
+            // Input field
+            const input = document.createElement(isLongText ? 'textarea' : 'input');
+            input.type = isLongText ? undefined : 'text';
+            input.value = value;
+            input.id = `${section.id}-${key}`;
+            input.placeholder = meta.placeholder;
+            input.maxLength = meta.maxLength;
+
+            // Add input listeners
+            input.addEventListener('input', (e) => {
+                updateCharCounter(section.id, key, e.target.value.length, meta.maxLength);
+                markAsUnsaved();
+
+                // Update preview if exists
+                const preview = document.getElementById(`${section.id}-${key}-preview`);
+                if (preview) {
+                    preview.innerHTML = e.target.value;
+                }
+            });
+
+            // Add styles for HTML input
+            if (hasHTML && !isLongText) {
+                input.style.borderRadius = '0 0 8px 8px';
+            }
+
+            field.appendChild(input);
+
+            // HTML preview
+            if (hasHTML) {
+                const preview = document.createElement('div');
+                preview.className = 'html-preview';
+                preview.id = `${section.id}-${key}-preview`;
+                preview.innerHTML = value;
+                field.appendChild(preview);
+            }
+
+            // Update initial counter
+            setTimeout(() => {
+                updateCharCounter(section.id, key, value.length, meta.maxLength);
+            }, 0);
+
+            return field;
+        }
+
+        function updateCharCounter(sectionId, key, length, maxLength) {
+            const counter = document.getElementById(`counter-${sectionId}-${key}`);
+            if (counter) {
+                counter.textContent = `${length} / ${maxLength}`;
+                counter.className = 'char-counter';
+
+                if (length > maxLength) {
+                    counter.classList.add('error');
+                } else if (length > maxLength * 0.9) {
+                    counter.classList.add('warning');
+                }
+            }
+        }
+
+        function markAsUnsaved() {
+            unsavedChanges = true;
+            const saveBtn = document.querySelector('#saveAllBtn button');
+            if (saveBtn) {
+                saveBtn.style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        function formatText(fieldId, command) {
+            const field = document.getElementById(fieldId);
+            const start = field.selectionStart;
+            const end = field.selectionEnd;
+            const text = field.value;
+            const selectedText = text.substring(start, end);
+
+            let newText = '';
+            switch(command) {
+                case 'bold':
+                    newText = `<strong>${selectedText}</strong>`;
+                    break;
+                case 'italic':
+                    newText = `<em>${selectedText}</em>`;
+                    break;
+                case 'underline':
+                    newText = `<span style="text-decoration: underline">${selectedText}</span>`;
+                    break;
+            }
+
+            field.value = text.substring(0, start) + newText + text.substring(end);
+            field.dispatchEvent(new Event('input'));
+        }
+
+        function addLink(fieldId) {
+            const url = prompt('Enter URL:');
+            if (url) {
+                formatText(fieldId, 'link', url);
+            }
+        }
+
+        function clearFormat(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.value = field.value.replace(/<[^>]*>/g, '');
+            field.dispatchEvent(new Event('input'));
+        }
+
+        function applyTemplate(sectionId, template) {
+            const templates = {
+                'professional': {
+                    'title': 'Expert Legal Representation',
+                    'subtitle': 'Trusted by thousands of clients nationwide',
+                    'buttonText': 'Schedule Consultation'
+                },
+                'aggressive': {
+                    'title': 'We Fight to Win',
+                    'subtitle': 'Maximum compensation for your case',
+                    'buttonText': 'Start Your Case Now'
+                },
+                'friendly': {
+                    'title': 'Your Legal Partners',
+                    'subtitle': 'Compassionate support through every step',
+                    'buttonText': 'Let\'s Talk'
+                }
+            };
+
+            const section = sections.find(s => s.id === sectionId);
+            if (section && templates[template]) {
+                Object.keys(templates[template]).forEach(key => {
+                    const field = document.getElementById(`${sectionId}-${key}`);
+                    if (field) {
+                        field.value = templates[template][key];
+                        field.dispatchEvent(new Event('input'));
+                    }
+                });
+                showStatus('adminStatus', `Template "${template}" applied successfully`);
+            }
         }
 
         async function toggleSection(sectionId, visible) {
@@ -791,34 +1552,40 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    showStatus('adminStatus', `Section ${visible ? 'shown' : 'hidden'} successfully!`);
+                    showStatus('adminStatus',
+                        `<i class="fas fa-check-circle"></i> Section ${visible ? 'published' : 'hidden'} successfully!`);
 
                     // Update UI
                     const card = document.getElementById(`section-${sectionId}`);
-                    const toggleText = document.getElementById(`toggle-text-${sectionId}`);
+                    const badge = card.querySelector('.visibility-badge');
 
                     if (visible) {
                         card.classList.remove('section-disabled');
-                        toggleText.textContent = 'Visible';
+                        badge.textContent = 'LIVE';
+                        badge.className = 'visibility-badge visible';
                     } else {
                         card.classList.add('section-disabled');
-                        toggleText.textContent = 'Hidden';
+                        badge.textContent = 'HIDDEN';
+                        badge.className = 'visibility-badge hidden';
                     }
 
-                    // Update the section in our local data
+                    // Update local data
                     const sectionIndex = sections.findIndex(s => s.id === sectionId);
                     if (sectionIndex !== -1) {
                         sections[sectionIndex].visible = visible;
                     }
+
+                    // Update page map
+                    renderPageMap();
                 } else {
                     showStatus('adminStatus', result.error || 'Failed to toggle section', 'error');
-                    // Revert checkbox state
+                    // Revert checkbox
                     const checkbox = document.querySelector(`#section-${sectionId} input[type="checkbox"]`);
                     checkbox.checked = !visible;
                 }
             } catch (error) {
                 showStatus('adminStatus', 'Network error occurred', 'error');
-                // Revert checkbox state
+                // Revert checkbox
                 const checkbox = document.querySelector(`#section-${sectionId} input[type="checkbox"]`);
                 checkbox.checked = !visible;
             }
@@ -834,7 +1601,7 @@
                     return;
                 }
 
-                // Collect content from form fields
+                // Collect content
                 Object.keys(section.content).forEach(key => {
                     const input = document.getElementById(`${sectionId}-${key}`);
                     if (input) {
@@ -842,6 +1609,7 @@
                     }
                 });
 
+                showLoading(true);
                 const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${sectionId}`, {
                     method: 'POST',
                     headers: {
@@ -852,19 +1620,868 @@
                 });
 
                 const result = await response.json();
+                showLoading(false);
 
                 if (response.ok) {
-                    showStatus('adminStatus', result.message || 'Section updated successfully!');
-                    // Update local sections data
+                    showStatus('adminStatus',
+                        `<i class="fas fa-check-circle"></i> ${result.message || 'Section saved successfully!'}`);
+
+                    // Update local data
                     const sectionIndex = sections.findIndex(s => s.id === sectionId);
                     if (sectionIndex !== -1) {
                         sections[sectionIndex].content = { ...sections[sectionIndex].content, ...content };
                     }
+
+                    // Reset unsaved state for this section
+                    const saveBtn = document.querySelector('#saveAllBtn button');
+                    if (saveBtn) {
+                        saveBtn.style.animation = '';
+                    }
                 } else {
-                    showStatus('adminStatus', result.error || 'Failed to update section', 'error');
+                    showStatus('adminStatus', result.error || 'Failed to save section', 'error');
                 }
             } catch (error) {
+                showLoading(false);
                 showStatus('adminStatus', 'Network error occurred', 'error');
+            }
+        }
+
+        async function saveAllSections() {
+            if (!confirm('Save all changes to this page?')) {
+                return;
+            }
+
+            let savedCount = 0;
+            let failedCount = 0;
+
+            for (const section of sections) {
+                try {
+                    const content = {};
+                    Object.keys(section.content).forEach(key => {
+                        const input = document.getElementById(`${section.id}-${key}`);
+                        if (input) {
+                            content[key] = input.value;
+                        }
+                    });
+
+                    const response = await fetch(`/api/admin/section/${currentLang}/${currentPage}/${section.id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${currentToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ content })
+                    });
+
+                    if (response.ok) {
+                        savedCount++;
+                    } else {
+                        failedCount++;
+                    }
+                } catch (error) {
+                    failedCount++;
+                }
+            }
+
+            if (failedCount === 0) {
+                showStatus('adminStatus',
+                    `<i class="fas fa-check-circle"></i> All ${savedCount} sections saved successfully!`);
+                unsavedChanges = false;
+            } else {
+                showStatus('adminStatus',
+                    `Saved ${savedCount} sections, ${failedCount} failed`, 'error');
+            }
+        }
+
+        function resetSection(sectionId) {
+            if (confirm('Reset all changes in this section?')) {
+                loadSections();
+            }
+        }
+
+        function previewSection(sectionId) {
+            const section = sections.find(s => s.id === sectionId);
+            if (section) {
+                // Get current content values from form
+                const currentContent = {};
+                Object.keys(section.content).forEach(key => {
+                    const input = document.getElementById(`${sectionId}-${key}`);
+                    currentContent[key] = input ? input.value : section.content[key];
+                });
+
+                // Open preview in new window
+                const previewWindow = window.open('', '_blank', 'width=1400,height=900');
+
+                // Generate visual HTML based on section type
+                let sectionHTML = '';
+
+                if (sectionId === 'hero' || sectionId === 'hero-banner') {
+                    sectionHTML = `
+                        <section class="hero-section">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <h1 class="hero-title">${currentContent.title || currentContent.heading || 'Hero Title'}</h1>
+                                ${currentContent.subtitle || currentContent.subheading ?
+                                    `<p class="hero-subtitle">${currentContent.subtitle || currentContent.subheading}</p>` : ''}
+                                ${currentContent.description ?
+                                    `<p class="hero-description">${currentContent.description}</p>` : ''}
+                                ${currentContent.buttonText || currentContent.ctaText ? `
+                                    <button class="hero-button">
+                                        ${currentContent.buttonText || currentContent.ctaText}
+                                    </button>
+                                ` : ''}
+                                ${currentContent.secondaryButtonText ? `
+                                    <button class="hero-button-secondary">
+                                        ${currentContent.secondaryButtonText}
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </section>
+                    `;
+                } else if (sectionId === 'services' || sectionId === 'practice-areas') {
+                    sectionHTML = `
+                        <section class="services-section">
+                            <div class="container">
+                                <h2>${currentContent.title || 'Our Services'}</h2>
+                                ${currentContent.subtitle ? `<p class="section-subtitle">${currentContent.subtitle}</p>` : ''}
+                                <div class="services-grid">
+                                    ${currentContent.content ? currentContent.content.split('\n').map(item =>
+                                        `<div class="service-item">
+                                            <i class="fas fa-gavel"></i>
+                                            <p>${item}</p>
+                                        </div>`
+                                    ).join('') : ''}
+                                </div>
+                            </div>
+                        </section>
+                    `;
+                } else if (sectionId === 'about' || sectionId === 'team' || sectionId === 'team-section' || sectionId === 'our-team') {
+                    sectionHTML = `
+                        <section class="about-section">
+                            <div class="container">
+                                ${currentContent.title || currentContent.heading ?
+                                    `<h2 class="section-title">${currentContent.title || currentContent.heading}</h2>` : ''}
+                                ${currentContent.subtitle || currentContent.subheading ?
+                                    `<p class="section-subtitle">${currentContent.subtitle || currentContent.subheading}</p>` : ''}
+
+                                ${currentContent.content || currentContent.description ? `
+                                    <div class="about-content">
+                                        <p>${currentContent.content || currentContent.description}</p>
+                                    </div>
+                                ` : ''}
+
+                                ${(currentContent.founderName || currentContent.founder_name ||
+                                   currentContent.teamMember1Name || currentContent.member1Name) ? `
+                                    <div class="team-grid">
+                                        <div class="team-member">
+                                            ${currentContent.founderImage || currentContent.founder_image ?
+                                                `<img src="${currentContent.founderImage || currentContent.founder_image}" alt="Team member" />` :
+                                                '<div class="member-placeholder"><i class="fas fa-user-circle"></i></div>'}
+                                            <h3>${currentContent.founderName || currentContent.founder_name ||
+                                                 currentContent.teamMember1Name || currentContent.member1Name || 'Team Member'}</h3>
+                                            <p class="member-role">${currentContent.founderRole || currentContent.founder_role ||
+                                                                     currentContent.teamMember1Role || currentContent.member1Role || 'Position'}</p>
+                                            ${currentContent.founderBio || currentContent.founder_bio ||
+                                              currentContent.teamMember1Bio || currentContent.member1Bio ?
+                                              `<p class="member-bio">${currentContent.founderBio || currentContent.founder_bio ||
+                                                                       currentContent.teamMember1Bio || currentContent.member1Bio}</p>` : ''}
+                                        </div>
+
+                                        ${(currentContent.teamMember2Name || currentContent.member2Name) ? `
+                                            <div class="team-member">
+                                                ${currentContent.teamMember2Image || currentContent.member2Image ?
+                                                    `<img src="${currentContent.teamMember2Image || currentContent.member2Image}" alt="Team member" />` :
+                                                    '<div class="member-placeholder"><i class="fas fa-user-circle"></i></div>'}
+                                                <h3>${currentContent.teamMember2Name || currentContent.member2Name}</h3>
+                                                <p class="member-role">${currentContent.teamMember2Role || currentContent.member2Role || 'Position'}</p>
+                                                ${currentContent.teamMember2Bio || currentContent.member2Bio ?
+                                                  `<p class="member-bio">${currentContent.teamMember2Bio || currentContent.member2Bio}</p>` : ''}
+                                            </div>
+                                        ` : ''}
+
+                                        ${(currentContent.teamMember3Name || currentContent.member3Name) ? `
+                                            <div class="team-member">
+                                                ${currentContent.teamMember3Image || currentContent.member3Image ?
+                                                    `<img src="${currentContent.teamMember3Image || currentContent.member3Image}" alt="Team member" />` :
+                                                    '<div class="member-placeholder"><i class="fas fa-user-circle"></i></div>'}
+                                                <h3>${currentContent.teamMember3Name || currentContent.member3Name}</h3>
+                                                <p class="member-role">${currentContent.teamMember3Role || currentContent.member3Role || 'Position'}</p>
+                                                ${currentContent.teamMember3Bio || currentContent.member3Bio ?
+                                                  `<p class="member-bio">${currentContent.teamMember3Bio || currentContent.member3Bio}</p>` : ''}
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </section>
+                    `;
+                } else if (sectionId === 'contact' || sectionId === 'contact-form') {
+                    sectionHTML = `
+                        <section class="contact-section">
+                            <div class="container">
+                                <h2>${currentContent.title || 'Contact Us'}</h2>
+                                ${currentContent.subtitle ? `<p class="section-subtitle">${currentContent.subtitle}</p>` : ''}
+                                <div class="contact-grid">
+                                    <div class="contact-form">
+                                        <input type="text" placeholder="Name" />
+                                        <input type="email" placeholder="Email" />
+                                        <input type="tel" placeholder="Phone" />
+                                        <textarea placeholder="Message"></textarea>
+                                        <button>${currentContent.buttonText || 'Send Message'}</button>
+                                    </div>
+                                    <div class="contact-info">
+                                        ${currentContent.phone ? `<p><i class="fas fa-phone"></i> ${currentContent.phone}</p>` : ''}
+                                        ${currentContent.email ? `<p><i class="fas fa-envelope"></i> ${currentContent.email}</p>` : ''}
+                                        ${currentContent.address ? `<p><i class="fas fa-map-marker-alt"></i> ${currentContent.address}</p>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    `;
+                } else if (sectionId === 'cta') {
+                    sectionHTML = `
+                        <section class="cta-section">
+                            <div class="container">
+                                <h2>${currentContent.title || 'Call to Action'}</h2>
+                                ${currentContent.subtitle ? `<p>${currentContent.subtitle}</p>` : ''}
+                                ${currentContent.buttonText ? `
+                                    <button class="cta-button">${currentContent.buttonText}</button>
+                                ` : ''}
+                            </div>
+                        </section>
+                    `;
+                } else {
+                    // Generic section preview - Display ALL fields
+                    let fieldsHTML = '';
+
+                    // Common fields first
+                    if (currentContent.title || currentContent.heading) {
+                        fieldsHTML += `<h2 class="section-title">${currentContent.title || currentContent.heading}</h2>`;
+                    }
+                    if (currentContent.subtitle || currentContent.subheading) {
+                        fieldsHTML += `<p class="section-subtitle">${currentContent.subtitle || currentContent.subheading}</p>`;
+                    }
+                    if (currentContent.content || currentContent.description) {
+                        fieldsHTML += `<div class="content">${currentContent.content || currentContent.description}</div>`;
+                    }
+
+                    // Display ALL other fields in a structured way
+                    const processedFields = ['title', 'heading', 'subtitle', 'subheading', 'content', 'description', 'buttonText', 'buttonUrl', 'ctaText'];
+                    const remainingFields = Object.keys(currentContent).filter(key => !processedFields.includes(key));
+
+                    if (remainingFields.length > 0) {
+                        fieldsHTML += '<div class="additional-fields">';
+                        remainingFields.forEach(key => {
+                            const value = currentContent[key];
+                            if (value && value.toString().trim()) {
+                                // Format field name nicely
+                                const fieldLabel = key
+                                    .replace(/([A-Z])/g, ' $1')
+                                    .replace(/_/g, ' ')
+                                    .replace(/^./, str => str.toUpperCase())
+                                    .trim();
+
+                                // Check if it's an image field
+                                if (key.toLowerCase().includes('image') || key.toLowerCase().includes('img') || key.toLowerCase().includes('photo')) {
+                                    fieldsHTML += `
+                                        <div class="field-item">
+                                            <strong>${fieldLabel}:</strong>
+                                            <img src="${value}" alt="${fieldLabel}" style="max-width: 200px; margin-top: 10px; display: block;" />
+                                        </div>
+                                    `;
+                                }
+                                // Check if it's a URL field
+                                else if (key.toLowerCase().includes('url') || key.toLowerCase().includes('link')) {
+                                    fieldsHTML += `
+                                        <div class="field-item">
+                                            <strong>${fieldLabel}:</strong>
+                                            <a href="${value}" target="_blank" style="color: #007cba;">${value}</a>
+                                        </div>
+                                    `;
+                                }
+                                // Long text (likely bio or description)
+                                else if (value.length > 150) {
+                                    fieldsHTML += `
+                                        <div class="field-item">
+                                            <strong>${fieldLabel}:</strong>
+                                            <p class="long-text">${value}</p>
+                                        </div>
+                                    `;
+                                }
+                                // Short text
+                                else {
+                                    fieldsHTML += `
+                                        <div class="field-item">
+                                            <strong>${fieldLabel}:</strong> <span>${value}</span>
+                                        </div>
+                                    `;
+                                }
+                            }
+                        });
+                        fieldsHTML += '</div>';
+                    }
+
+                    // Add buttons if they exist
+                    if (currentContent.buttonText || currentContent.ctaText) {
+                        fieldsHTML += `
+                            <div class="buttons-container" style="margin-top: 30px;">
+                                <button class="primary-button">${currentContent.buttonText || currentContent.ctaText}</button>
+                            </div>
+                        `;
+                    }
+
+                    sectionHTML = `
+                        <section class="generic-section">
+                            <div class="container">
+                                ${fieldsHTML || '<p style="color: #999; text-align: center;">No content to display</p>'}
+                            </div>
+                        </section>
+                    `;
+                }
+
+                previewWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html lang="${currentLang}" ${currentLang === 'he' ? 'dir="rtl"' : ''}>
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>Preview: ${section.name}</title>
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                            <style>
+                                * {
+                                    margin: 0;
+                                    padding: 0;
+                                    box-sizing: border-box;
+                                }
+
+                                body {
+                                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+                                    line-height: 1.6;
+                                    color: #333;
+                                }
+
+                                .preview-header {
+                                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                    color: white;
+                                    padding: 15px;
+                                    text-align: center;
+                                    position: sticky;
+                                    top: 0;
+                                    z-index: 100;
+                                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                                }
+
+                                .preview-header h3 {
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                    margin: 0;
+                                }
+
+                                .preview-info {
+                                    font-size: 12px;
+                                    opacity: 0.9;
+                                    margin-top: 4px;
+                                }
+
+                                .container {
+                                    max-width: 1200px;
+                                    margin: 0 auto;
+                                    padding: 0 20px;
+                                }
+
+                                /* Hero Section Styles */
+                                .hero-section {
+                                    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                                    background-image: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                                                      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23333"/><circle cx="50" cy="50" r="40" fill="none" stroke="%23444" stroke-width="0.5"/></svg>');
+                                    color: white;
+                                    padding: 120px 20px;
+                                    text-align: center;
+                                    min-height: 600px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    position: relative;
+                                    overflow: hidden;
+                                }
+
+                                .hero-overlay {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+                                    pointer-events: none;
+                                }
+
+                                .hero-content {
+                                    max-width: 900px;
+                                    position: relative;
+                                    z-index: 1;
+                                    animation: fadeInUp 1s ease;
+                                }
+
+                                @keyframes fadeInUp {
+                                    from {
+                                        opacity: 0;
+                                        transform: translateY(30px);
+                                    }
+                                    to {
+                                        opacity: 1;
+                                        transform: translateY(0);
+                                    }
+                                }
+
+                                .hero-title {
+                                    font-size: 56px;
+                                    font-weight: 700;
+                                    margin-bottom: 25px;
+                                    line-height: 1.2;
+                                    letter-spacing: -1px;
+                                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                                }
+
+                                .hero-title span {
+                                    color: #4A90E2;
+                                    text-decoration: none;
+                                    position: relative;
+                                    font-weight: 800;
+                                }
+
+                                .hero-title span::after {
+                                    content: '';
+                                    position: absolute;
+                                    bottom: -4px;
+                                    left: 0;
+                                    right: 0;
+                                    height: 3px;
+                                    background: #4A90E2;
+                                    transform: scaleX(0.8);
+                                }
+
+                                .hero-subtitle {
+                                    font-size: 24px;
+                                    opacity: 0.95;
+                                    margin-bottom: 20px;
+                                    font-weight: 300;
+                                    letter-spacing: 0.5px;
+                                }
+
+                                .hero-description {
+                                    font-size: 18px;
+                                    opacity: 0.85;
+                                    margin-bottom: 35px;
+                                    line-height: 1.6;
+                                    max-width: 700px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                }
+
+                                .hero-button {
+                                    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+                                    color: white;
+                                    border: none;
+                                    padding: 16px 45px;
+                                    font-size: 18px;
+                                    border-radius: 50px;
+                                    cursor: pointer;
+                                    transition: all 0.3s;
+                                    font-weight: 600;
+                                    letter-spacing: 0.5px;
+                                    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+                                    margin: 0 10px;
+                                    display: inline-block;
+                                }
+
+                                .hero-button:hover {
+                                    background: linear-gradient(135deg, #357ABD 0%, #2968A8 100%);
+                                    transform: translateY(-2px);
+                                    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
+                                }
+
+                                .hero-button-secondary {
+                                    background: transparent;
+                                    color: white;
+                                    border: 2px solid white;
+                                    padding: 14px 40px;
+                                    font-size: 18px;
+                                    border-radius: 50px;
+                                    cursor: pointer;
+                                    transition: all 0.3s;
+                                    font-weight: 600;
+                                    letter-spacing: 0.5px;
+                                    margin: 0 10px;
+                                    display: inline-block;
+                                }
+
+                                .hero-button-secondary:hover {
+                                    background: white;
+                                    color: #1a1a1a;
+                                    transform: translateY(-2px);
+                                    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
+                                }
+
+                                /* Services Section */
+                                .services-section {
+                                    padding: 80px 20px;
+                                    background: #f8f9fa;
+                                }
+
+                                .services-section h2 {
+                                    text-align: center;
+                                    font-size: 36px;
+                                    margin-bottom: 20px;
+                                    color: #1a1a1a;
+                                }
+
+                                .section-subtitle {
+                                    text-align: center;
+                                    color: #666;
+                                    margin-bottom: 50px;
+                                }
+
+                                .services-grid {
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                                    gap: 30px;
+                                    margin-top: 40px;
+                                }
+
+                                .service-item {
+                                    background: white;
+                                    padding: 30px;
+                                    border-radius: 10px;
+                                    text-align: center;
+                                    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+                                    transition: transform 0.3s;
+                                }
+
+                                .service-item:hover {
+                                    transform: translateY(-5px);
+                                    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+                                }
+
+                                .service-item i {
+                                    font-size: 40px;
+                                    color: #007cba;
+                                    margin-bottom: 15px;
+                                }
+
+                                /* About & Team Section */
+                                .about-section {
+                                    padding: 80px 20px;
+                                    background: white;
+                                }
+
+                                .about-section h2 {
+                                    font-size: 36px;
+                                    margin-bottom: 20px;
+                                    color: #1a1a1a;
+                                    text-align: center;
+                                }
+
+                                .about-section .section-subtitle {
+                                    text-align: center;
+                                    color: #666;
+                                    font-size: 20px;
+                                    margin-bottom: 40px;
+                                }
+
+                                .about-content {
+                                    font-size: 18px;
+                                    line-height: 1.8;
+                                    color: #555;
+                                    margin-bottom: 50px;
+                                }
+
+                                /* Team Grid */
+                                .team-grid {
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                                    gap: 40px;
+                                    margin-top: 50px;
+                                }
+
+                                .team-member {
+                                    text-align: center;
+                                    padding: 30px;
+                                    background: #f8f9fa;
+                                    border-radius: 10px;
+                                    transition: transform 0.3s, box-shadow 0.3s;
+                                }
+
+                                .team-member:hover {
+                                    transform: translateY(-5px);
+                                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                                }
+
+                                .team-member img {
+                                    width: 150px;
+                                    height: 150px;
+                                    border-radius: 50%;
+                                    object-fit: cover;
+                                    margin-bottom: 20px;
+                                }
+
+                                .member-placeholder {
+                                    width: 150px;
+                                    height: 150px;
+                                    border-radius: 50%;
+                                    background: #e0e0e0;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin: 0 auto 20px;
+                                    font-size: 80px;
+                                    color: #999;
+                                }
+
+                                .team-member h3 {
+                                    font-size: 24px;
+                                    margin-bottom: 10px;
+                                    color: #1a1a1a;
+                                }
+
+                                .member-role {
+                                    font-size: 16px;
+                                    color: #007cba;
+                                    font-weight: 500;
+                                    margin-bottom: 15px;
+                                }
+
+                                .member-bio {
+                                    font-size: 14px;
+                                    line-height: 1.6;
+                                    color: #666;
+                                    text-align: left;
+                                }
+
+                                /* Contact Section */
+                                .contact-section {
+                                    padding: 80px 20px;
+                                    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                                }
+
+                                .contact-section h2 {
+                                    text-align: center;
+                                    font-size: 36px;
+                                    margin-bottom: 40px;
+                                }
+
+                                .contact-grid {
+                                    display: grid;
+                                    grid-template-columns: 1fr 1fr;
+                                    gap: 50px;
+                                    max-width: 900px;
+                                    margin: 0 auto;
+                                }
+
+                                .contact-form {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 15px;
+                                }
+
+                                .contact-form input,
+                                .contact-form textarea {
+                                    padding: 12px;
+                                    border: 1px solid #ddd;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                }
+
+                                .contact-form textarea {
+                                    min-height: 120px;
+                                }
+
+                                .contact-form button {
+                                    background: #007cba;
+                                    color: white;
+                                    border: none;
+                                    padding: 12px 30px;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                    cursor: pointer;
+                                    transition: background 0.3s;
+                                }
+
+                                .contact-form button:hover {
+                                    background: #005a87;
+                                }
+
+                                .contact-info p {
+                                    margin-bottom: 15px;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 10px;
+                                    font-size: 16px;
+                                }
+
+                                .contact-info i {
+                                    color: #007cba;
+                                    width: 20px;
+                                }
+
+                                /* CTA Section */
+                                .cta-section {
+                                    padding: 80px 20px;
+                                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                    color: white;
+                                    text-align: center;
+                                }
+
+                                .cta-section h2 {
+                                    font-size: 36px;
+                                    margin-bottom: 20px;
+                                }
+
+                                .cta-section p {
+                                    font-size: 18px;
+                                    margin-bottom: 30px;
+                                    opacity: 0.9;
+                                }
+
+                                .cta-button {
+                                    background: white;
+                                    color: #667eea;
+                                    border: none;
+                                    padding: 15px 40px;
+                                    font-size: 18px;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    transition: all 0.3s;
+                                }
+
+                                .cta-button:hover {
+                                    transform: translateY(-2px);
+                                    box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+                                }
+
+                                /* Generic Section */
+                                .generic-section {
+                                    padding: 80px 20px;
+                                    background: white;
+                                }
+
+                                .generic-section .section-title {
+                                    font-size: 36px;
+                                    margin-bottom: 20px;
+                                    color: #1a1a1a;
+                                    text-align: center;
+                                }
+
+                                .generic-section .section-subtitle {
+                                    font-size: 20px;
+                                    color: #666;
+                                    margin-bottom: 30px;
+                                    text-align: center;
+                                }
+
+                                .generic-section .content {
+                                    font-size: 16px;
+                                    line-height: 1.8;
+                                    color: #555;
+                                    margin-bottom: 30px;
+                                    max-width: 900px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                }
+
+                                /* Additional Fields Display */
+                                .additional-fields {
+                                    background: #f8f9fa;
+                                    border-radius: 10px;
+                                    padding: 30px;
+                                    margin: 40px auto;
+                                    max-width: 900px;
+                                }
+
+                                .field-item {
+                                    margin-bottom: 20px;
+                                    padding-bottom: 20px;
+                                    border-bottom: 1px solid #e0e0e0;
+                                }
+
+                                .field-item:last-child {
+                                    border-bottom: none;
+                                    margin-bottom: 0;
+                                    padding-bottom: 0;
+                                }
+
+                                .field-item strong {
+                                    color: #333;
+                                    font-size: 14px;
+                                    text-transform: uppercase;
+                                    letter-spacing: 0.5px;
+                                    display: inline-block;
+                                    margin-bottom: 8px;
+                                }
+
+                                .field-item span {
+                                    color: #555;
+                                    font-size: 16px;
+                                }
+
+                                .field-item .long-text {
+                                    margin-top: 10px;
+                                    line-height: 1.6;
+                                    color: #555;
+                                    font-size: 15px;
+                                }
+
+                                .generic-section .primary-button {
+                                    background: #007cba;
+                                    color: white;
+                                    border: none;
+                                    padding: 14px 35px;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                    cursor: pointer;
+                                    transition: all 0.3s;
+                                    font-weight: 600;
+                                }
+
+                                .generic-section .primary-button:hover {
+                                    background: #005a87;
+                                    transform: translateY(-2px);
+                                    box-shadow: 0 4px 15px rgba(0,124,186,0.3);
+                                }
+
+                                .buttons-container {
+                                    text-align: center;
+                                }
+
+                                @media (max-width: 768px) {
+                                    .hero-title { font-size: 32px; }
+                                    .contact-grid { grid-template-columns: 1fr; }
+                                    .services-grid { grid-template-columns: 1fr; }
+                                }
+
+                                /* RTL Support */
+                                [dir="rtl"] {
+                                    text-align: right;
+                                }
+
+                                [dir="rtl"] .contact-info p {
+                                    flex-direction: row-reverse;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="preview-header">
+                                <h3>Visual Preview: ${section.name}</h3>
+                                <div class="preview-info">
+                                    ${currentLang === 'he' ? 'Hebrew' : 'English'} Version |
+                                    ${section.visible ? 'Currently Live' : 'Currently Hidden'} |
+                                    ${currentPage === 'index' ? 'Homepage' : currentPage}
+                                </div>
+                            </div>
+                            ${sectionHTML}
+                        </body>
+                    </html>
+                `);
             }
         }
 
@@ -890,7 +2507,7 @@
                         isMatch = true;
                     }
 
-                    // Search in section content
+                    // Search in content
                     if (!isMatch) {
                         Object.values(section.content).forEach(value => {
                             if (value && value.toString().toLowerCase().includes(searchTerm)) {
@@ -904,7 +2521,6 @@
                     card.classList.remove('search-hidden');
                     visibleCount++;
 
-                    // Count hidden sections that match search
                     if (!section.visible) {
                         hiddenMatchCount++;
                     }
@@ -918,21 +2534,70 @@
 
         function updateSearchResults(visible, total, hiddenCount = 0) {
             const resultsDiv = document.getElementById('searchResults');
+            let icon = 'fa-info-circle';
+            let message = '';
+
             if (visible === total) {
                 const hiddenSections = sections.filter(s => !s.visible).length;
+                icon = 'fa-check-circle';
                 if (hiddenSections > 0) {
-                    resultsDiv.textContent = `Showing all ${total} sections (${hiddenSections} hidden)`;
+                    message = `Showing all ${total} sections (${hiddenSections} are hidden from website)`;
                 } else {
-                    resultsDiv.textContent = `Showing all ${total} sections`;
+                    message = `Showing all ${total} sections`;
                 }
+            } else if (visible === 0) {
+                icon = 'fa-exclamation-circle';
+                message = `No sections match your search`;
             } else {
+                icon = 'fa-search';
                 if (hiddenCount > 0) {
-                    resultsDiv.textContent = `Showing ${visible} of ${total} sections (${hiddenCount} hidden in results)`;
+                    message = `Found ${visible} of ${total} sections (${hiddenCount} are hidden from website)`;
                 } else {
-                    resultsDiv.textContent = `Showing ${visible} of ${total} sections`;
+                    message = `Found ${visible} of ${total} sections`;
                 }
             }
+
+            resultsDiv.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            `;
         }
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 's') {
+                    e.preventDefault();
+                    if (unsavedChanges) {
+                        saveAllSections();
+                    }
+                } else if (e.key === 'f') {
+                    e.preventDefault();
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput && !searchInput.classList.contains('hidden')) {
+                        searchInput.focus();
+                    }
+                }
+            }
+        });
+
+        // Warn before leaving with unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            if (unsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
