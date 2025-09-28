@@ -1,0 +1,209 @@
+/**
+ * Language Switcher Styles for Normand PLLC Website
+ * Following the design system: Orange #fc5a2b, Black #010101, Gray #ccc
+ */
+
+/* Language Switcher Container */
+.language-switcher-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: transparent;
+    padding: 0;
+}
+
+/* Minimal Text Language Switcher (Option 1) */
+.lang-switch-minimal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Gotham-Medium", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.lang-switch-minimal .lang-btn {
+    background: none;
+    border: none;
+    color: #fc5a2b;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 250ms cubic-bezier(0, 0.55, 0.45, 1);
+    font-weight: 500;
+    font-family: inherit;
+    font-size: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    position: relative;
+}
+
+.lang-switch-minimal .lang-btn:hover {
+    opacity: 0.7;
+}
+
+.lang-switch-minimal .lang-btn.active {
+    color: #fc5a2b;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.lang-switch-minimal .lang-separator {
+    color: #b3b3b3;
+    user-select: none;
+    font-weight: 300;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .language-switcher-container {
+        top: 15px;
+        right: 15px;
+        padding: 6px;
+    }
+
+    .lang-switch-minimal {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .lang-switch-minimal .lang-btn {
+        padding: 4px 8px;
+    }
+}
+
+/* Keep language switcher always on the right, even for RTL pages */
+.language-switcher-container {
+    right: 20px !important;
+    left: auto !important;
+}
+
+@media (max-width: 768px) {
+    .language-switcher-container {
+        right: 15px !important;
+        left: auto !important;
+    }
+}
+
+/* Alternative Button Style (Option 2) - Commented out, uncomment to use */
+/*
+.lang-switch-buttons {
+    display: flex;
+    background: #f2f2f2;
+    border-radius: 6px;
+    padding: 4px;
+    gap: 4px;
+}
+
+.lang-switch-buttons .lang-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: #000;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+    border-radius: 4px;
+    font-weight: 500;
+    font-family: inherit;
+}
+
+.lang-switch-buttons .lang-btn.active {
+    background: #010101;
+    color: #fff;
+}
+
+.lang-switch-buttons .lang-btn:hover:not(.active) {
+    background: #fc5a2b;
+    color: #fff;
+}
+*/
+
+/* Alternative Toggle Switch (Option 3) - Commented out, uncomment to use */
+/*
+.lang-switch-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lang-switch-toggle .lang-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+    font-weight: 500;
+}
+
+.lang-switch-toggle .toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: #f2f2f2;
+    border: 2px solid #010101;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.lang-switch-toggle .toggle-switch.active {
+    background: #fc5a2b;
+}
+
+.lang-switch-toggle .toggle-slider {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #010101;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 250ms cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.lang-switch-toggle .toggle-switch.active .toggle-slider {
+    transform: translateX(24px);
+    background: #fff;
+}
+*/
+
+/* Focus states for accessibility */
+.lang-btn:focus {
+    outline: 2px solid #fc5a2b;
+    outline-offset: 2px;
+}
+
+/* No animations for minimal design */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .language-switcher-container {
+        background: #fff;
+        border: 2px solid #000;
+        box-shadow: none;
+    }
+
+    .lang-switch-minimal .lang-btn {
+        color: #000;
+    }
+
+    .lang-switch-minimal .lang-btn.active {
+        background: #000;
+        color: #fff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .lang-switch-minimal .lang-btn {
+        transition: none;
+    }
+
+    .language-switcher-container {
+        animation: none;
+    }
+}
