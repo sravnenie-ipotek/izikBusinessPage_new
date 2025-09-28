@@ -1,0 +1,74 @@
+{
+  "mainMenu": [
+    {
+      "id": "menu-item-25",
+      "title": "Home",
+      "url": "/",
+      "children": [],
+      "order": 1
+    },
+    {
+      "id": "menu-item-28",
+      "title": "Class Action",
+      "url": "/class-action/",
+      "children": [
+        {
+          "id": "menu-item-29",
+          "title": "Privacy",
+          "url": "/class-action/privacy/"
+        },
+        {
+          "id": "menu-item-30",
+          "title": "Consumer Protection",
+          "url": "/class-action/consumer-protection/"
+        },
+        {
+          "id": "menu-item-31",
+          "title": "Insurance",
+          "url": "/class-action/insurance/"
+        }
+      ],
+      "order": 2
+    },
+    {
+      "id": "menu-item-34",
+      "title": "Status & Results",
+      "url": "/status-results/",
+      "children": [],
+      "order": 3
+    },
+    {
+      "id": "menu-item-33",
+      "title": "Our Team",
+      "url": "/our-team/",
+      "children": [],
+      "order": 4
+    },
+    {
+      "id": "menu-item-26",
+      "title": "News & Articles",
+      "url": "/news-articles/",
+      "children": [],
+      "order": 5
+    },
+    {
+      "id": "menu-item-32",
+      "title": "Contact Us",
+      "url": "/contact-us/",
+      "children": [
+        {
+          "id": "menu-item-981",
+          "title": "Disclaimer",
+          "url": "/disclaimer/"
+        },
+        {
+          "id": "menu-item-980",
+          "title": "Privacy Policy",
+          "url": "/privacy-policy/"
+        }
+      ],
+      "order": 8
+    }
+  ],
+  "lastUpdated": "2025-09-28T12:12:02.011Z"
+}

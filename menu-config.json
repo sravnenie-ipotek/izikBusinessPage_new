@@ -1,0 +1,232 @@
+{
+  "version": "1.0.0",
+  "lastModified": "2025-09-26T00:00:00Z",
+  "languages": {
+    "en": {
+      "name": "English",
+      "direction": "ltr"
+    },
+    "he": {
+      "name": "Hebrew",
+      "direction": "rtl"
+    }
+  },
+  "menu": {
+    "en": {
+      "items": [
+        {
+          "id": "menu-item-25",
+          "title": "Home",
+          "url": "/",
+          "type": "page",
+          "visible": true,
+          "order": 1,
+          "children": []
+        },
+        {
+          "id": "menu-item-28",
+          "title": "Class Action",
+          "url": "/class-action/",
+          "type": "page",
+          "visible": true,
+          "order": 2,
+          "children": [
+            {
+              "id": "menu-item-29",
+              "title": "Privacy",
+              "url": "/class-action/privacy/",
+              "type": "page",
+              "visible": true,
+              "order": 1,
+              "children": []
+            },
+            {
+              "id": "menu-item-30",
+              "title": "Consumer Protection",
+              "url": "/class-action/consumer-protection/",
+              "type": "page",
+              "visible": true,
+              "order": 2,
+              "children": []
+            },
+            {
+              "id": "menu-item-31",
+              "title": "Insurance",
+              "url": "/class-action/insurance/",
+              "type": "page",
+              "visible": true,
+              "order": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "menu-item-34",
+          "title": "Status & Results",
+          "url": "/status-results/",
+          "type": "page",
+          "visible": true,
+          "order": 3,
+          "children": []
+        },
+        {
+          "id": "menu-item-33",
+          "title": "Our Team",
+          "url": "/our-team/",
+          "type": "page",
+          "visible": true,
+          "order": 4,
+          "children": []
+        },
+        {
+          "id": "menu-item-26",
+          "title": "News & Articles",
+          "url": "/news-articles/",
+          "type": "page",
+          "visible": true,
+          "order": 5,
+          "children": []
+        },
+        {
+          "id": "menu-item-32",
+          "title": "Contact Us",
+          "url": "/contact-us/",
+          "type": "page",
+          "visible": true,
+          "order": 6,
+          "children": [
+            {
+              "id": "menu-item-981",
+              "title": "Disclaimer",
+              "url": "/disclaimer/",
+              "type": "page",
+              "visible": true,
+              "order": 1,
+              "children": []
+            },
+            {
+              "id": "menu-item-980",
+              "title": "Privacy Policy",
+              "url": "/privacy-policy/",
+              "type": "page",
+              "visible": true,
+              "order": 2,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "he": {
+      "items": [
+        {
+          "id": "menu-item-25-he",
+          "title": "בית",
+          "url": "/",
+          "type": "page",
+          "visible": true,
+          "order": 1,
+          "children": []
+        },
+        {
+          "id": "menu-item-28-he",
+          "title": "תובענה ייצוגית",
+          "url": "/class-action/",
+          "type": "page",
+          "visible": true,
+          "order": 2,
+          "children": [
+            {
+              "id": "menu-item-29-he",
+              "title": "פרטיות",
+              "url": "/class-action/privacy/",
+              "type": "page",
+              "visible": true,
+              "order": 1,
+              "children": []
+            },
+            {
+              "id": "menu-item-30-he",
+              "title": "הגנת הצרכן",
+              "url": "/class-action/consumer-protection/",
+              "type": "page",
+              "visible": true,
+              "order": 2,
+              "children": []
+            },
+            {
+              "id": "menu-item-31-he",
+              "title": "ביטוח",
+              "url": "/class-action/insurance/",
+              "type": "page",
+              "visible": true,
+              "order": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "menu-item-34-he",
+          "title": "סטטוס ותוצאות",
+          "url": "/status-results/",
+          "type": "page",
+          "visible": true,
+          "order": 3,
+          "children": []
+        },
+        {
+          "id": "menu-item-33-he",
+          "title": "הצוות שלנו",
+          "url": "/our-team/",
+          "type": "page",
+          "visible": true,
+          "order": 4,
+          "children": []
+        },
+        {
+          "id": "menu-item-26-he",
+          "title": "חדשות ומאמרים",
+          "url": "/news-articles/",
+          "type": "page",
+          "visible": true,
+          "order": 5,
+          "children": []
+        },
+        {
+          "id": "menu-item-32-he",
+          "title": "צור קשר",
+          "url": "/contact-us/",
+          "type": "page",
+          "visible": true,
+          "order": 6,
+          "children": [
+            {
+              "id": "menu-item-981-he",
+              "title": "הצהרת אחריות",
+              "url": "/disclaimer/",
+              "type": "page",
+              "visible": true,
+              "order": 1,
+              "children": []
+            },
+            {
+              "id": "menu-item-980-he",
+              "title": "מדיניות פרטיות",
+              "url": "/privacy-policy/",
+              "type": "page",
+              "visible": true,
+              "order": 2,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "settings": {
+    "defaultLanguage": "en",
+    "maxDepth": 3,
+    "enableAnimations": true,
+    "theme": "default"
+  }
+}

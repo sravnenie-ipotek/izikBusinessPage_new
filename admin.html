@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="title">Normand PLLC - Content Management System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/menu-manager/dist/menu-manager.min.css">
     <style>
         * {
             margin: 0;
@@ -1037,11 +1038,25 @@
 <body>
     <header>
         <div class="container">
-            <h1><i class="fas fa-edit"></i> Normand PLLC Content Management System</h1>
-            <div class="header-subtitle">Professional Content Editor for Law Firm Website</div>
-            <button class="logout hidden" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
+            <div class="header-top">
+                <div class="header-content">
+                    <h1><i class="fas fa-edit"></i> Normand PLLC Content Management System</h1>
+                    <div class="header-subtitle">Professional Content Editor for Law Firm Website</div>
+                </div>
+                <div class="header-controls">
+                    <div class="language-switcher" id="headerLanguageSwitcher">
+                        <button class="lang-btn active" data-header-lang="en">
+                            <i class="fas fa-globe"></i> EN
+                        </button>
+                        <button class="lang-btn" data-header-lang="he">
+                            <i class="fas fa-globe"></i> עב
+                        </button>
+                    </div>
+                    <button class="logout hidden" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1089,11 +1104,23 @@
                 <div class="map-sections" id="mapSections"></div>
             </div>
 
-            <!-- Language Tabs -->
-            <div class="language-tabs" id="languageTabs"></div>
+            <!-- Main Navigation Tabs -->
+            <div class="main-nav-tabs">
+                <button class="nav-tab active" onclick="showContentEditor()">
+                    <i class="fas fa-edit"></i> Content Editor
+                </button>
+                <button class="nav-tab" onclick="showMenuManager()">
+                    <i class="fas fa-bars"></i> Menu Manager
+                </button>
+            </div>
 
-            <!-- Search Container -->
-            <div id="searchContainer" class="search-container hidden">
+            <!-- Content Editor Section -->
+            <div id="contentEditorSection" class="admin-section">
+                <!-- Language Tabs -->
+                <div class="language-tabs" id="languageTabs"></div>
+
+                <!-- Search Container -->
+                <div id="searchContainer" class="search-container hidden">
                 <label for="searchInput">Search & Filter Content:</label>
                 <div class="search-wrapper">
                     <input type="text" id="searchInput" class="search-input"
@@ -1107,8 +1134,14 @@
                 </div>
             </div>
 
-            <!-- Sections Grid -->
-            <div id="sectionsContainer" class="sections-grid hidden"></div>
+                <!-- Sections Grid -->
+                <div id="sectionsContainer" class="sections-grid hidden"></div>
+            </div>
+
+            <!-- Menu Manager Section -->
+            <div id="menuManagerSection" class="admin-section hidden">
+                <div id="menu-manager-container"></div>
+            </div>
         </div>
 
         <div id="loading" class="loading hidden">
@@ -3332,8 +3365,187 @@
                 0%, 100% { transform: scale(1); }
                 50% { transform: scale(1.02); }
             }
+            .main-nav-tabs {
+                display: flex;
+                margin: 20px 0;
+                border-bottom: 2px solid var(--border-color);
+            }
+            .nav-tab {
+                padding: 12px 24px;
+                border: none;
+                background: transparent;
+                color: var(--text-muted);
+                cursor: pointer;
+                border-bottom: 3px solid transparent;
+                transition: all 0.3s ease;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .nav-tab:hover {
+                color: var(--primary-color);
+                background: var(--light-bg);
+            }
+            .nav-tab.active {
+                color: var(--primary-color);
+                border-bottom-color: var(--primary-color);
+                background: var(--light-bg);
+            }
+            .admin-section {
+                padding: 20px 0;
+            }
+            .admin-section.hidden {
+                display: none;
+            }
+            .header-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .header-content {
+                flex: 1;
+            }
+            .header-controls {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .language-switcher {
+                display: flex;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                padding: 4px;
+                gap: 2px;
+            }
+            .lang-btn {
+                padding: 8px 12px;
+                border: none;
+                background: transparent;
+                color: rgba(255, 255, 255, 0.8);
+                cursor: pointer;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+                font-size: 12px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .lang-btn:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: white;
+            }
+            .lang-btn.active {
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            @media (max-width: 768px) {
+                .header-top {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 15px;
+                }
+                .header-controls {
+                    justify-content: center;
+                }
+            }
         `;
         document.head.appendChild(style);
+
+        // Tab switching functions
+        function showContentEditor() {
+            document.getElementById('contentEditorSection').classList.remove('hidden');
+            document.getElementById('menuManagerSection').classList.add('hidden');
+
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function showMenuManager() {
+            document.getElementById('contentEditorSection').classList.add('hidden');
+            document.getElementById('menuManagerSection').classList.remove('hidden');
+
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Initialize Menu Manager if not already done
+            if (typeof initializeMenuManager === 'function') {
+                initializeMenuManager();
+            }
+        }
+
+        // Header language switcher functionality
+        function initializeHeaderLanguageSwitcher() {
+            const headerSwitcher = document.getElementById('headerLanguageSwitcher');
+            if (!headerSwitcher) return;
+
+            headerSwitcher.addEventListener('click', (e) => {
+                if (e.target.closest('.lang-btn')) {
+                    const selectedLang = e.target.closest('.lang-btn').dataset.headerLang;
+                    switchHeaderLanguage(selectedLang);
+                }
+            });
+        }
+
+        function switchHeaderLanguage(lang) {
+            // Update header language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.headerLang === lang);
+            });
+
+            // Update global language and existing content editor
+            if (typeof switchLanguage === 'function') {
+                switchLanguage(lang);
+            }
+
+            // Update Menu Manager language if it's active
+            if (window.menuManager && window.menuManager.switchLanguage) {
+                window.menuManager.switchLanguage(lang);
+            }
+
+            // Store language preference
+            localStorage.setItem('admin_language', lang);
+
+            console.log(`🌐 Admin language switched to: ${lang === 'en' ? 'English' : 'Hebrew'}`);
+        }
+
+        // Initialize header language switcher when admin panel is shown
+        function initializeAdminInterface() {
+            initializeHeaderLanguageSwitcher();
+
+            // Restore saved language preference
+            const savedLang = localStorage.getItem('admin_language') || 'en';
+            switchHeaderLanguage(savedLang);
+        }
+
+        // Hook into existing admin initialization
+        const originalShowAdminPanel = window.showAdminPanel || function(){};
+        window.showAdminPanel = function() {
+            originalShowAdminPanel();
+            initializeAdminInterface();
+        };
+
+        // Also initialize immediately if admin panel is already visible
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                if (!document.getElementById('loginForm').classList.contains('hidden')) {
+                    // Login form is visible, wait for authentication
+                } else {
+                    initializeAdminInterface();
+                }
+            });
+        }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="assets/menu-manager/dist/menu-manager.min.js"></script>
 </body>
 </html>

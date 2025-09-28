@@ -91,10 +91,26 @@ function setupAdminRoutes(app) {
     try {
       const { lang, name } = req.params;
 
-      // Determine filename
+      // Page path mapping
+      const pageMapping = {
+        'index': 'index.html',
+        'class-action': 'class-action/index.html',
+        'privacy': 'class-action/privacy/index.html',
+        'consumer-protection': 'class-action/consumer-protection/index.html',
+        'insurance': 'class-action/insurance/index.html',
+        'our-team': 'our-team/index.html',
+        'contact-us': 'contact-us/index.html',
+        'disclaimer': 'disclaimer/index.html',
+        'privacy-policy': 'privacy-policy/index.html'
+      };
+
+      // Get the base path for the page
+      const basePath = pageMapping[name] || `${name}/index.html`;
+
+      // Determine filename based on language
       const filename = lang === 'en'
-        ? `${name || 'index'}.html`
-        : `${name || 'index'}.${lang}.html`;
+        ? basePath
+        : basePath.replace('.html', `.${lang}.html`);
 
       const filePath = path.join(__dirname, filename);
 
@@ -102,6 +118,18 @@ function setupAdminRoutes(app) {
       try {
         await fs.access(filePath);
       } catch {
+        // For Hebrew pages that don't exist, return empty content instead of 404
+        if (lang === 'he') {
+          return res.json({
+            title: '',
+            h1: '',
+            metaDescription: '',
+            mainContent: '',
+            language: lang,
+            filename,
+            message: 'Hebrew version not available for this page'
+          });
+        }
         return res.status(404).json({ error: 'Page not found' });
       }
 
@@ -130,10 +158,26 @@ function setupAdminRoutes(app) {
     try {
       const { lang, name } = req.params;
 
-      // Determine filename
+      // Page path mapping (reuse same mapping)
+      const pageMapping = {
+        'index': 'index.html',
+        'class-action': 'class-action/index.html',
+        'privacy': 'class-action/privacy/index.html',
+        'consumer-protection': 'class-action/consumer-protection/index.html',
+        'insurance': 'class-action/insurance/index.html',
+        'our-team': 'our-team/index.html',
+        'contact-us': 'contact-us/index.html',
+        'disclaimer': 'disclaimer/index.html',
+        'privacy-policy': 'privacy-policy/index.html'
+      };
+
+      // Get the base path for the page
+      const basePath = pageMapping[name] || `${name}/index.html`;
+
+      // Determine filename based on language
       const filename = lang === 'en'
-        ? `${name || 'index'}.html`
-        : `${name || 'index'}.${lang}.html`;
+        ? basePath
+        : basePath.replace('.html', `.${lang}.html`);
 
       const filePath = path.join(__dirname, filename);
 
@@ -141,6 +185,15 @@ function setupAdminRoutes(app) {
       try {
         await fs.access(filePath);
       } catch {
+        // For Hebrew pages that don't exist, return empty sections instead of 404
+        if (lang === 'he') {
+          return res.json({
+            sections: [],
+            language: lang,
+            filename,
+            message: 'Hebrew version not available for this page'
+          });
+        }
         return res.status(404).json({ error: 'Page not found' });
       }
 
@@ -266,10 +319,26 @@ function setupAdminRoutes(app) {
       const { lang, name, sectionId } = req.params;
       const { content, visible } = req.body;
 
-      // Determine filename
+      // Page path mapping (reuse same mapping)
+      const pageMapping = {
+        'index': 'index.html',
+        'class-action': 'class-action/index.html',
+        'privacy': 'class-action/privacy/index.html',
+        'consumer-protection': 'class-action/consumer-protection/index.html',
+        'insurance': 'class-action/insurance/index.html',
+        'our-team': 'our-team/index.html',
+        'contact-us': 'contact-us/index.html',
+        'disclaimer': 'disclaimer/index.html',
+        'privacy-policy': 'privacy-policy/index.html'
+      };
+
+      // Get the base path for the page
+      const basePath = pageMapping[name] || `${name}/index.html`;
+
+      // Determine filename based on language
       const filename = lang === 'en'
-        ? `${name || 'index'}.html`
-        : `${name || 'index'}.${lang}.html`;
+        ? basePath
+        : basePath.replace('.html', `.${lang}.html`);
 
       const filePath = path.join(__dirname, filename);
 
@@ -393,10 +462,26 @@ function setupAdminRoutes(app) {
       const { lang, name } = req.params;
       const { title, h1, metaDescription, mainContent } = req.body;
 
-      // Determine filename
+      // Page path mapping (same as get endpoint)
+      const pageMapping = {
+        'index': 'index.html',
+        'class-action': 'class-action/index.html',
+        'privacy': 'class-action/privacy/index.html',
+        'consumer-protection': 'class-action/consumer-protection/index.html',
+        'insurance': 'class-action/insurance/index.html',
+        'our-team': 'our-team/index.html',
+        'contact-us': 'contact-us/index.html',
+        'disclaimer': 'disclaimer/index.html',
+        'privacy-policy': 'privacy-policy/index.html'
+      };
+
+      // Get the base path for the page
+      const basePath = pageMapping[name] || `${name}/index.html`;
+
+      // Determine filename based on language
       const filename = lang === 'en'
-        ? `${name || 'index'}.html`
-        : `${name || 'index'}.${lang}.html`;
+        ? basePath
+        : basePath.replace('.html', `.${lang}.html`);
 
       const filePath = path.join(__dirname, filename);
 
@@ -443,44 +528,54 @@ function setupAdminRoutes(app) {
   // List available pages
   app.get('/api/admin/pages', authenticate, async (req, res) => {
     try {
-      const files = await fs.readdir(__dirname);
-      const htmlFiles = files.filter(f => f.endsWith('.html') && !f.startsWith('admin'));
+      // Define main pages that can be edited
+      const editablePages = {
+        'index': { name: 'Home', path: 'index.html' },
+        'class-action': { name: 'Class Action', path: 'class-action/index.html' },
+        'privacy': { name: 'Privacy', path: 'class-action/privacy/index.html' },
+        'consumer-protection': { name: 'Consumer Protection', path: 'class-action/consumer-protection/index.html' },
+        'insurance': { name: 'Insurance', path: 'class-action/insurance/index.html' },
+        'our-team': { name: 'Our Team', path: 'our-team/index.html' },
+        'contact-us': { name: 'Contact Us', path: 'contact-us/index.html' },
+        'disclaimer': { name: 'Disclaimer', path: 'disclaimer/index.html' },
+        'privacy-policy': { name: 'Privacy Policy', path: 'privacy-policy/index.html' }
+      };
 
-      const pages = [];
+      const pages = {};
 
-      for (const file of htmlFiles) {
-        const filePath = path.join(__dirname, file);
-        const html = await fs.readFile(filePath, 'utf-8');
-        const $ = cheerio.load(html);
+      // Check each page for both English and Hebrew versions
+      for (const [key, pageInfo] of Object.entries(editablePages)) {
+        pages[key] = {
+          en: {
+            filename: pageInfo.path,
+            pageName: key,
+            language: 'en',
+            languageName: 'English',
+            title: pageInfo.name,
+            path: pageInfo.path.replace('/index.html', '').replace('index.html', '')
+          }
+        };
 
-        // Determine language and page name
-        const parts = file.replace('.html', '').split('.');
-        let lang = 'en';
-        let pageName = parts[0];
+        // Check for Hebrew version (same path with .he before .html)
+        const hebrewPath = pageInfo.path.replace('.html', '.he.html');
+        const hebrewFilePath = path.join(__dirname, hebrewPath);
 
-        if (parts.length > 1) {
-          lang = parts[parts.length - 1];
-          pageName = parts.slice(0, -1).join('.');
+        try {
+          await fs.access(hebrewFilePath);
+          pages[key].he = {
+            filename: hebrewPath,
+            pageName: key,
+            language: 'he',
+            languageName: 'עברית',
+            title: pageInfo.name + ' (Hebrew)',
+            path: hebrewPath.replace('/index.html', '').replace('index.html', '')
+          };
+        } catch {
+          // Hebrew version doesn't exist for this page
         }
-
-        pages.push({
-          filename: file,
-          pageName,
-          language: lang,
-          languageName: LANGUAGES[lang]?.name || lang,
-          title: $('title').text() || file,
-          path: file.replace('.html', '').replace(/\./g, '/')
-        });
       }
 
-      // Group by page name
-      const groupedPages = pages.reduce((acc, page) => {
-        if (!acc[page.pageName]) acc[page.pageName] = {};
-        acc[page.pageName][page.language] = page;
-        return acc;
-      }, {});
-
-      res.json({ pages: groupedPages, languages: LANGUAGES });
+      res.json({ pages, languages: LANGUAGES });
     } catch (error) {
       console.error('List pages error:', error);
       res.status(500).json({ error: 'Failed to list pages' });
@@ -490,6 +585,94 @@ function setupAdminRoutes(app) {
   // Get language configuration
   app.get('/api/admin/languages', authenticate, (req, res) => {
     res.json(LANGUAGES);
+  });
+
+  // Menu management endpoints
+  app.get('/api/admin/menu', authenticate, async (req, res) => {
+    try {
+      // Mock menu data formatted for MenuManager component
+      const menuConfig = {
+        en: {
+          menuItems: [
+            {
+              id: 'item-1',
+              title: 'Home',
+              url: '/',
+              target: '_self'
+            },
+            {
+              id: 'item-2',
+              title: 'Class Action',
+              url: '/class-action/',
+              target: '_self'
+            },
+            {
+              id: 'item-3',
+              title: 'Our Team',
+              url: '/our-team/',
+              target: '_self'
+            },
+            {
+              id: 'item-4',
+              title: 'Contact',
+              url: '/contact/',
+              target: '_self'
+            }
+          ]
+        },
+        he: {
+          menuItems: [
+            {
+              id: 'item-1',
+              title: 'בית',
+              url: '/he',
+              target: '_self'
+            },
+            {
+              id: 'item-2',
+              title: 'תביעה ייצוגית',
+              url: '/he/class-action',
+              target: '_self'
+            },
+            {
+              id: 'item-3',
+              title: 'הצוות שלנו',
+              url: '/he/our-team',
+              target: '_self'
+            },
+            {
+              id: 'item-4',
+              title: 'צור קשר',
+              url: '/he/contact',
+              target: '_self'
+            }
+          ]
+        }
+      };
+
+      res.json(menuConfig);
+    } catch (error) {
+      console.error('Get menu error:', error);
+      res.status(500).json({ error: 'Failed to load menu' });
+    }
+  });
+
+  app.post('/api/admin/menu', authenticate, async (req, res) => {
+    try {
+      const { menuItems } = req.body;
+
+      // Mock save - in real implementation, this would save to files or database
+      console.log('Menu items updated:', menuItems);
+
+      res.json({
+        success: true,
+        message: 'Menu updated successfully',
+        menuItems
+      });
+    } catch (error) {
+      console.error('Update menu error:', error);
+      res.status(500).json({ error: 'Failed to update menu' });
+    }
   });
 
   // Upload image endpoint

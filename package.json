@@ -2,25 +2,54 @@
   "name": "normandpllc-site",
   "version": "1.0.0",
   "description": "Normand PLLC Law Firm Website",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
     "dev:vercel": "vercel dev --listen 7002",
     "start": "node server.js",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "menu:watch": "node scripts/menu-watcher.js",
+    "menu:check": "node scripts/menu-watcher.js check",
+    "menu:sync": "node scripts/menu-watcher.js sync",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:menu": "playwright test tests/menu-sync.test.js",
+    "test:ci": "playwright test --reporter=github"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.14",
+    "@types/react-dom": "^19.1.9",
     "@vercel/node": "^3.0.0",
+    "autoprefixer": "^10.4.21",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cheerio": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.544.0",
     "multer": "^2.0.2",
+    "next": "^15.5.4",
     "playwright": "^1.55.1",
-    "sharp": "^0.34.4"
+    "postcss": "^8.5.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sharp": "^0.34.4",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^3.1.1",
+    "tailwindcss": "^4.1.13",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
     "vercel": "^32.0.0"
   }
 }
