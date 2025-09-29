@@ -1,0 +1,159 @@
+{
+  "timestamp": "2025-09-28T14:26:15.624Z",
+  "totalEnglishPages": 30,
+  "totalHebrewPages": 9,
+  "translationGaps": 21,
+  "criticalGaps": 0,
+  "completionPercentage": 30,
+  "gaps": [
+    {
+      "englishPath": "car-insurance-total-loss-claims/index.html",
+      "missingHebrewPath": "car-insurance-total-loss-claims/index.he.html",
+      "directory": "car-insurance-total-loss-claims",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/angellvgeico/index.html",
+      "missingHebrewPath": "case-studies/angellvgeico/index.he.html",
+      "directory": "case-studies/angellvgeico",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/buffington-v-progressive-insurance/index.html",
+      "missingHebrewPath": "case-studies/buffington-v-progressive-insurance/index.he.html",
+      "directory": "case-studies/buffington-v-progressive-insurance",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/carrie-andrews-v-state-auto-mutual-insurance-company/index.html",
+      "missingHebrewPath": "case-studies/carrie-andrews-v-state-auto-mutual-insurance-company/index.he.html",
+      "directory": "case-studies/carrie-andrews-v-state-auto-mutual-insurance-company",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/geico-insurance-class-actions/index.html",
+      "missingHebrewPath": "case-studies/geico-insurance-class-actions/index.he.html",
+      "directory": "case-studies/geico-insurance-class-actions",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/junior-v-infinity-insurance-company/index.html",
+      "missingHebrewPath": "case-studies/junior-v-infinity-insurance-company/index.he.html",
+      "directory": "case-studies/junior-v-infinity-insurance-company",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/parker-v-universal/index.html",
+      "missingHebrewPath": "case-studies/parker-v-universal/index.he.html",
+      "directory": "case-studies/parker-v-universal",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/resnick-v-avmed-inc/index.html",
+      "missingHebrewPath": "case-studies/resnick-v-avmed-inc/index.he.html",
+      "directory": "case-studies/resnick-v-avmed-inc",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/sos-v-state-farm-mutual-insurance-company/index.html",
+      "missingHebrewPath": "case-studies/sos-v-state-farm-mutual-insurance-company/index.he.html",
+      "directory": "case-studies/sos-v-state-farm-mutual-insurance-company",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/venerus-v-avis-budget/index.html",
+      "missingHebrewPath": "case-studies/venerus-v-avis-budget/index.he.html",
+      "directory": "case-studies/venerus-v-avis-budget",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "case-studies/volinoprogressivecasualityinsurance/index.html",
+      "missingHebrewPath": "case-studies/volinoprogressivecasualityinsurance/index.he.html",
+      "directory": "case-studies/volinoprogressivecasualityinsurance",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "edmund-normand-joins-2024-super-lawyers/index.html",
+      "missingHebrewPath": "edmund-normand-joins-2024-super-lawyers/index.he.html",
+      "directory": "edmund-normand-joins-2024-super-lawyers",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "fidelity-national-information-services-data-breach-are-you-at-risk/index.html",
+      "missingHebrewPath": "fidelity-national-information-services-data-breach-are-you-at-risk/index.he.html",
+      "directory": "fidelity-national-information-services-data-breach-are-you-at-risk",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "illegal-automated-robocalls-and-robotexts/index.html",
+      "missingHebrewPath": "illegal-automated-robocalls-and-robotexts/index.he.html",
+      "directory": "illegal-automated-robocalls-and-robotexts",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "john-richard-collection-data-breach/index.html",
+      "missingHebrewPath": "john-richard-collection-data-breach/index.he.html",
+      "directory": "john-richard-collection-data-breach",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "news-articles/index.html",
+      "missingHebrewPath": "news-articles/index.he.html",
+      "directory": "news-articles",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "our-team/edmund-normand/index.html",
+      "missingHebrewPath": "our-team/edmund-normand/index.he.html",
+      "directory": "our-team/edmund-normand",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "practice-area/total-loss/index.html",
+      "missingHebrewPath": "practice-area/total-loss/index.he.html",
+      "directory": "practice-area/total-loss",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "status-results/index.html",
+      "missingHebrewPath": "status-results/index.he.html",
+      "directory": "status-results",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "test-results/html-report/index.html",
+      "missingHebrewPath": "test-results/html-report/index.he.html",
+      "directory": "test-results/html-report",
+      "isCritical": false,
+      "priority": "NORMAL"
+    },
+    {
+      "englishPath": "testpage/index.html",
+      "missingHebrewPath": "testpage/index.he.html",
+      "directory": "testpage",
+      "isCritical": false,
+      "priority": "NORMAL"
+    }
+  ],
+  "criticalMissing": [],
+  "summary": "Translation Status: ❌ NEEDS ATTENTION (30% complete)\n0 English pages found\n0 Hebrew pages found\n0 missing Hebrew translations\n0 critical pages missing Hebrew versions"
+}

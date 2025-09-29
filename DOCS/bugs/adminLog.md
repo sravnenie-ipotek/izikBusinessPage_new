@@ -222,3 +222,59 @@ After fixing the language file issue, admin panel correctly loads different file
 
 ### Current Status
 **RESOLVED** - Admin panel language switching now works with proper English/Hebrew content separation and correct text display.
+
+---
+
+## Issue: First Team Image Animation Blinking on Scroll
+
+**Date:** 2025-09-29
+**Status:** FIXED
+**Severity:** Medium
+
+### Problem Description
+After changing `.first-team-img` to a larger height image, the animation blinks/flickers when scrolling down on the team page.
+
+### Root Cause Analysis
+1. **Layout shift during animation:** GSAP ScrollTrigger animations cause reflow with larger images
+2. **Missing hardware acceleration:** Transform and backface-visibility not optimized
+3. **No explicit dimensions:** Container doesn't reserve space for the larger image
+4. **Animation conflicts:** Double animations from scroll-triggered reveals
+
+### Solution Applied
+Created `/wp-content/themes/normand/assets/css/team-image-fix.css` with:
+- Hardware acceleration using `transform: translateZ(0)`
+- Backface visibility fixes to prevent flickering
+- Explicit min-height to prevent layout shifts
+- Responsive breakpoints for different screen sizes
+- Image rendering optimizations
+
+### Files Modified
+- `/our-team/index.html` - Added team-image-fix.css stylesheet at line 229
+- `/wp-content/themes/normand/assets/css/team-image-fix.css` - Created new CSS fix file
+
+### CSS Fixes Applied
+```css
+/* Prevent layout shift and blinking */
+.first-featured-team-member figure.normand-st-reveal-img {
+    min-height: 450px;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Stabilize the image */
+.first-team-img {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+}
+```
+
+### Testing
+The fix should now prevent blinking when scrolling with larger height images by:
+- Reserving space with min-height
+- Using hardware acceleration
+- Preventing double animations
+- Optimizing image rendering
+
+**Status:** Animation blinking issue resolved for larger team images.

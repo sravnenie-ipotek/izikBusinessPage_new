@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Switcher Options - Choose Your Design</title>
+    <style>
+        /* Design System Colors */
+        :root {
+            --primary: #fc5a2b;
+            --secondary: #f2f2f2;
+            --black: #010101;
+            --white: #fff;
+            --grey: #ccc;
+            --text: #000;
+            --nav-toggle: #b3b3b3;
+        }
+
+        /* Typography */
+        @font-face {
+            font-family: 'Gotham-Medium';
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Gotham-Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--white);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Knockout-Full', sans-serif;
+            font-size: 48px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        h2 {
+            font-family: 'Knockout', sans-serif;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 40px 0 20px;
+            color: var(--primary);
+        }
+
+        .demo-section {
+            background: var(--secondary);
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--white);
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .demo-description {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--white);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Option 1: Minimal Text Switcher */
+        .lang-switch-1 {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-switch-1 a {
+            color: var(--grey);
+            text-decoration: none;
+            transition: color 250ms cubic-bezier(0, 0.55, 0.45, 1);
+            position: relative;
+        }
+
+        .lang-switch-1 a.active,
+        .lang-switch-1 a:hover {
+            color: var(--primary);
+        }
+
+        .lang-switch-1 span {
+            color: var(--nav-toggle);
+            margin: 0 5px;
+        }
+
+        /* Option 2: Button Style Switcher */
+        .lang-switch-2 {
+            display: flex;
+            background: var(--secondary);
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .lang-switch-2 button {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+            border-radius: 2px;
+        }
+
+        .lang-switch-2 button.active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .lang-switch-2 button:hover:not(.active) {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Option 3: Flag Icons Switcher */
+        .lang-switch-3 {
+            display: flex;
+            gap: 12px;
+        }
+
+        .lang-switch-3 button {
+            width: 40px;
+            height: 30px;
+            border: 2px solid transparent;
+            background: var(--secondary);
+            cursor: pointer;
+            transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .lang-switch-3 button.active {
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .lang-switch-3 button:hover:not(.active) {
+            border-color: var(--black);
+        }
+
+        .lang-switch-3 .flag {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .lang-switch-3 .flag-us {
+            background: linear-gradient(180deg, #b22234 50%, #fff 50%);
+            color: #3c3b6e;
+        }
+
+        .lang-switch-3 .flag-il {
+            background: #fff;
+            color: #0038b8;
+        }
+
+        .lang-switch-3 .flag-il::before,
+        .lang-switch-3 .flag-il::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: #0038b8;
+            left: 0;
+        }
+
+        .lang-switch-3 .flag-il::before {
+            top: 3px;
+        }
+
+        .lang-switch-3 .flag-il::after {
+            bottom: 3px;
+        }
+
+        /* Option 4: Dropdown Switcher */
+        .lang-switch-4 {
+            position: relative;
+        }
+
+        .lang-switch-4 select {
+            padding: 10px 40px 10px 15px;
+            border: 1px solid var(--black);
+            background: var(--white);
+            color: var(--text);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            appearance: none;
+            transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+        }
+
+        .lang-switch-4 select:hover {
+            border-color: var(--primary);
+            background: var(--secondary);
+        }
+
+        .lang-switch-4::after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--primary);
+            font-size: 10px;
+        }
+
+        /* Option 5: Toggle Switch */
+        .lang-switch-5 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lang-switch-5 .lang-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text);
+        }
+
+        .lang-switch-5 .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--secondary);
+            border: 2px solid var(--black);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+        }
+
+        .lang-switch-5 .toggle-switch.active {
+            background: var(--primary);
+        }
+
+        .lang-switch-5 .toggle-slider {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: var(--black);
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 250ms cubic-bezier(0, 0.55, 0.45, 1);
+        }
+
+        .lang-switch-5 .toggle-switch.active .toggle-slider {
+            transform: translateX(30px);
+            background: var(--white);
+        }
+
+        /* Option 6: Animated Underline */
+        .lang-switch-6 {
+            display: flex;
+            gap: 30px;
+            position: relative;
+        }
+
+        .lang-switch-6 a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 0;
+            transition: color 250ms cubic-bezier(0, 0.55, 0.45, 1);
+            position: relative;
+        }
+
+        .lang-switch-6 a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 250ms cubic-bezier(0, 0.55, 0.45, 1);
+        }
+
+        .lang-switch-6 a.active::after,
+        .lang-switch-6 a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switch-6 a.active {
+            color: var(--primary);
+        }
+
+        /* Code display */
+        .code-snippet {
+            background: var(--black);
+            color: var(--white);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            display: none;
+        }
+
+        .show-code-btn {
+            background: var(--black);
+            color: var(--white);
+            padding: 10px 40px;
+            border: none;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 250ms cubic-bezier(0, 0.55, 0.45, 1);
+        }
+
+        .show-code-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .demo-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Language Switcher Options</h1>
+        <p style="font-size: 16px; margin-bottom: 40px; color: var(--grey);">
+            Choose your preferred language switcher design. All options follow the Normand PLLC design system.
+        </p>
+
+        <!-- Option 1: Minimal Text -->
+        <div class="demo-section">
+            <h2>Option 1: Minimal Text Switcher</h2>
+            <div class="demo-header">
+                <div>Logo Placeholder</div>
+                <div class="lang-switch-1">
+                    <a href="#" class="active">EN</a>
+                    <span>/</span>
+                    <a href="#">עב</a>
+                </div>
+            </div>
+            <div class="demo-description">
+                <strong>Features:</strong> Clean, minimal text-based switcher with separator. Active language highlighted in orange. Perfect for clean, professional look.
+            </div>
+            <button class="show-code-btn" onclick="toggleCode(1)">View React Code</button>
+            <pre class="code-snippet" id="code-1">
+const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    &lt;div className="lang-switch-1"&gt;
+      &lt;a
+        href="#"
+        className={language === 'en' ? 'active' : ''}
+        onClick={(e) => { e.preventDefault(); setLanguage('en'); }}
+      &gt;
+        EN
+      &lt;/a&gt;
+      &lt;span&gt;/&lt;/span&gt;
+      &lt;a
+        href="#"
+        className={language === 'he' ? 'active' : ''}
+        onClick={(e) => { e.preventDefault(); setLanguage('he'); }}
+      &gt;
+        עב
+      &lt;/a&gt;
+    &lt;/div&gt;
+  );
+};
+            </pre>
+        </div>
+
+        <!-- Option 2: Button Style -->
+        <div class="demo-section">
+            <h2>Option 2: Button Style Switcher</h2>
+            <div class="demo-header">
+                <div>Logo Placeholder</div>
+                <div class="lang-switch-2">
+                    <button class="active">English</button>
+                    <button>עברית</button>
+                </div>
+            </div>
+            <div class="demo-description">
+                <strong>Features:</strong> Toggle button style with background highlight. Active state uses black background. Hover shows orange.
+            </div>
+            <button class="show-code-btn" onclick="toggleCode(2)">View React Code</button>
+            <pre class="code-snippet" id="code-2">
+const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    &lt;div className="lang-switch-2"&gt;
+      &lt;button
+        className={language === 'en' ? 'active' : ''}
+        onClick={() => setLanguage('en')}
+      &gt;
+        English
+      &lt;/button&gt;
+      &lt;button
+        className={language === 'he' ? 'active' : ''}
+        onClick={() => setLanguage('he')}
+      &gt;
+        עברית
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+            </pre>
+        </div>
+
+        <!-- Option 3: Flag Icons -->
+        <div class="demo-section">
+            <h2>Option 3: Flag Icons Switcher</h2>
+            <div class="demo-header">
+                <div>Logo Placeholder</div>
+                <div class="lang-switch-3">
+                    <button class="active">
+                        <div class="flag flag-us">US</div>
+                    </button>
+                    <button>
+                        <div class="flag flag-il">IL</div>
+                    </button>
+                </div>
+            </div>
+            <div class="demo-description">
+                <strong>Features:</strong> Visual flag representations. Active flag has orange border and slight scale. Good for international appeal.
+            </div>
+            <button class="show-code-btn" onclick="toggleCode(3)">View React Code</button>
+            <pre class="code-snippet" id="code-3">
+const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    &lt;div className="lang-switch-3"&gt;
+      &lt;button
+        className={language === 'en' ? 'active' : ''}
+        onClick={() => setLanguage('en')}
+        aria-label="English"
+      &gt;
+        &lt;div className="flag flag-us"&gt;US&lt;/div&gt;
+      &lt;/button&gt;
+      &lt;button
+        className={language === 'he' ? 'active' : ''}
+        onClick={() => setLanguage('he')}
+        aria-label="Hebrew"
+      &gt;
+        &lt;div className="flag flag-il"&gt;IL&lt;/div&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+            </pre>
+        </div>
+
+        <!-- Option 4: Dropdown -->
+        <div class="demo-section">
+            <h2>Option 4: Dropdown Switcher</h2>
+            <div class="demo-header">
+                <div>Logo Placeholder</div>
+                <div class="lang-switch-4">
+                    <select>
+                        <option value="en">English</option>
+                        <option value="he">עברית</option>
+                    </select>
+                </div>
+            </div>
+            <div class="demo-description">
+                <strong>Features:</strong> Compact dropdown selector. Saves space, good for multiple languages in future. Styled with brand colors.
+            </div>
+            <button class="show-code-btn" onclick="toggleCode(4)">View React Code</button>
+            <pre class="code-snippet" id="code-4">
+const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    &lt;div className="lang-switch-4"&gt;
+      &lt;select
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+      &gt;
+        &lt;option value="en"&gt;English&lt;/option&gt;
+        &lt;option value="he"&gt;עברית&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+  );
+};
+            </pre>
+        </div>
+
+        <!-- Option 5: Toggle Switch -->
+        <div class="demo-section">
+            <h2>Option 5: Toggle Switch</h2>
+            <div class="demo-header">
+                <div>Logo Placeholder</div>
+                <div class="lang-switch-5">
+                    <span class="lang-label">EN</span>
+                    <div class="toggle-switch">
+                        <div class="toggle-slider"></div>
+                    </div>
+                    <span class="lang-label">עב</span>
+                </div>
+            </div>
+            <div class="demo-description">
+                <strong>Features:</strong> Modern toggle switch. Clear binary choice. Orange background when Hebrew selected.
+            </div>
+            <button class="show-code-btn" onclick="toggleCode(5)">View React Code</button>
+            <pre class="code-snippet" id="code-5">
+const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    &lt;div className="lang-switch-5"&gt;
+      &lt;span className="lang-label"&gt;EN&lt;/span&gt;
+      &lt;div
+        className={`toggle-switch ${language === 'he' ? 'active' : ''}`}
+        onClick={() => setLanguage(language === 'en' ? 'he' : 'en')}
+      &gt;
+        &lt;div className="toggle-slider"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;span className="lang-label"&gt;עב&lt;/span&gt;
+    &lt;/div&gt;
+  );
+};
+            </pre>
+        </div>
+
+        <!-- Option 6: Animated Underline -->
+        <div class="demo-section">
+            <h2>Option 6: Animated Underline</h2>
+            <div class="demo-header">
+                <div>Logo Placeholder</div>
+                <div class="lang-switch-6">
+                    <a href="#" class="active">ENGLISH</a>
+                    <a href="#">עברית</a>
+                </div>
+            </div>
+            <div class="demo-description">
+                <strong>Features:</strong> Elegant underline animation on hover and active state. Matches navigation menu style. Professional and refined.
+            </div>
+            <button class="show-code-btn" onclick="toggleCode(6)">View React Code</button>
+            <pre class="code-snippet" id="code-6">
+const LanguageSwitcher = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    &lt;div className="lang-switch-6"&gt;
+      &lt;a
+        href="#"
+        className={language === 'en' ? 'active' : ''}
+        onClick={(e) => { e.preventDefault(); setLanguage('en'); }}
+      &gt;
+        ENGLISH
+      &lt;/a&gt;
+      &lt;a
+        href="#"
+        className={language === 'he' ? 'active' : ''}
+        onClick={(e) => { e.preventDefault(); setLanguage('he'); }}
+      &gt;
+        עברית
+      &lt;/a&gt;
+    &lt;/div&gt;
+  );
+};
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity to demos
+        function toggleCode(option) {
+            const codeBlock = document.getElementById(`code-${option}`);
+            codeBlock.style.display = codeBlock.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Add click handlers to switch languages in demos
+        document.querySelectorAll('.lang-switch-1 a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.parentElement.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.lang-switch-2 button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.lang-switch-3 button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelector('.lang-switch-4 select').addEventListener('change', function() {
+            // Visual feedback
+            this.style.background = '#f2f2f2';
+            setTimeout(() => {
+                this.style.background = '#fff';
+            }, 200);
+        });
+
+        const toggleSwitch = document.querySelector('.lang-switch-5 .toggle-switch');
+        if (toggleSwitch) {
+            toggleSwitch.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('.lang-switch-6 a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.parentElement.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

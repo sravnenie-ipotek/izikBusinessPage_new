@@ -1,0 +1,72 @@
+/**
+ * Fix for .first-team-img blinking animation issue
+ * When using larger height images, the scroll-triggered animations can cause flickering
+ */
+
+/* Prevent layout shift and blinking during scroll animations */
+.first-featured-team-member figure.normand-st-reveal-img {
+    /* Set explicit dimensions to prevent reflow */
+    min-height: 450px; /* Adjust based on your new image height */
+    position: relative;
+    overflow: hidden;
+
+    /* Smooth out the animation */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Stabilize the image container */
+.first-team-img {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    /* Prevent flickering during transforms */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* Smooth image rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Optimize animation performance */
+.first-featured-team-member.is-inview figure.normand-st-reveal-img {
+    transition: none !important; /* Prevent double animations */
+}
+
+/* For larger screens where the issue is more prominent */
+@media screen and (min-width: 768px) {
+    .first-featured-team-member figure.normand-st-reveal-img {
+        min-height: 600px; /* Adjust for larger screens */
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .first-featured-team-member figure.normand-st-reveal-img {
+        min-height: 700px; /* Adjust for even larger screens */
+    }
+
+    /* Ensure proper aspect ratio for the larger image */
+    .first-featured-team-member figure.normand-st-reveal-img img {
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* Alternative fix: Disable the reveal animation for this specific image if needed */
+/*
+.first-featured-team-member figure.normand-st-reveal-img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+.first-featured-team-member figure.normand-st-reveal-img img {
+    transform: none !important;
+}
+*/

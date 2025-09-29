@@ -1,0 +1,272 @@
+{
+  "startTime": "2025-09-28T12:54:52.358Z",
+  "endTime": "2025-09-28T12:55:02.428Z",
+  "totalTests": 7,
+  "passedTests": 6,
+  "failedTests": 1,
+  "issues": [
+    {
+      "severity": "medium",
+      "category": "ui",
+      "title": "Navigation Structure Unclear",
+      "description": "Found 3 interactive elements but no clear navigation pattern",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:54:57.432Z",
+      "screenshot": null
+    },
+    {
+      "severity": "medium",
+      "category": "ui",
+      "title": "Dashboard Section Missing",
+      "description": "No UI elements found for Dashboard section",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:54:57.444Z",
+      "screenshot": null
+    },
+    {
+      "severity": "medium",
+      "category": "ui",
+      "title": "Pages/Editor Section Missing",
+      "description": "No UI elements found for Pages/Editor section",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:54:57.455Z",
+      "screenshot": null
+    },
+    {
+      "severity": "medium",
+      "category": "ui",
+      "title": "Menu Manager Section Missing",
+      "description": "No UI elements found for Menu Manager section",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:54:57.463Z",
+      "screenshot": null
+    },
+    {
+      "severity": "medium",
+      "category": "ui",
+      "title": "Settings Section Missing",
+      "description": "No UI elements found for Settings section",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:54:57.471Z",
+      "screenshot": null
+    },
+    {
+      "severity": "high",
+      "category": "functionality",
+      "title": "Hebrew Language Button Missing",
+      "description": "Hebrew language toggle button not found in Page Editor",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:55:02.211Z",
+      "screenshot": {
+        "name": "issue-6",
+        "description": "Hebrew Language Button Missing",
+        "filename": "admin-test-issue-6-2025-09-28T12-55-02-211Z.png",
+        "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-6-2025-09-28T12-55-02-211Z.png",
+        "timestamp": "2025-09-28T12:55:02.247Z",
+        "url": "http://localhost:7001/admin/login"
+      }
+    },
+    {
+      "severity": "high",
+      "category": "api",
+      "title": "API Endpoint Failed: /api/admin/languages",
+      "description": "Expected status 401, got 404",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:55:02.257Z",
+      "screenshot": {
+        "name": "issue-7",
+        "description": "API Endpoint Failed: /api/admin/languages",
+        "filename": "admin-test-issue-7-2025-09-28T12-55-02-257Z.png",
+        "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-7-2025-09-28T12-55-02-257Z.png",
+        "timestamp": "2025-09-28T12:55:02.298Z",
+        "url": "http://localhost:7001/admin/login"
+      }
+    },
+    {
+      "severity": "high",
+      "category": "api",
+      "title": "API Endpoint Failed: /api/admin/pages",
+      "description": "Expected status 401, got 404",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:55:02.299Z",
+      "screenshot": {
+        "name": "issue-8",
+        "description": "API Endpoint Failed: /api/admin/pages",
+        "filename": "admin-test-issue-8-2025-09-28T12-55-02-299Z.png",
+        "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-8-2025-09-28T12-55-02-299Z.png",
+        "timestamp": "2025-09-28T12:55:02.339Z",
+        "url": "http://localhost:7001/admin/login"
+      }
+    },
+    {
+      "severity": "high",
+      "category": "api",
+      "title": "API Endpoint Failed: /api/contact",
+      "description": "Expected status 200, got 404",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:55:02.341Z",
+      "screenshot": {
+        "name": "issue-9",
+        "description": "API Endpoint Failed: /api/contact",
+        "filename": "admin-test-issue-9-2025-09-28T12-55-02-341Z.png",
+        "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-9-2025-09-28T12-55-02-341Z.png",
+        "timestamp": "2025-09-28T12:55:02.381Z",
+        "url": "http://localhost:7001/admin/login"
+      }
+    },
+    {
+      "severity": "high",
+      "category": "api",
+      "title": "API Endpoint Failed: /api/admin/login",
+      "description": "Expected status 401, got 404",
+      "element": null,
+      "url": "http://localhost:7001/admin/login",
+      "timestamp": "2025-09-28T12:55:02.382Z",
+      "screenshot": {
+        "name": "issue-10",
+        "description": "API Endpoint Failed: /api/admin/login",
+        "filename": "admin-test-issue-10-2025-09-28T12-55-02-382Z.png",
+        "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-10-2025-09-28T12-55-02-382Z.png",
+        "timestamp": "2025-09-28T12:55:02.422Z",
+        "url": "http://localhost:7001/admin/login"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "initial-load",
+      "description": "Admin panel initial load",
+      "filename": "admin-test-initial-load-2025-09-28T12-54-54-359Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-initial-load-2025-09-28T12-54-54-359Z.png",
+      "timestamp": "2025-09-28T12:54:54.417Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "language-toggle",
+      "description": "Language toggle clicked",
+      "filename": "admin-test-language-toggle-2025-09-28T12-54-59-002Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-language-toggle-2025-09-28T12-54-59-002Z.png",
+      "timestamp": "2025-09-28T12:54:59.065Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "page-editor-initial",
+      "description": "Page Editor initial state",
+      "filename": "admin-test-page-editor-initial-2025-09-28T12-55-02-154Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-page-editor-initial-2025-09-28T12-55-02-154Z.png",
+      "timestamp": "2025-09-28T12:55:02.207Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "issue-6",
+      "description": "Hebrew Language Button Missing",
+      "filename": "admin-test-issue-6-2025-09-28T12-55-02-211Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-6-2025-09-28T12-55-02-211Z.png",
+      "timestamp": "2025-09-28T12:55:02.247Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "issue-7",
+      "description": "API Endpoint Failed: /api/admin/languages",
+      "filename": "admin-test-issue-7-2025-09-28T12-55-02-257Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-7-2025-09-28T12-55-02-257Z.png",
+      "timestamp": "2025-09-28T12:55:02.298Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "issue-8",
+      "description": "API Endpoint Failed: /api/admin/pages",
+      "filename": "admin-test-issue-8-2025-09-28T12-55-02-299Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-8-2025-09-28T12-55-02-299Z.png",
+      "timestamp": "2025-09-28T12:55:02.339Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "issue-9",
+      "description": "API Endpoint Failed: /api/contact",
+      "filename": "admin-test-issue-9-2025-09-28T12-55-02-341Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-9-2025-09-28T12-55-02-341Z.png",
+      "timestamp": "2025-09-28T12:55:02.381Z",
+      "url": "http://localhost:7001/admin/login"
+    },
+    {
+      "name": "issue-10",
+      "description": "API Endpoint Failed: /api/admin/login",
+      "filename": "admin-test-issue-10-2025-09-28T12-55-02-382Z.png",
+      "filepath": "/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/screenshots/admin-test-issue-10-2025-09-28T12-55-02-382Z.png",
+      "timestamp": "2025-09-28T12:55:02.422Z",
+      "url": "http://localhost:7001/admin/login"
+    }
+  ],
+  "consoleErrors": [
+    {
+      "type": "console",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "timestamp": "2025-09-28T12:54:53.357Z",
+      "url": "http://localhost:7001/admin/"
+    }
+  ],
+  "networkErrors": [],
+  "apiResults": [
+    {
+      "endpoint": "/api/admin/menu",
+      "method": "GET",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "success": true,
+      "description": "Known broken menu endpoint",
+      "timestamp": "2025-09-28T12:55:02.256Z",
+      "response": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/admin/menu</pre>\n</body>\n</html>\n"
+    },
+    {
+      "endpoint": "/api/admin/languages",
+      "method": "GET",
+      "expectedStatus": 401,
+      "actualStatus": 404,
+      "success": false,
+      "description": "Languages endpoint (should require auth)",
+      "timestamp": "2025-09-28T12:55:02.257Z",
+      "response": null
+    },
+    {
+      "endpoint": "/api/admin/pages",
+      "method": "GET",
+      "expectedStatus": 401,
+      "actualStatus": 404,
+      "success": false,
+      "description": "Pages endpoint (should require auth)",
+      "timestamp": "2025-09-28T12:55:02.299Z",
+      "response": null
+    },
+    {
+      "endpoint": "/api/contact",
+      "method": "GET",
+      "expectedStatus": 200,
+      "actualStatus": 404,
+      "success": false,
+      "description": "Contact form endpoint",
+      "timestamp": "2025-09-28T12:55:02.341Z",
+      "response": null
+    },
+    {
+      "endpoint": "/api/admin/login",
+      "method": "POST",
+      "expectedStatus": 401,
+      "actualStatus": 404,
+      "success": false,
+      "description": "Login endpoint without credentials",
+      "timestamp": "2025-09-28T12:55:02.382Z",
+      "response": null
+    }
+  ],
+  "summary": "\nAdmin Panel Test Results\n========================\nTest Duration: 10070ms\nTotal Tests: 7\nPassed: 6\nFailed: 1\n\nIssues Found:\n- Critical: 0\n- High: 5\n- Medium: 5\n- Low: 0\n\nConsole Errors: 1\nNetwork Errors: 0\nAPI Tests: 5\nScreenshots: 8\n"
+}
