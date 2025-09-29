@@ -245,6 +245,24 @@ function setupAdminRoutes(app) {
           }
         },
         {
+          id: 'casestudies-grid',
+          name: 'Case Studies Grid',
+          selector: '.normand-case-studies',
+          type: 'casestudies-grid',
+          editable: {
+            // First case study row
+            case1Status: '.normand-case-studies-grid > .normand-case-studies-status:nth-of-type(1)',
+            case1Name: '.normand-case-studies-grid > .normand-case-studies-name:nth-of-type(2)',
+            case1Date: '.normand-case-studies-grid > .normand-case-studies-date:nth-of-type(3)',
+            case1Areas: '.normand-case-studies-grid > .normand-case-studies-practice-areas:nth-of-type(4)',
+            // Second case study row
+            case2Status: '.normand-case-studies-grid > .normand-case-studies-status:nth-of-type(6)',
+            case2Name: '.normand-case-studies-grid > .normand-case-studies-name:nth-of-type(7)',
+            case2Date: '.normand-case-studies-grid > .normand-case-studies-date:nth-of-type(8)',
+            case2Areas: '.normand-case-studies-grid > .normand-case-studies-practice-areas:nth-of-type(9)'
+          }
+        },
+        {
           id: 'testimonials',
           name: 'Testimonials Section',
           selector: '.wp-block-normand-testimonials',
@@ -277,6 +295,52 @@ function setupAdminRoutes(app) {
             subtitle: '.normand-contact--subtitle',
             title: '.normand-contact--title',
             formNote: '.normand-contact--form-note'
+          }
+        },
+        {
+          id: 'articles',
+          name: 'News & Articles Section',
+          selector: '.normand-articles',
+          type: 'articles',
+          editable: {
+            title: '.normand-articles-block-title',
+            article1Title: '.normand-articles-posts-grid > div:nth-child(1) h2',
+            article1Excerpt: '.normand-articles-posts-grid > div:nth-child(1) .normand-articles-excerpt-text',
+            article1Author: '.normand-articles-posts-grid > div:nth-child(1) .author-name',
+            article2Title: '.normand-articles-posts-grid > div:nth-child(2) h2',
+            article2Excerpt: '.normand-articles-posts-grid > div:nth-child(2) .normand-articles-excerpt-text',
+            article2Author: '.normand-articles-posts-grid > div:nth-child(2) .author-name'
+          }
+        },
+        {
+          id: 'page-banner',
+          name: 'Page Banner Section',
+          selector: '.wp-block-normand-page-banner',
+          type: 'page-banner',
+          editable: {
+            subtitle: '.banner-subtitle',
+            title: '.banner-title',
+            rotationText1: '.banner-title .rotation-text-1',
+            rotationText2: '.banner-title .rotation-text-2',
+            rotationText3: '.banner-title .rotation-text-3',
+            rotationText4: '.banner-title .rotation-text-4'
+          }
+        },
+        {
+          id: 'class-action',
+          name: 'Class Action Section',
+          selector: '.wp-block-normand-class-action',
+          type: 'class-action',
+          editable: {
+            subtitle: '.normand-classaction--subtitle',
+            title: '.normand-classaction--title',
+            content: '.normand-classaction--content',
+            topTitle: '.classaction-top--title',
+            topContent: '.classaction-top--content',
+            middleTitle: '.classaction-middle--title',
+            middleContent: '.classaction-middle--content',
+            bottomTitle: '.classaction-bottom--title',
+            bottomContent: '.classaction-bottom--content'
           }
         }
       ];

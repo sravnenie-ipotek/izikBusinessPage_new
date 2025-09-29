@@ -80,3 +80,4 @@ vercel --prod
 - Add email provider (Resend/SendGrid) via Vercel environment variables
 - update '/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/DOCS/bugs/adminLog.md' for admin panel bugs and solution
 - '/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/DOCS/bugs/adminLog.md'update bugs and hpw fix it. only admin panel
+- update admin bugs and solutions in '/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/DOCS/bugs/adminLog.md'

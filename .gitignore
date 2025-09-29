@@ -32,3 +32,32 @@ logs/
 # Build
 dist/
 build/
+
+# Backup files
+*.backup
+*.bak
+*.tmp
+*.temp
+
+# Cache
+.cache/
+.temp/
+
+# Development files
+test-*.html
+temp-*.js
+debug-*.css
+
+# Documentation temp files
+DOCS/temp/
+*.draft.md
+
+# System files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Editor config
+.editorconfig
