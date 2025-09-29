@@ -1,74 +1,54 @@
 {
   "mainMenu": [
     {
-      "id": "menu-item-25",
+      "id": "home",
       "title": "Home",
       "url": "/",
-      "children": [],
-      "order": 1
+      "order": 1,
+      "children": []
     },
     {
-      "id": "menu-item-28",
+      "id": "class-action",
       "title": "Class Action",
       "url": "/class-action/",
+      "order": 2,
       "children": [
         {
-          "id": "menu-item-29",
+          "id": "class-action-insurance",
+          "title": "Insurance",
+          "url": "/class-action/insurance/"
+        },
+        {
+          "id": "class-action-privacy",
           "title": "Privacy",
           "url": "/class-action/privacy/"
         },
         {
-          "id": "menu-item-30",
+          "id": "class-action-consumer",
           "title": "Consumer Protection",
           "url": "/class-action/consumer-protection/"
-        },
-        {
-          "id": "menu-item-31",
-          "title": "Insurance",
-          "url": "/class-action/insurance/"
         }
-      ],
-      "order": 2
+      ]
     },
     {
-      "id": "menu-item-34",
-      "title": "Status & Results",
-      "url": "/status-results/",
-      "children": [],
-      "order": 3
-    },
-    {
-      "id": "menu-item-33",
+      "id": "our-team",
       "title": "Our Team",
       "url": "/our-team/",
-      "children": [],
-      "order": 4
+      "order": 3,
+      "children": []
     },
     {
-      "id": "menu-item-26",
-      "title": "News & Articles",
-      "url": "/news-articles/",
-      "children": [],
-      "order": 5
-    },
-    {
-      "id": "menu-item-32",
+      "id": "contact-us",
       "title": "Contact Us",
       "url": "/contact-us/",
-      "children": [
-        {
-          "id": "menu-item-981",
-          "title": "Disclaimer",
-          "url": "/disclaimer/"
-        },
-        {
-          "id": "menu-item-980",
-          "title": "Privacy Policy",
-          "url": "/privacy-policy/"
-        }
-      ],
-      "order": 8
+      "order": 4,
+      "children": []
     }
   ],
-  "lastUpdated": "2025-09-28T12:12:02.011Z"
+  "languages": {
+    "en": "English",
+    "he": "עברית"
+  },
+  "lastUpdated": "2025-09-28T14:29:50.473Z",
+  "lastSyncedAt": "2025-09-28T14:29:50.473Z"
 }

@@ -78,3 +78,5 @@ vercel --prod
 - Forms work locally via `/api/contact` endpoint
 - Submissions logged to console during development
 - Add email provider (Resend/SendGrid) via Vercel environment variables
+- update '/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/DOCS/bugs/adminLog.md' for admin panel bugs and solution
+- '/Users/michaelmishayev/Desktop/AizikBusinessPage/www.normandpllc.com/DOCS/bugs/adminLog.md'update bugs and hpw fix it. only admin panel

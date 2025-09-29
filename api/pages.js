@@ -55,6 +55,48 @@ function getAllPages(lang = 'en') {
 // Read page content
 function readPageContent(pagePath, lang = 'en') {
   try {
+    // Also try to directly read the file if it's a path
+    const rootDir = path.join(__dirname, '..');
+    const fileName = lang === 'he' ? 'index.he.html' : 'index.html';
+
+    // Handle various path formats
+    let normalizedPath = pagePath;
+    if (normalizedPath.startsWith('/')) {
+      normalizedPath = normalizedPath.slice(1);
+    }
+    if (normalizedPath.endsWith('/')) {
+      normalizedPath = normalizedPath.slice(0, -1);
+    }
+
+    // Try direct file path first
+    const directFilePath = path.join(rootDir, normalizedPath, fileName);
+    if (fs.existsSync(directFilePath)) {
+      const html = fs.readFileSync(directFilePath, 'utf8');
+      const $ = cheerio.load(html);
+
+      // Extract content sections
+      const content = {
+        title: $('title').text(),
+        metaDescription: $('meta[name="description"]').attr('content') || '',
+        heading: $('h1').first().text(),
+        mainContent: $('.content-body').html() || $('.main-content').html() || $('main').html() || '',
+        sections: []
+      };
+
+      // Extract sections
+      $('.section, .content-section, article').each((i, elem) => {
+        const section = $(elem);
+        content.sections.push({
+          id: section.attr('id') || `section-${i}`,
+          class: section.attr('class'),
+          content: section.html()
+        });
+      });
+
+      return content;
+    }
+
+    // Fall back to scanning pages
     const pages = getAllPages(lang);
     const page = pages.find(p => p.path === pagePath || p.id === pagePath);
 
@@ -216,9 +258,20 @@ export default function handler(req, res) {
         res.status(200).json({ pages });
       } else {
         // Get specific page content
-        const content = readPageContent(page, lang);
+        let content = readPageContent(page, lang);
+
+        // If Hebrew content not found, fallback to English
+        if (!content && lang === 'he') {
+          content = readPageContent(page, 'en');
+          if (content) {
+            // Add a flag indicating this is English content
+            content.isEnglishFallback = true;
+            content.message = 'Hebrew translation not available, showing English content';
+          }
+        }
+
         if (content) {
-          res.status(200).json({ page, content });
+          res.status(200).json({ page, content, lang: content.isEnglishFallback ? 'en' : lang });
         } else {
           res.status(404).json({ error: 'Page not found' });
         }

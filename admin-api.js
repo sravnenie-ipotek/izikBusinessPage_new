@@ -1,10 +1,14 @@
-const fs = require('fs').promises;
-const path = require('path');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const cheerio = require('cheerio');
-const multer = require('multer');
-const sharp = require('sharp');
+import fs from 'fs/promises';
+import path from 'path';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import * as cheerio from 'cheerio';
+import multer from 'multer';
+import sharp from 'sharp';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const JWT_SECRET = process.env.JWT_SECRET || 'normand-admin-secret-2024';
@@ -841,4 +845,4 @@ function setupAdminRoutes(app) {
   console.log('✅ Admin API routes configured with image upload support');
 }
 
-module.exports = { setupAdminRoutes, authenticate };
+export { setupAdminRoutes, authenticate };
