@@ -61,3 +61,12 @@ Thumbs.db
 
 # Editor config
 .editorconfig
+
+# Project-specific instructions
+CLAUDE.md
+
+# Backup directories
+uploads/backups/
+
+# All DS_Store files
+**/.DS_Store
